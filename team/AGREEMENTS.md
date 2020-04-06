@@ -8,3 +8,4 @@ back up to speed.
 * We will all do our best to contribute to the teams success.
 * Discuss disputes on Zoom over Slack. (/zoom)
 * Team Meetings: during class times for now
+* Tech Stack: NextJS
