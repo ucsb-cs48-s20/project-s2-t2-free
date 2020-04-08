@@ -1,4 +1,4 @@
-# Free From Class README.md
+# FreeFromClass README.md
 
 Description: Students can input their schedule and then compare it with the schedules of other students. Students can generate a link to send to friends. Additional users that click on the same link will be able to input their schedule. The app will return the free time shared between all the students in the group.
 
