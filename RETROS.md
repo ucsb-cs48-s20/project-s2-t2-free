@@ -1,14 +1,14 @@
 # Retro 04/20/20
 
 * Led by: Clare Boyle
-* Present: 
-* Absent: 
+* Present: Corey Su, Ishana Narayanan, Vincent Tieu
+* Absent: --
 
 ## Action item
 
-* a goal: identify something the team wants to get better at
-* a change: identify one thing that the team will change about how it works together
-* a measurement: identify at least one way to measure whether the change helped the team acheive the goal, or move closer to it.
+* a goal: Keep each other updated on the tutorials we are going through and add documentation to Google Drive.
+* a change: Create a Shared Google Drive for the team to share notes / documentation from tutorials
+* a measurement: The TutorialProgress spreadsheet will help make us accountable for the tutorials we have completed.
 
 ## Retro Assessment
 
