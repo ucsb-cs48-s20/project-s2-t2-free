@@ -3,8 +3,9 @@ import Container from "react-bootstrap/Container";
 function AppFooter() {
   return (
     <Container>
-      This is a demo of a minimal Next.js app. Check out the source code on{" "}
-      <a href="https://github.com/ucsb-cs48-s20/demo-nextjs-app">GitHub</a>!
+      This is team s2-t2-free's CS48 app for Spring 2020 at UCSB! Our repo is
+      located{" "}
+      <a href="https://github.com/ucsb-cs48-s20/project-s2-t2-free">here</a>.
     </Container>
   );
 }
