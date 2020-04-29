@@ -23,6 +23,7 @@
     "@auth0/nextjs-auth0": "^0.11.0",
     "bootstrap": "^4.4.1",
     "dotenv": "^8.2.0",
+    "googleapis": "^39.2.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "9.3.2",
     "react": "16.13.1",
