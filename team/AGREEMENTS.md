@@ -1,6 +1,6 @@
 # Team Agreements
 
-* Private App for now
+* Public App
 * When one of us is absent for an unavoidable reason, we will let the other team members know on the team slack channel, 
 in advance when possible, as soon as possible afterwards when not.
 * We will each try to keep such absences to a minimum.
