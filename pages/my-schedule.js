@@ -5,11 +5,13 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Head from "next/head";
+import { useToasts } from "../components/Toasts";
 
 export const getServerSideProps = requiredAuth;
 
 export default function ManageDefaultSchedulePage(props) {
   const { user, initialData } = props;
+  const { showToast } = useToasts();
   const [newEventName, setNewEventName] = useState("");
   const [newDay, setNewDay] = useState("");
   const [newStartTime, setNewStartTime] = useState("");
@@ -23,6 +25,7 @@ export default function ManageDefaultSchedulePage(props) {
     setNewDay("");
     setNewStartTime("");
     setNewEndTime("");
+    showToast(`Added event ${newEventName}`);
   });
 
   return (
