@@ -17,11 +17,11 @@ const eventConstraints = {
   },
 };
 
-async function createStudent(req) {
-  let student;
+async function createEvent(req) {
+  let event;
 
   try {
-    student = await validate.async(req.body, studentConstraints, {
+    event = await validate.async(req.body, eventConstraints, {
       cleanAttributes: true,
       format: "flat",
     });
@@ -32,37 +32,10 @@ async function createStudent(req) {
     };
   }
 
-  const client = await initDatabase();
-  const users = client.collection("users");
+  //   const client = await initDatabase();
+  //   const events = client.collection("events");
 
-  const user = await users.findOne({ email: student.email });
-
-  if (user && (user.role === "admin" || user.role === "student")) {
-    throw {
-      status: 409,
-      message: "User already exists; cannot be converted to a student",
-    };
-  }
-  const query = { email: student.email };
-  const mutation = {
-    $setOnInsert: {
-      permNum: student.permNum,
-      email: student.email,
-      fname: student.fname,
-      lname: student.lname,
-    },
-    $set: {
-      role: "student",
-      section: student.section,
-    },
-  };
-
-  const result = await users.findOneAndUpdate(query, mutation, {
-    upsert: true,
-    returnOriginal: false,
-  });
-
-  return result.value;
+  // store to database here
 }
 
 async function performAction(req, user) {
@@ -73,10 +46,10 @@ async function performAction(req, user) {
   }
 
   switch (req.method) {
-    case "GET":
-      return getStudents(section);
+    // case "GET":
+    //   return getStudents(section);
     case "POST":
-      return createStudent(req);
+      return createEvent(req);
   }
 
   throw { status: 405 };
