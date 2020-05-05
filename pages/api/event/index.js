@@ -1,17 +1,18 @@
+import validate from "validate.js";
 import { authenticatedAction } from "../../../utils/api";
 import { initDatabase } from "../../../utils/mongodb";
 
 const eventConstraints = {
-  eventName: {
+  eventname: {
     presence: true,
   },
   day: {
     presence: true,
   },
-  startTime: {
+  starttime: {
     presence: true,
   },
-  endTime: {
+  endtime: {
     presence: true,
   },
 };
@@ -34,7 +35,7 @@ async function createEvent(req) {
   const client = await initDatabase();
   const events = client.collection("events");
 
-  const query = { email: event.eventname };
+  const query = { eventname: event.eventname };
   const mutation = {
     $setOnInsert: {
       eventname: event.eventname,
