@@ -8,7 +8,7 @@ All students can manually add custom events to their schedule.
 
 Tech Stack: NextJS
 
-Team: 
+Team:
 
 Clare Boyle: claremboyle
 

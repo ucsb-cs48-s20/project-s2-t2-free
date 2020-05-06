@@ -1,10 +1,22 @@
 import Layout from "../components/Layout";
 import { optionalAuth } from "../utils/ssr";
+import { useCallback } from "react";
 
-export const getServerSideProps = optionalAuth;
+export const getServerSideProps = async (req) => {
+  return optionalAuth(req);
+};
 
 function HomePage(props) {
   const user = props.user;
+  const addUser = useCallback(async (e) => {
+    await fetch("/api/user", {
+      method: "POST",
+    });
+  }, []);
+
+  if (user) {
+    addUser();
+  }
 
   return (
     <Layout user={user}>
