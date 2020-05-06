@@ -72,7 +72,7 @@ async function performAction(req, user) {
     case "GET":
       return getEvents();
     case "POST":
-      return createEvent(res, user);
+      return createEvent(req, user);
   }
 
   throw { status: 405 };
