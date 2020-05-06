@@ -1,14 +1,30 @@
-import { requiredAuth } from "../../utils/ssr";
 import { useCallback, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import useSWR from "swr";
 
-export const getServerSideProps = requiredAuth;
+export const getServerSideProps = async ({ req, res }) => {
+  const session = await auth0.getSession(req);
+  if (session && session.user) {
+    const intialData = (await getEvents(session.user)).map(serializeDocument);
+    return {
+      props: {
+        user: session.user,
+        intialData: intialData,
+      },
+    };
+  }
 
-function NewEventForm() {
-  const { data, mutate } = useSWR("/api/event", {});
+  res.writeHead(302, {
+    Location: "/api/login",
+  });
+  res.end();
+};
+
+function NewEventForm(props) {
+  const { user, initialData } = props;
+  const { data, mutate } = useSWR("/api/event", { initialData });
   const [newEventName, setNewEventName] = useState("");
   const [newDay, setNewDay] = useState("");
   const [newStartTime, setNewStartTime] = useState("");
@@ -25,6 +41,7 @@ function NewEventForm() {
       setNewEndTime("");
       await mutate(
         [
+          data,
           {
             eventname: newEventName,
             day: newDay,

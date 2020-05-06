@@ -28,7 +28,9 @@ function SchedulePage(props) {
   const intialData = props.intialData;
   return (
     <Layout user={user}>
+      <h1>Create New Event</h1>
       <NewEventForm />
+      <h1>My Schedule</h1>
       <pre>{JSON.stringify(intialData, null, "\t")}</pre>
     </Layout>
   );

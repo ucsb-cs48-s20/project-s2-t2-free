@@ -28,7 +28,7 @@ const eventConstraints = {
   },
 };
 
-async function createEvent(req, user) {
+async function createEvent(req, user, res) {
   let event;
 
   try {
@@ -70,7 +70,7 @@ async function createEvent(req, user) {
 async function performAction(req, user) {
   switch (req.method) {
     case "GET":
-      return getEvents();
+      return getEvents(user);
     case "POST":
       return createEvent(req, user);
   }
