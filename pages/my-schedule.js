@@ -10,8 +10,7 @@ import useSWR from "swr";
 export const getServerSideProps = requiredAuth;
 
 export default function ManageDefaultSchedulePage(props) {
-  // const { user, initialData } = props;
-  const user = props.user;
+  const { user, initialData } = props;
   const { data, mutate } = useSWR("/api/event", { initialData });
   const [newEventName, setNewEventName] = useState("");
   const [newDay, setNewDay] = useState("");
