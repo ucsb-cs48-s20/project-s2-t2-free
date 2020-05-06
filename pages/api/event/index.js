@@ -32,7 +32,7 @@ async function createEvent(req, user) {
     };
   }
 
-  console.log(event);
+  console.log("inserting into events:", event);
 
   const client = await initDatabase();
   const events = client.collection("events");
@@ -58,8 +58,6 @@ async function createEvent(req, user) {
 
 async function performAction(req, user) {
   switch (req.method) {
-    // case "GET":
-    //   return getStudents(section);
     case "POST":
       return createEvent(req, user);
   }
