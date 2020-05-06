@@ -2,6 +2,17 @@ import validate from "validate.js";
 import { authenticatedAction } from "../../../utils/api";
 import { initDatabase } from "../../../utils/mongodb";
 
+export async function getEvents(user) {
+  const client = await initDatabase();
+  const events = client.collection("events");
+
+  const query = {
+    userid: user.sub,
+  };
+
+  return events.find(query).toArray();
+}
+
 const eventConstraints = {
   eventname: {
     presence: true,
@@ -37,7 +48,7 @@ async function createEvent(req, user) {
   const client = await initDatabase();
   const events = client.collection("events");
 
-  const query = { eventname: event.eventname };
+  const query = { eventname: "always insert event" };
   const mutation = {
     $setOnInsert: {
       userid: user.sub,
@@ -58,8 +69,10 @@ async function createEvent(req, user) {
 
 async function performAction(req, user) {
   switch (req.method) {
+    case "GET":
+      return getEvents();
     case "POST":
-      return createEvent(req, user);
+      return createEvent(res, user);
   }
 
   throw { status: 405 };

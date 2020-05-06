@@ -2,11 +2,9 @@ import Layout from "../components/Layout";
 import { optionalAuth } from "../utils/ssr";
 import { useCallback } from "react";
 
-export const getServerSideProps = optionalAuth;
-
-function myFunction() {
-  alert("Page is loaded");
-}
+export const getServerSideProps = async (req) => {
+  return optionalAuth(req);
+};
 
 function HomePage(props) {
   const user = props.user;
@@ -15,7 +13,10 @@ function HomePage(props) {
       method: "POST",
     });
   }, []);
-  addUser();
+
+  if (user) {
+    addUser();
+  }
 
   return (
     <Layout user={user}>

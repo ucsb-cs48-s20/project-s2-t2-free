@@ -1,7 +1,7 @@
 import { authenticatedAction } from "../../../utils/api";
 import { initDatabase } from "../../../utils/mongodb";
 
-async function createEvent(req, user) {
+export async function createUser(user) {
   const client = await initDatabase();
   const events = client.collection("users");
 
@@ -25,7 +25,7 @@ async function createEvent(req, user) {
 async function performAction(req, user) {
   switch (req.method) {
     case "POST":
-      return createEvent(req, user);
+      return createUser(user);
   }
 
   throw { status: 405 };
