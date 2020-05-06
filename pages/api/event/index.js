@@ -2,12 +2,12 @@ import validate from "validate.js";
 import { authenticatedAction } from "../../../utils/api";
 import { initDatabase } from "../../../utils/mongodb";
 
-export async function getEvents(user) {
+export async function getEvents(userSub) {
   const client = await initDatabase();
   const events = client.collection("events");
 
   const query = {
-    userid: user.sub,
+    userid: userSub,
   };
 
   return events.find(query).toArray();
@@ -70,7 +70,7 @@ async function createEvent(req, user, res) {
 async function performAction(req, user) {
   switch (req.method) {
     case "GET":
-      return getEvents(user);
+      return getEvents(user.sub);
     case "POST":
       return createEvent(req, user);
   }

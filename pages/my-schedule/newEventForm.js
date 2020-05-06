@@ -41,12 +41,11 @@ function NewEventForm(props) {
       setNewEndTime("");
       await mutate(
         [
-          data,
           {
             eventname: newEventName,
-            day: newDay,
-            starttime: newStartTime,
-            endtime: newEndTime,
+            eventday: newDay,
+            eventstarttime: newStartTime,
+            eventendtime: newEndTime,
           },
         ],
         false
