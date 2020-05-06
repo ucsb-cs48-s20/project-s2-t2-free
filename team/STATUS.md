@@ -12,19 +12,21 @@ Our App's MVP focuses on allowing a user to input their schedule and join groups
 
 <https://cs48-s20-s2-t2-prod.herokuapp.com/>
 
-* Team is on track to complete production app placeholder by noon Thursday (04/30/2020)
+- Team is on track to complete production app placeholder by noon Thursday (04/30/2020)
 
 ## MVP Status
 
-* Team is concerned that it might not be able to complete MVP by noon a week from Thursday (05/07/2020)
+- Team is concerned that it might not be able to complete MVP by noon a week from Thursday (05/07/2020)
 
 (If applicable, include items below.)
 
 What obstacles remain to completing MVP:
-* Finding/creating a suitable calendar interface
-* Generating shareable links
-* Using a database to save a user's schedule
+
+- Finding/creating a suitable calendar interface
+- Generating shareable links
+- Using a database to save a user's schedule
 
 Support that would be helpful from course staff to completing MVP
-* APIs that would be compatible with our product (considering Google Calendar API if possible)
-* MongoDB resources
+
+- APIs that would be compatible with our product (considering Google Calendar API if possible)
+- MongoDB resources
