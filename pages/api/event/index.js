@@ -17,7 +17,7 @@ const eventConstraints = {
   },
 };
 
-async function createEvent(req) {
+async function createEvent(req, user) {
   let event;
 
   try {
@@ -32,19 +32,19 @@ async function createEvent(req) {
     };
   }
 
+  console.log(event);
+
   const client = await initDatabase();
   const events = client.collection("events");
 
   const query = { eventname: event.eventname };
   const mutation = {
     $setOnInsert: {
+      userid: user.sub,
       eventname: event.eventname,
-      eventday: event.eventday,
-      eventstarttime: event.eventstarttime,
-      eventendtime: event.eventendtime,
-    },
-    $set: {
-      role: "event",
+      eventday: event.day,
+      eventstarttime: event.starttime,
+      eventendtime: event.endtime,
     },
   };
 
@@ -61,7 +61,7 @@ async function performAction(req, user) {
     // case "GET":
     //   return getStudents(section);
     case "POST":
-      return createEvent(req);
+      return createEvent(req, user);
   }
 
   throw { status: 405 };

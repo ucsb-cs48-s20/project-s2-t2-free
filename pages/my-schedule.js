@@ -37,6 +37,7 @@ export default function ManageDefaultSchedulePage(props) {
         ],
         false
       );
+      console.log(user.sub);
       await fetch("/api/event", {
         method: "POST",
         headers: {
