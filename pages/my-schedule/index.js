@@ -7,7 +7,7 @@ export const getServerSideProps = requiredAuth;
 
 function SchedulePage(props) {
   const user = props.user;
-  const { data } = useSWR("/api/event", {});
+  const { data } = useSWR("/api/event");
   return (
     <Layout user={user}>
       <h1>Create New Event</h1>
