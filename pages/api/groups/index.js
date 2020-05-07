@@ -2,17 +2,6 @@ import validate from "validate.js";
 import { authenticatedAction } from "../../../utils/api";
 import { initDatabase } from "../../../utils/mongodb";
 
-export async function getEvents(userSub) {
-  const client = await initDatabase();
-  const events = client.collection("events");
-
-  const query = {
-    userid: userSub,
-  };
-
-  return events.find(query).toArray();
-}
-
 export async function getGroupEvents() {
   const client = await initDatabase();
   const events = client.collection("events");
@@ -76,9 +65,9 @@ async function createEvent(req, user, res) {
 async function performAction(req, user) {
   switch (req.method) {
     case "GET":
-      return getEvents(user.sub);
-    case "POST":
-      return createEvent(req, user);
+      return getGroupEvents();
+    /* case "POST":
+      return createEvent(req, user); */
   }
 
   throw { status: 405 };
