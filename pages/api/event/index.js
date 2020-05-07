@@ -13,12 +13,6 @@ export async function getEvents(userSub) {
   return events.find(query).toArray();
 }
 
-export async function getGroupEvents() {
-  const client = await initDatabase();
-  const events = client.collection("events");
-  return events.find({}).toArray();
-}
-
 const eventConstraints = {
   eventname: {
     presence: true,
