@@ -2,53 +2,89 @@ import { useCallback, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
+import { Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "../../components/Toasts";
 
-export const getServerSideProps = async ({ req, res }) => {
+export const getServerSideProps = async ({ req }) => {
   const session = await auth0.getSession(req);
   if (session && session.user) {
     const intialData = (await getEvents(session.user)).map(serializeDocument);
     return {
       props: {
-        user: session.user,
         intialData: intialData,
       },
     };
   }
-
-  res.writeHead(302, {
-    Location: "/api/login",
-  });
-  res.end();
 };
 
+function numToTime(num) {
+  let str = "";
+  if (Math.floor(num / 12) % 12 === 0) {
+    str += "12";
+  } else {
+    str += Math.floor(num / 12) % 12;
+  }
+  str += ":";
+  if ((num % 12) * 5 <= 5) {
+    str += "0";
+  }
+  str += (num % 12) * 5;
+  if (num >= 144) {
+    str += " PM";
+  } else {
+    str += " AM";
+  }
+  return str;
+}
+
 function NewEventForm(props) {
-  const { user, initialData } = props;
+  const { initialData } = props;
   const { showToast } = useToasts();
-  const { data, mutate } = useSWR("/api/event", { initialData });
-  const [newEventName, setNewEventName] = useState("");
-  const [newDay, setNewDay] = useState("");
-  const [newStartTime, setNewStartTime] = useState("");
-  const [newEndTime, setNewEndTime] = useState("");
+  const { mutate } = useSWR("/api/event", { initialData });
+  const [name, setName] = useState("");
+
+  const [isMonday, setIsMonday] = useState("false");
+  const [isTuesday, setIsTuesday] = useState("false");
+  const [isWednesday, setIsWednesday] = useState("false");
+  const [isThursday, setIsThursday] = useState("false");
+  const [isFriday, setIsFriday] = useState("false");
+  const [isSaturday, setIsSaturday] = useState("false");
+  const [isSunday, setIsSunday] = useState("false");
+
+  const [startTime, setStartTime] = useState(144);
+  const [endTime, setEndTime] = useState(144);
   const addEvent = useCallback(
     async (e) => {
       // override default form submission behavior
       e.preventDefault();
       e.stopPropagation();
+      setName("");
 
-      setNewEventName("");
-      setNewDay("");
-      setNewStartTime("");
-      setNewEndTime("");
-      showToast("Added event: " + newEventName);
+      setIsMonday("false");
+      setIsTuesday("false");
+      setIsWednesday("false");
+      setIsThursday("false");
+      setIsFriday("false");
+      setIsSaturday("false");
+      setIsSunday("false");
+
+      setStartTime(144);
+      setEndTime(144);
+      showToast("Added event: " + name);
       await mutate(
         [
           {
-            eventname: newEventName,
-            eventday: newDay,
-            eventstarttime: newStartTime,
-            eventendtime: newEndTime,
+            name: name,
+            isMonday: isMonday,
+            isTuesday: isTuesday,
+            isWednesday: isWednesday,
+            isThursday: isThursday,
+            isFriday: isFriday,
+            isSaturday: isSaturday,
+            isSunday: isSunday,
+            startTime: numToTime(startTime),
+            endTime: numToTime(endTime),
           },
         ],
         false
@@ -59,15 +95,32 @@ function NewEventForm(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          eventname: newEventName,
-          day: newDay,
-          starttime: newStartTime,
-          endtime: newEndTime,
+          name: name,
+          isMonday: isMonday,
+          isTuesday: isTuesday,
+          isWednesday: isWednesday,
+          isThursday: isThursday,
+          isFriday: isFriday,
+          isSaturday: isSaturday,
+          isSunday: isSunday,
+          startTime: numToTime(startTime),
+          endTime: numToTime(endTime),
         }),
       });
       await mutate();
     },
-    [newEventName, newDay, newStartTime, newEndTime]
+    [
+      name,
+      isMonday,
+      isTuesday,
+      isWednesday,
+      isThursday,
+      isFriday,
+      isSaturday,
+      isSunday,
+      startTime,
+      endTime,
+    ]
   );
 
   return (
@@ -76,26 +129,73 @@ function NewEventForm(props) {
         <Form.Label>Event Name</Form.Label>
         <FormControl
           type="text"
-          value={newEventName}
-          onChange={(e) => setNewEventName(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <Form.Label>Day</Form.Label>
-        <FormControl
-          type="text"
-          value={newDay}
-          onChange={(e) => setNewDay(e.target.value)}
+        <Form.Check
+          inline
+          label="Monday"
+          type="switch"
+          id="Monday"
+          onChange={(e) => setIsMonday(e.target.checked)}
         />
-        <Form.Label>Start Time</Form.Label>
-        <FormControl
-          type="text"
-          value={newStartTime}
-          onChange={(e) => setNewStartTime(e.target.value)}
+        <Form.Check
+          inline
+          label="Tuesday"
+          type="switch"
+          id="Tuesday"
+          onChange={(e) => setIsTuesday(e.target.checked)}
         />
-        <Form.Label>End Time</Form.Label>
+        <Form.Check
+          inline
+          label="Wednesday"
+          type="switch"
+          id="Wednesday"
+          onChange={(e) => setIsWednesday(e.target.checked)}
+        />
+        <Form.Check
+          inline
+          label="Thursday"
+          type="switch"
+          id="Thursday"
+          onChange={(e) => setIsThursday(e.target.checked)}
+        />
+        <Form.Check
+          inline
+          label="Friday"
+          type="switch"
+          id="Friday"
+          onChange={(e) => setIsFriday(e.target.checked)}
+        />
+        <Form.Check
+          inline
+          label="Saturday"
+          type="switch"
+          id="Saturday"
+          onChange={(e) => setIsSaturday(e.target.checked)}
+        />
+        <Form.Check
+          inline
+          label="Sunday"
+          type="switch"
+          id="Sunday"
+          onChange={(e) => setIsSunday(e.target.checked)}
+        />
+        <Form.Label>Start Time: {numToTime(startTime)}</Form.Label>
         <FormControl
-          type="text"
-          value={newEndTime}
-          onChange={(e) => setNewEndTime(e.target.value)}
+          type="range"
+          min="0"
+          max="288"
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
+        />
+        <Form.Label>End Time: {numToTime(endTime)}</Form.Label>
+        <FormControl
+          type="range"
+          min="0"
+          max="288"
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
         />
       </Form.Group>
       <Button type="submit">Add Event</Button>
