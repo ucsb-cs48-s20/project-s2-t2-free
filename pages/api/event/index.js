@@ -14,21 +14,39 @@ export async function getEvents(userSub) {
 }
 
 const eventConstraints = {
-  eventname: {
+  name: {
     presence: true,
   },
-  day: {
+  endTime: {
     presence: true,
   },
-  starttime: {
+  isFriday: {
     presence: true,
   },
-  endtime: {
+  isMonday: {
+    presence: true,
+  },
+  isSaturday: {
+    presence: true,
+  },
+  isSunday: {
+    presence: true,
+  },
+  isThursday: {
+    presence: true,
+  },
+  isTuesday: {
+    presence: true,
+  },
+  isWednesday: {
+    presence: true,
+  },
+  startTime: {
     presence: true,
   },
 };
 
-async function createEvent(req, user, res) {
+async function createEvent(req, user) {
   let event;
 
   try {
@@ -43,19 +61,28 @@ async function createEvent(req, user, res) {
     };
   }
 
+  if (event.name === "") {
+    event.name = "Untitled";
+  }
   console.log("inserting into events:", event);
 
   const client = await initDatabase();
   const events = client.collection("events");
 
-  const query = { eventname: "always insert event" };
+  const query = { name: "always insert event" };
   const mutation = {
     $setOnInsert: {
       userid: user.sub,
-      eventname: event.eventname,
-      eventday: event.day,
-      eventstarttime: event.starttime,
-      eventendtime: event.endtime,
+      name: event.name,
+      isMonday: event.isMonday,
+      isTuesday: event.isTuesday,
+      isWednesday: event.isWednesday,
+      isThursday: event.isThursday,
+      isFriday: event.isFriday,
+      isSaturday: event.isSaturday,
+      isSunday: event.isSunday,
+      startTime: event.startTime,
+      endTime: event.endTime,
     },
   };
 
