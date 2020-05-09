@@ -2,7 +2,7 @@ import { useCallback, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
-import { Container, Row, Col } from "react-bootstrap";
+import { InputGroup, Container, Row } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "../../components/Toasts";
 
@@ -126,61 +126,70 @@ function NewEventForm(props) {
   return (
     <Form onSubmit={addEvent} className="mb-5">
       <Form.Group>
-        <Form.Label>Event Name</Form.Label>
-        <FormControl
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Form.Check
-          inline
-          label="Monday"
-          type="switch"
-          id="Monday"
-          onChange={(e) => setIsMonday(e.target.checked)}
-        />
-        <Form.Check
-          inline
-          label="Tuesday"
-          type="switch"
-          id="Tuesday"
-          onChange={(e) => setIsTuesday(e.target.checked)}
-        />
-        <Form.Check
-          inline
-          label="Wednesday"
-          type="switch"
-          id="Wednesday"
-          onChange={(e) => setIsWednesday(e.target.checked)}
-        />
-        <Form.Check
-          inline
-          label="Thursday"
-          type="switch"
-          id="Thursday"
-          onChange={(e) => setIsThursday(e.target.checked)}
-        />
-        <Form.Check
-          inline
-          label="Friday"
-          type="switch"
-          id="Friday"
-          onChange={(e) => setIsFriday(e.target.checked)}
-        />
-        <Form.Check
-          inline
-          label="Saturday"
-          type="switch"
-          id="Saturday"
-          onChange={(e) => setIsSaturday(e.target.checked)}
-        />
-        <Form.Check
-          inline
-          label="Sunday"
-          type="switch"
-          id="Sunday"
-          onChange={(e) => setIsSunday(e.target.checked)}
-        />
+        <InputGroup className="mb-3">
+          <InputGroup.Prepend>
+            <InputGroup.Text>Event Name</InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl
+            placeholder="Enter Name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </InputGroup>
+        <Container>
+          <Row className="justify-content-between">
+            <Form.Check
+              inline
+              label="Monday"
+              type="switch"
+              id="Monday"
+              onChange={(e) => setIsMonday(e.target.checked)}
+            />
+            <Form.Check
+              inline
+              label="Tuesday"
+              type="switch"
+              id="Tuesday"
+              onChange={(e) => setIsTuesday(e.target.checked)}
+            />
+            <Form.Check
+              inline
+              label="Wednesday"
+              type="switch"
+              id="Wednesday"
+              onChange={(e) => setIsWednesday(e.target.checked)}
+            />
+            <Form.Check
+              inline
+              label="Thursday"
+              type="switch"
+              id="Thursday"
+              onChange={(e) => setIsThursday(e.target.checked)}
+            />
+            <Form.Check
+              inline
+              label="Friday"
+              type="switch"
+              id="Friday"
+              onChange={(e) => setIsFriday(e.target.checked)}
+            />
+            <Form.Check
+              inline
+              label="Saturday"
+              type="switch"
+              id="Saturday"
+              onChange={(e) => setIsSaturday(e.target.checked)}
+            />
+            <Form.Check
+              inline
+              label="Sunday"
+              type="switch"
+              id="Sunday"
+              onChange={(e) => setIsSunday(e.target.checked)}
+            />
+          </Row>
+        </Container>
         <Form.Label>Start Time: {numToTime(startTime)}</Form.Label>
         <FormControl
           type="range"
@@ -197,8 +206,8 @@ function NewEventForm(props) {
           value={endTime}
           onChange={(e) => setEndTime(e.target.value)}
         />
+        <Button type="submit">Add Event</Button>
       </Form.Group>
-      <Button type="submit">Add Event</Button>
     </Form>
   );
 }
