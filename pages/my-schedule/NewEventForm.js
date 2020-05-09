@@ -54,17 +54,18 @@ function NewEventForm(props) {
 
   const [startTime, setStartTime] = useState("12:00 PM");
   const [endTime, setEndTime] = useState("12:00 PM");
+
   const timeOptions = [];
   for (let i = 0; i < 288; i++) {
     timeOptions.push(<option>{numToTime(i)}</option>);
   }
+
   const addEvent = useCallback(
     async (e) => {
       // override default form submission behavior
       e.preventDefault();
       e.stopPropagation();
       setName("");
-
       setIsMonday("false");
       setIsTuesday("false");
       setIsWednesday("false");
@@ -72,10 +73,15 @@ function NewEventForm(props) {
       setIsFriday("false");
       setIsSaturday("false");
       setIsSunday("false");
-
       setStartTime("12:00 PM");
       setEndTime(144);
-      showToast("Added event: " + name);
+
+      if (name === "") {
+        showToast("Added Event!");
+      } else {
+        showToast("Added Event: " + name);
+      }
+
       await mutate(
         [
           {
@@ -128,7 +134,7 @@ function NewEventForm(props) {
   );
 
   return (
-    <Form onSubmit={addEvent} className="mb-5">
+    <Form onSubmit={addEvent} className="mb-3">
       <Form.Group>
         <Container>
           <Row>
@@ -138,6 +144,7 @@ function NewEventForm(props) {
                   <InputGroup.Text>Event Name</InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
+                  placeholder="Untitled"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}

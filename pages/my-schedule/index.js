@@ -1,5 +1,6 @@
 import Layout from "../../components/Layout";
 import { requiredAuth } from "../../utils/ssr";
+import { Accordion, Card } from "react-bootstrap";
 import NewEventForm from "./NewEventForm";
 import useSWR from "swr";
 
@@ -10,9 +11,22 @@ function SchedulePage(props) {
   const { data } = useSWR("/api/event");
   return (
     <Layout user={user}>
-      <h1>Create New Event</h1>
-      <NewEventForm />
-      <h1>My Schedule</h1>
+      <br></br>
+      <h1>
+        {user.given_name} {user.family_name}'s Schedule
+      </h1>
+      <Accordion defaultActiveKey="0">
+        <Card>
+          <Accordion.Toggle as={Card.Header} eventKey="0">
+            Create New Event
+          </Accordion.Toggle>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>
+              <NewEventForm />
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
       <pre>{JSON.stringify(data, null, "\t")}</pre>
     </Layout>
   );
