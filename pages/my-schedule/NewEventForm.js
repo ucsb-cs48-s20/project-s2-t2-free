@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import useSWR from "swr";
+import { useToasts } from "../../components/Toasts";
 
 export const getServerSideProps = async ({ req, res }) => {
   const session = await auth0.getSession(req);
@@ -24,6 +25,7 @@ export const getServerSideProps = async ({ req, res }) => {
 
 function NewEventForm(props) {
   const { user, initialData } = props;
+  const { showToast } = useToasts();
   const { data, mutate } = useSWR("/api/event", { initialData });
   const [newEventName, setNewEventName] = useState("");
   const [newDay, setNewDay] = useState("");
@@ -39,6 +41,7 @@ function NewEventForm(props) {
       setNewDay("");
       setNewStartTime("");
       setNewEndTime("");
+      showToast("Added event: " + newEventName);
       await mutate(
         [
           {
