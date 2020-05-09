@@ -12,7 +12,7 @@ function SchedulePage(props) {
   return (
     <Layout user={user}>
       <br></br>
-      <h1>
+      <h1 className="mb-3">
         {user.given_name} {user.family_name}'s Schedule
       </h1>
       <Accordion defaultActiveKey="0">
