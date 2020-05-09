@@ -190,8 +190,10 @@ function NewEventForm(props) {
             />
           </Row>
         </Container>
+        <br></br>
         <Form.Label>Start Time: {numToTime(startTime)}</Form.Label>
         <FormControl
+          custom
           type="range"
           min="0"
           max="288"
@@ -200,6 +202,7 @@ function NewEventForm(props) {
         />
         <Form.Label>End Time: {numToTime(endTime)}</Form.Label>
         <FormControl
+          custom
           type="range"
           min="0"
           max="288"
