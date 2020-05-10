@@ -5,6 +5,7 @@ import FormControl from "react-bootstrap/FormControl";
 import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "../../components/Toasts";
+import { Accordion, Card } from "react-bootstrap";
 
 function numToTime(num) {
   let str = "";
@@ -119,118 +120,129 @@ function NewEventForm() {
   );
 
   return (
-    <Form onSubmit={addEvent} className="mb-3">
-      <Form.Group>
-        <Container>
-          <Row>
-            <Col>
-              <InputGroup className="mb-3">
-                <InputGroup.Prepend>
-                  <InputGroup.Text>Event Name</InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl
-                  placeholder="Untitled"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </InputGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <InputGroup className="mb-3">
-                <InputGroup.Prepend>
-                  <InputGroup.Text>Start Time</InputGroup.Text>
-                </InputGroup.Prepend>
-                <Form.Control
-                  as="select"
-                  value={startTime}
-                  onChange={(e) => setStartTime(e.target.value)}
-                >
-                  {timeOptions}
-                </Form.Control>
-              </InputGroup>
-            </Col>
-            <Col>
-              <InputGroup className="mb-3">
-                <InputGroup.Prepend>
-                  <InputGroup.Text>End Time</InputGroup.Text>
-                </InputGroup.Prepend>
-                <Form.Control
-                  as="select"
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                >
-                  {timeOptions}
-                </Form.Control>
-              </InputGroup>
-            </Col>
-          </Row>
-          <Row className="justify-content-between">
-            <Col md="auto">
-              <Form.Check
-                label="Monday"
-                type="switch"
-                id="Monday"
-                onChange={(e) => setIsMonday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Tuesday"
-                type="switch"
-                id="Tuesday"
-                onChange={(e) => setIsTuesday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Wednesday"
-                type="switch"
-                id="Wednesday"
-                onChange={(e) => setIsWednesday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Thursday"
-                type="switch"
-                id="Thursday"
-                onChange={(e) => setIsThursday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Friday"
-                type="switch"
-                id="Friday"
-                onChange={(e) => setIsFriday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Saturday"
-                type="switch"
-                id="Saturday"
-                onChange={(e) => setIsSaturday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Sunday"
-                type="switch"
-                id="Sunday"
-                onChange={(e) => setIsSunday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Button type="submit">Add Event</Button>
-            </Col>
-          </Row>
-        </Container>
-      </Form.Group>
-    </Form>
+    <Accordion defaultActiveKey="0">
+      <Card>
+        <Accordion.Toggle as={Card.Header} eventKey="0">
+          Create New Event
+        </Accordion.Toggle>
+        <Accordion.Collapse eventKey="0">
+          <Card.Body>
+            <Form onSubmit={addEvent} className="mb-3">
+              <Form.Group>
+                <Container>
+                  <Row>
+                    <Col>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                          <InputGroup.Text>Event Name</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                          placeholder="Untitled"
+                          type="text"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                      </InputGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                          <InputGroup.Text>Start Time</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control
+                          as="select"
+                          value={startTime}
+                          onChange={(e) => setStartTime(e.target.value)}
+                        >
+                          {timeOptions}
+                        </Form.Control>
+                      </InputGroup>
+                    </Col>
+                    <Col>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                          <InputGroup.Text>End Time</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control
+                          as="select"
+                          value={endTime}
+                          onChange={(e) => setEndTime(e.target.value)}
+                        >
+                          {timeOptions}
+                        </Form.Control>
+                      </InputGroup>
+                    </Col>
+                  </Row>
+                  <Row className="justify-content-between">
+                    <Col md="auto">
+                      <Form.Check
+                        label="Monday"
+                        type="switch"
+                        id="Monday"
+                        onChange={(e) => setIsMonday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto">
+                      <Form.Check
+                        label="Tuesday"
+                        type="switch"
+                        id="Tuesday"
+                        onChange={(e) => setIsTuesday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto">
+                      <Form.Check
+                        label="Wednesday"
+                        type="switch"
+                        id="Wednesday"
+                        onChange={(e) => setIsWednesday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto">
+                      <Form.Check
+                        label="Thursday"
+                        type="switch"
+                        id="Thursday"
+                        onChange={(e) => setIsThursday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto">
+                      <Form.Check
+                        label="Friday"
+                        type="switch"
+                        id="Friday"
+                        onChange={(e) => setIsFriday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto">
+                      <Form.Check
+                        label="Saturday"
+                        type="switch"
+                        id="Saturday"
+                        onChange={(e) => setIsSaturday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto">
+                      <Form.Check
+                        label="Sunday"
+                        type="switch"
+                        id="Sunday"
+                        onChange={(e) => setIsSunday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto">
+                      <Button type="submit">Add Event</Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </Form.Group>
+            </Form>
+          </Card.Body>
+        </Accordion.Collapse>
+      </Card>
+    </Accordion>
   );
 }
 

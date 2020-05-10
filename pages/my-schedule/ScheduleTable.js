@@ -44,7 +44,7 @@ function createTable(data) {
     }
 
     return (
-      <Table>
+      <Table striped bordered className="mt-3">
         <thead>
           <tr>
             <th>Event Name</th>
