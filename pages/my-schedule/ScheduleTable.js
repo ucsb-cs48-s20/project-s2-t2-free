@@ -1,12 +1,32 @@
-import { useCallback } from "react";
-import Head from "next/head";
 import useSWR from "swr";
-import fetch from "isomorphic-unfetch";
-import Button from "react-bootstrap/Button";
-import BootstrapTable from "react-bootstrap/Table";
 import { useToasts } from "../../components/Toasts";
 import Table from "react-bootstrap/Table";
-import { requiredAuth } from "../../utils/ssr";
+
+function dayOfTheWeek(param) {
+  let day = "";
+  if (param.isSunday == true) {
+    day += "Sun  ";
+  }
+  if (param.isMonday == true) {
+    day += "Mon  ";
+  }
+  if (param.isTuesday == true) {
+    day += "Tues  ";
+  }
+  if (param.isWednesday == true) {
+    day += "Wed  ";
+  }
+  if (param.isThursday == true) {
+    day += "Thur  ";
+  }
+  if (param.isFriday == true) {
+    day += "Fri  ";
+  }
+  if (param.isSaturday == true) {
+    day += "Sat";
+  }
+  return <td> {day} </td>;
+}
 
 function createTable(data) {
   if (typeof data === "object") {
@@ -16,7 +36,7 @@ function createTable(data) {
       items.push(
         <tr>
           <td> {data[i].name} </td>
-          <td> {data[i].isMonday} </td>
+          {dayOfTheWeek(data[i])}
           <td> {data[i].startTime} </td>
           <td> {data[i].endTime} </td>
         </tr>
