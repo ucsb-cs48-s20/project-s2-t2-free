@@ -61,7 +61,7 @@ function NewEventForm() {
       setIsSaturday("false");
       setIsSunday("false");
       setStartTime("12:00 PM");
-      setEndTime(144);
+      setEndTime("12:00 PM");
       if (name === "") {
         showToast("Added Event!");
       } else {
