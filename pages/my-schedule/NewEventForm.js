@@ -31,13 +31,13 @@ function NewEventForm() {
   const { mutate } = useSWR("/api/event");
   const [name, setName] = useState("");
 
-  const [isMonday, setIsMonday] = useState("false");
-  const [isTuesday, setIsTuesday] = useState("false");
-  const [isWednesday, setIsWednesday] = useState("false");
-  const [isThursday, setIsThursday] = useState("false");
-  const [isFriday, setIsFriday] = useState("false");
-  const [isSaturday, setIsSaturday] = useState("false");
-  const [isSunday, setIsSunday] = useState("false");
+  const [isMonday, setIsMonday] = useState(false);
+  const [isTuesday, setIsTuesday] = useState(false);
+  const [isWednesday, setIsWednesday] = useState(false);
+  const [isThursday, setIsThursday] = useState(false);
+  const [isFriday, setIsFriday] = useState(false);
+  const [isSaturday, setIsSaturday] = useState(false);
+  const [isSunday, setIsSunday] = useState(false);
 
   const [startTime, setStartTime] = useState("12:00 PM");
   const [endTime, setEndTime] = useState("12:00 PM");
@@ -53,13 +53,13 @@ function NewEventForm() {
       e.preventDefault();
       e.stopPropagation();
       setName("");
-      setIsMonday("false");
-      setIsTuesday("false");
-      setIsWednesday("false");
-      setIsThursday("false");
-      setIsFriday("false");
-      setIsSaturday("false");
-      setIsSunday("false");
+      setIsMonday(false);
+      setIsTuesday(false);
+      setIsWednesday(false);
+      setIsThursday(false);
+      setIsFriday(false);
+      setIsSaturday(false);
+      setIsSunday(false);
       setStartTime("12:00 PM");
       setEndTime("12:00 PM");
       if (name === "") {
