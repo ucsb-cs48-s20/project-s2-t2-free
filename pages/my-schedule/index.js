@@ -2,6 +2,7 @@ import Layout from "../../components/Layout";
 import { requiredAuth } from "../../utils/ssr";
 import { Accordion, Card } from "react-bootstrap";
 import NewEventForm from "./NewEventForm";
+import ScheduleTable from "./ScheduleTable";
 import useSWR from "swr";
 
 export const getServerSideProps = requiredAuth;
@@ -27,7 +28,7 @@ function SchedulePage(props) {
           </Accordion.Collapse>
         </Card>
       </Accordion>
-      <pre>{JSON.stringify(data, null, "\t")}</pre>
+      <ScheduleTable />
     </Layout>
   );
 }
