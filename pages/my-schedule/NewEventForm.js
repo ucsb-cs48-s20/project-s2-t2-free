@@ -6,18 +6,6 @@ import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "../../components/Toasts";
 
-export const getServerSideProps = async ({ req }) => {
-  const session = await auth0.getSession(req);
-  if (session && session.user) {
-    const intialData = (await getEvents(session.user)).map(serializeDocument);
-    return {
-      props: {
-        intialData: intialData,
-      },
-    };
-  }
-};
-
 function numToTime(num) {
   let str = "";
   if (Math.floor(num / 12) % 12 === 0) {
@@ -38,10 +26,9 @@ function numToTime(num) {
   return str;
 }
 
-function NewEventForm(props) {
-  const { initialData } = props;
+function NewEventForm() {
   const { showToast } = useToasts();
-  const { mutate } = useSWR("/api/event", { initialData });
+  const { mutate } = useSWR("/api/event");
   const [name, setName] = useState("");
 
   const [isMonday, setIsMonday] = useState("false");
@@ -75,13 +62,11 @@ function NewEventForm(props) {
       setIsSunday("false");
       setStartTime("12:00 PM");
       setEndTime(144);
-
       if (name === "") {
         showToast("Added Event!");
       } else {
         showToast("Added Event: " + name);
       }
-
       await mutate(
         [
           {
