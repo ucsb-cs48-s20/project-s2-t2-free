@@ -146,7 +146,7 @@ function NewEventForm() {
                     </Col>
                   </Row>
                   <Row>
-                    <Col>
+                    <Col xs={12} md={6}>
                       <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                           <InputGroup.Text>Start Time</InputGroup.Text>
@@ -160,7 +160,7 @@ function NewEventForm() {
                         </Form.Control>
                       </InputGroup>
                     </Col>
-                    <Col>
+                    <Col xs={12} md={6}>
                       <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                           <InputGroup.Text>End Time</InputGroup.Text>
@@ -175,7 +175,7 @@ function NewEventForm() {
                       </InputGroup>
                     </Col>
                   </Row>
-                  <Row className="justify-content-between">
+                  <Row className="justify-content-center">
                     <Col md="auto">
                       <Form.Check
                         label="Monday"

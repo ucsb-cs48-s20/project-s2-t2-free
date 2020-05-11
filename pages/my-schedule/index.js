@@ -11,7 +11,7 @@ function SchedulePage(props) {
   const { data } = useSWR("/api/event");
   return (
     <Layout user={user}>
-      <h1 className="mt-3 mb-3">
+      <h1 className="mb-3">
         {user.given_name} {user.family_name}'s Schedule
       </h1>
       <NewEventForm />
