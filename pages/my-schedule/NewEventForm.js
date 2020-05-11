@@ -176,7 +176,7 @@ function NewEventForm() {
                     </Col>
                   </Row>
                   <Row className="justify-content-center">
-                    <Col md="auto">
+                    <Col md="auto" className="mb-3">
                       <Form.Check
                         label="Monday"
                         type="switch"
@@ -184,7 +184,7 @@ function NewEventForm() {
                         onChange={(e) => setIsMonday(e.target.checked)}
                       />
                     </Col>
-                    <Col md="auto">
+                    <Col md="auto" className="mb-3">
                       <Form.Check
                         label="Tuesday"
                         type="switch"
@@ -192,7 +192,7 @@ function NewEventForm() {
                         onChange={(e) => setIsTuesday(e.target.checked)}
                       />
                     </Col>
-                    <Col md="auto">
+                    <Col md="auto" className="mb-3">
                       <Form.Check
                         label="Wednesday"
                         type="switch"
@@ -200,7 +200,7 @@ function NewEventForm() {
                         onChange={(e) => setIsWednesday(e.target.checked)}
                       />
                     </Col>
-                    <Col md="auto">
+                    <Col md="auto" className="mb-3">
                       <Form.Check
                         label="Thursday"
                         type="switch"
@@ -208,7 +208,7 @@ function NewEventForm() {
                         onChange={(e) => setIsThursday(e.target.checked)}
                       />
                     </Col>
-                    <Col md="auto">
+                    <Col md="auto" className="mb-3">
                       <Form.Check
                         label="Friday"
                         type="switch"
@@ -216,7 +216,7 @@ function NewEventForm() {
                         onChange={(e) => setIsFriday(e.target.checked)}
                       />
                     </Col>
-                    <Col md="auto">
+                    <Col md="auto" className="mb-3">
                       <Form.Check
                         label="Saturday"
                         type="switch"
@@ -224,7 +224,7 @@ function NewEventForm() {
                         onChange={(e) => setIsSaturday(e.target.checked)}
                       />
                     </Col>
-                    <Col md="auto">
+                    <Col md="auto" className="mb-3">
                       <Form.Check
                         label="Sunday"
                         type="switch"
@@ -232,7 +232,7 @@ function NewEventForm() {
                         onChange={(e) => setIsSunday(e.target.checked)}
                       />
                     </Col>
-                    <Col md="auto">
+                    <Col md="auto" className="mb-3">
                       <Button type="submit">Add Event</Button>
                     </Col>
                   </Row>
