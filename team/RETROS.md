@@ -16,23 +16,22 @@
 - I think it went relatively well. We were able to identify pretty quickly that we all wanted to continue working through tutorials, but needed a way of consolidating all the information we're learning. Based on my team's concerns, I create a Google Folder with an excel file labeled TutorialProgress and shared it with the rest of my team.
 - I would recommend figuring out what template you want to follow beforehand since I think it helped even if we didn't use it extensively.
 
-# Retro 05/04/20
+# Retro 05/11/20
 
 - Led by: Corey Su
-- Present:
-- Absent:
+- Present: Clare Boyle, Ishana Narayanan, Vincent Tieu
+- Absent: --
 
 ## Action item
 
-- a goal: identify something the team wants to get better at
-- a change: identify one thing that the team will change about how it works together
-- a measurement: identify at least one way to measure whether the change helped the team acheive the goal, or move closer to it.
+- a goal: Create a better way to prepare / create issues for future implementations of our app
+- a change: Drawing out / writing out plans on pen and paper (or some other method) then sending a photo on Slack
+- a measurement: During sprint meetings take on new issues and review progress at end of sprint time-span
 
 ## Brief description of how retro went
 
 Retro leader fill this in.
 
-- A brief description of what retro outline or process you used.
-- A brief assessment of how it went.
-- What advice would you give to the next person leading a retro
-  based on what you learned today?
+- My team and I followed the Start/Stop/Continue template for this retro.
+- I think this retro went relatively well as we were able to talk among each other about things that were useful to us (ex. continuing peer programming) and things that weren't and should be stopped (ex. tutorial spreadsheet). We were able to address these things and document them in our shared Google Drive.
+- I would recommend the next person leading the retro to keep the meeting focused on team dynamics and have other discussions saved for a future standup meeting or for a separate call.
