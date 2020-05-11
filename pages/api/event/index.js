@@ -5,11 +5,9 @@ import { initDatabase } from "../../../utils/mongodb";
 export async function getEvents(userSub) {
   const client = await initDatabase();
   const events = client.collection("events");
-
   const query = {
     userid: userSub,
   };
-
   return events.find(query).toArray();
 }
 

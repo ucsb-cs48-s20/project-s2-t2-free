@@ -5,18 +5,7 @@ import FormControl from "react-bootstrap/FormControl";
 import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "../../components/Toasts";
-
-export const getServerSideProps = async ({ req }) => {
-  const session = await auth0.getSession(req);
-  if (session && session.user) {
-    const intialData = (await getEvents(session.user)).map(serializeDocument);
-    return {
-      props: {
-        intialData: intialData,
-      },
-    };
-  }
-};
+import { Accordion, Card } from "react-bootstrap";
 
 function numToTime(num) {
   let str = "";
@@ -38,19 +27,18 @@ function numToTime(num) {
   return str;
 }
 
-function NewEventForm(props) {
-  const { initialData } = props;
+function NewEventForm() {
   const { showToast } = useToasts();
-  const { mutate } = useSWR("/api/event", { initialData });
+  const { mutate } = useSWR("/api/event");
   const [name, setName] = useState("");
 
-  const [isMonday, setIsMonday] = useState("false");
-  const [isTuesday, setIsTuesday] = useState("false");
-  const [isWednesday, setIsWednesday] = useState("false");
-  const [isThursday, setIsThursday] = useState("false");
-  const [isFriday, setIsFriday] = useState("false");
-  const [isSaturday, setIsSaturday] = useState("false");
-  const [isSunday, setIsSunday] = useState("false");
+  const [isMonday, setIsMonday] = useState(false);
+  const [isTuesday, setIsTuesday] = useState(false);
+  const [isWednesday, setIsWednesday] = useState(false);
+  const [isThursday, setIsThursday] = useState(false);
+  const [isFriday, setIsFriday] = useState(false);
+  const [isSaturday, setIsSaturday] = useState(false);
+  const [isSunday, setIsSunday] = useState(false);
 
   const [startTime, setStartTime] = useState("12:00 PM");
   const [endTime, setEndTime] = useState("12:00 PM");
@@ -66,22 +54,20 @@ function NewEventForm(props) {
       e.preventDefault();
       e.stopPropagation();
       setName("");
-      setIsMonday("false");
-      setIsTuesday("false");
-      setIsWednesday("false");
-      setIsThursday("false");
-      setIsFriday("false");
-      setIsSaturday("false");
-      setIsSunday("false");
+      setIsMonday(false);
+      setIsTuesday(false);
+      setIsWednesday(false);
+      setIsThursday(false);
+      setIsFriday(false);
+      setIsSaturday(false);
+      setIsSunday(false);
       setStartTime("12:00 PM");
-      setEndTime(144);
-
+      setEndTime("12:00 PM");
       if (name === "") {
         showToast("Added Event!");
       } else {
         showToast("Added Event: " + name);
       }
-
       await mutate(
         [
           {
@@ -134,118 +120,129 @@ function NewEventForm(props) {
   );
 
   return (
-    <Form onSubmit={addEvent} className="mb-3">
-      <Form.Group>
-        <Container>
-          <Row>
-            <Col>
-              <InputGroup className="mb-3">
-                <InputGroup.Prepend>
-                  <InputGroup.Text>Event Name</InputGroup.Text>
-                </InputGroup.Prepend>
-                <FormControl
-                  placeholder="Untitled"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </InputGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <InputGroup className="mb-3">
-                <InputGroup.Prepend>
-                  <InputGroup.Text>Start Time</InputGroup.Text>
-                </InputGroup.Prepend>
-                <Form.Control
-                  as="select"
-                  value={startTime}
-                  onChange={(e) => setStartTime(e.target.value)}
-                >
-                  {timeOptions}
-                </Form.Control>
-              </InputGroup>
-            </Col>
-            <Col>
-              <InputGroup className="mb-3">
-                <InputGroup.Prepend>
-                  <InputGroup.Text>End Time</InputGroup.Text>
-                </InputGroup.Prepend>
-                <Form.Control
-                  as="select"
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                >
-                  {timeOptions}
-                </Form.Control>
-              </InputGroup>
-            </Col>
-          </Row>
-          <Row className="justify-content-between">
-            <Col md="auto">
-              <Form.Check
-                label="Monday"
-                type="switch"
-                id="Monday"
-                onChange={(e) => setIsMonday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Tuesday"
-                type="switch"
-                id="Tuesday"
-                onChange={(e) => setIsTuesday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Wednesday"
-                type="switch"
-                id="Wednesday"
-                onChange={(e) => setIsWednesday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Thursday"
-                type="switch"
-                id="Thursday"
-                onChange={(e) => setIsThursday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Friday"
-                type="switch"
-                id="Friday"
-                onChange={(e) => setIsFriday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Saturday"
-                type="switch"
-                id="Saturday"
-                onChange={(e) => setIsSaturday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Form.Check
-                label="Sunday"
-                type="switch"
-                id="Sunday"
-                onChange={(e) => setIsSunday(e.target.checked)}
-              />
-            </Col>
-            <Col md="auto">
-              <Button type="submit">Add Event</Button>
-            </Col>
-          </Row>
-        </Container>
-      </Form.Group>
-    </Form>
+    <Accordion defaultActiveKey="0">
+      <Card>
+        <Accordion.Toggle as={Card.Header} eventKey="0">
+          Create New Event
+        </Accordion.Toggle>
+        <Accordion.Collapse eventKey="0">
+          <Card.Body>
+            <Form onSubmit={addEvent} className="mb-3">
+              <Form.Group>
+                <Container>
+                  <Row>
+                    <Col>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                          <InputGroup.Text>Event Name</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                          placeholder="Untitled"
+                          type="text"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                      </InputGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={12} md={6}>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                          <InputGroup.Text>Start Time</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control
+                          as="select"
+                          value={startTime}
+                          onChange={(e) => setStartTime(e.target.value)}
+                        >
+                          {timeOptions}
+                        </Form.Control>
+                      </InputGroup>
+                    </Col>
+                    <Col xs={12} md={6}>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                          <InputGroup.Text>End Time</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control
+                          as="select"
+                          value={endTime}
+                          onChange={(e) => setEndTime(e.target.value)}
+                        >
+                          {timeOptions}
+                        </Form.Control>
+                      </InputGroup>
+                    </Col>
+                  </Row>
+                  <Row className="justify-content-center">
+                    <Col md="auto" className="mb-3">
+                      <Form.Check
+                        label="Monday"
+                        type="switch"
+                        id="Monday"
+                        onChange={(e) => setIsMonday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto" className="mb-3">
+                      <Form.Check
+                        label="Tuesday"
+                        type="switch"
+                        id="Tuesday"
+                        onChange={(e) => setIsTuesday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto" className="mb-3">
+                      <Form.Check
+                        label="Wednesday"
+                        type="switch"
+                        id="Wednesday"
+                        onChange={(e) => setIsWednesday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto" className="mb-3">
+                      <Form.Check
+                        label="Thursday"
+                        type="switch"
+                        id="Thursday"
+                        onChange={(e) => setIsThursday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto" className="mb-3">
+                      <Form.Check
+                        label="Friday"
+                        type="switch"
+                        id="Friday"
+                        onChange={(e) => setIsFriday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto" className="mb-3">
+                      <Form.Check
+                        label="Saturday"
+                        type="switch"
+                        id="Saturday"
+                        onChange={(e) => setIsSaturday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto" className="mb-3">
+                      <Form.Check
+                        label="Sunday"
+                        type="switch"
+                        id="Sunday"
+                        onChange={(e) => setIsSunday(e.target.checked)}
+                      />
+                    </Col>
+                    <Col md="auto" className="mb-3">
+                      <Button type="submit">Add Event</Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </Form.Group>
+            </Form>
+          </Card.Body>
+        </Accordion.Collapse>
+      </Card>
+    </Accordion>
   );
 }
 
