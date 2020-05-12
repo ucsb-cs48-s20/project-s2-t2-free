@@ -1,6 +1,9 @@
 import Layout from "../components/Layout";
 import { optionalAuth } from "../utils/ssr";
 import { useCallback } from "react";
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.module.css";
 
 export const getServerSideProps = async (req) => {
   return optionalAuth(req);

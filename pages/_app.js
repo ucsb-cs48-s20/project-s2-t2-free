@@ -2,8 +2,9 @@ import { SWRConfig } from "swr";
 import fetch from "isomorphic-unfetch";
 import { ToastProvider } from "../components/Toasts";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles.css";
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   return (
     <ToastProvider>
       <SWRConfig
@@ -16,5 +17,3 @@ function MyApp({ Component, pageProps }) {
     </ToastProvider>
   );
 }
-
-export default MyApp;
