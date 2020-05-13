@@ -1,6 +1,8 @@
 import useSWR from "swr";
 import { useToasts } from "../../components/Toasts";
 import Table from "react-bootstrap/Table";
+import { Form } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 function dayOfTheWeek(param) {
   let day = "";
@@ -31,14 +33,28 @@ function dayOfTheWeek(param) {
 function createTable(data) {
   if (typeof data === "object") {
     const items = [];
+    const deleteEvent = () => {};
 
     for (let i = 0; i < data.length; i++) {
       items.push(
         <tr>
-          <td> {data[i].name} </td>
-          {dayOfTheWeek(data[i])}
-          <td> {data[i].startTime} </td>
-          <td> {data[i].endTime} </td>
+          <td>{data[i].name}</td>
+          <td>{dayOfTheWeek(data[i])}</td>
+          <td>{data[i].startTime}</td>
+          <td>{data[i].endTime}</td>
+          <td
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Form onSubmit={deleteEvent} className="mb-3">
+              <Form.Group>
+                <Button type="submit">Delete</Button>
+              </Form.Group>
+            </Form>
+          </td>
         </tr>
       );
     }
@@ -51,6 +67,7 @@ function createTable(data) {
             <th>Day of the Week</th>
             <th>Start Time</th>
             <th>End Time</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>{items}</tbody>
@@ -60,8 +77,7 @@ function createTable(data) {
 }
 
 export default function ScheduleTable() {
-  const { showToast } = useToasts();
+  // const { showToast } = useToasts();
   const { data } = useSWR("/api/event");
-
   return <div>{createTable(data)}</div>;
 }
