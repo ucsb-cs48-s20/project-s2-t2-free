@@ -33,6 +33,14 @@ function dayOfTheWeek(param) {
 
 function createTable(data) {
   const [isDeleteMode, setIsDeleteMode] = useState(false);
+  const { showToast } = useToasts();
+  const { mutate } = useSWR("/api/event");
+
+  const deleteId = useCallback(async (eventId) => {
+    // showToast(`Deleted event ${data.find((u) => u._id === eventId)?.name}`);
+    await fetch(`/api/event/${eventId}`, { method: "DELETE" });
+    await mutate();
+  }, []);
 
   if (typeof data === "object") {
     const items = [];
@@ -47,7 +55,12 @@ function createTable(data) {
           <td>
             {isDeleteMode && (
               <Form.Group>
-                <Button type="submit">Delete</Button>
+                <Button
+                  variant="danger"
+                  onClick={() => deleteEvent(data[i]._id)}
+                >
+                  Delete
+                </Button>
               </Form.Group>
             )}
           </td>
@@ -81,6 +94,7 @@ function createTable(data) {
 
 export default function ScheduleTable() {
   // const { showToast } = useToasts();
+  // const { data } = useSWR("/api/event");
   const { data } = useSWR("/api/event");
   return <div>{createTable(data)}</div>;
 }
