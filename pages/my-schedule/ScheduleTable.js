@@ -36,7 +36,6 @@ function createTable(data) {
 
   if (typeof data === "object") {
     const items = [];
-    const deleteEvent = () => {};
 
     for (let i = 0; i < data.length; i++) {
       items.push(
@@ -47,11 +46,9 @@ function createTable(data) {
           <td>{data[i].endTime}</td>
           <td>
             {isDeleteMode && (
-              <Form onSubmit={deleteEvent}>
-                <Form.Group>
-                  <Button type="submit">Delete</Button>
-                </Form.Group>
-              </Form>
+              <Form.Group>
+                <Button type="submit">Delete</Button>
+              </Form.Group>
             )}
           </td>
         </tr>
