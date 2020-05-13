@@ -55,10 +55,7 @@ function createTable(data) {
           <td>
             {isDeleteMode && (
               <Form.Group>
-                <Button
-                  variant="danger"
-                  onClick={() => deleteEvent(data[i]._id)}
-                >
+                <Button variant="danger" onClick={() => deleteId(data[i]._id)}>
                   Delete
                 </Button>
               </Form.Group>

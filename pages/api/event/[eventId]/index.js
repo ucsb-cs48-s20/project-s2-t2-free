@@ -10,7 +10,7 @@ async function deleteEvent(eventId) {
     _id: ObjectId(eventId),
   };
 
-  const result = await event.deleteOne(query);
+  const result = await events.deleteOne(query);
 
   if (!result.deletedCount) {
     throw {
