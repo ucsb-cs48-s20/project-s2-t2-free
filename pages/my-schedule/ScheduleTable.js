@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import { useCallback, useState } from "react";
 import { useToasts } from "../../components/Toasts";
 import Table from "react-bootstrap/Table";
 import { Form } from "react-bootstrap";
@@ -31,6 +32,8 @@ function dayOfTheWeek(param) {
 }
 
 function createTable(data) {
+  const [isDeleteMode, setIsDeleteMode] = useState(false);
+
   if (typeof data === "object") {
     const items = [];
     const deleteEvent = () => {};
@@ -43,11 +46,13 @@ function createTable(data) {
           <td>{data[i].startTime}</td>
           <td>{data[i].endTime}</td>
           <td>
-            <Form onSubmit={deleteEvent} className="mb-3">
-              <Form.Group>
-                <Button type="submit">Delete</Button>
-              </Form.Group>
-            </Form>
+            {isDeleteMode && (
+              <Form onSubmit={deleteEvent}>
+                <Form.Group>
+                  <Button type="submit">Delete</Button>
+                </Form.Group>
+              </Form>
+            )}
           </td>
         </tr>
       );
@@ -61,7 +66,14 @@ function createTable(data) {
             <th>Day of the Week</th>
             <th>Start Time</th>
             <th>End Time</th>
-            <th>Delete</th>
+            <th>
+              <Form.Check
+                label="Delete"
+                type="switch"
+                id="isDeleteMode"
+                onChange={(e) => setIsDeleteMode(e.target.checked)}
+              />
+            </th>
           </tr>
         </thead>
         <tbody>{items}</tbody>
