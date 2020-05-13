@@ -7,14 +7,20 @@
 ## Sprint Goal for 05/12-05/21
   
 Which of the 10 powerful questions did you ask?
-  
+* 5. Which steps are required to achieve this Sprint Goal? Which are the least required or could we do without if we really have to?
+* 8. What would need to happen while working on this Sprint Goal that would be cause for celebration?
+* 9. What worry about our product is keeping you up at night? What can we build or test this Sprint to make you sleep a bit better?
+
 Describe your sprint goal here.
-  
+* Discussed about adding more features in the "My Schedule," "Groups," "Group Management Pages." Assigned roles to important features and gave rough deadlines.
+
 Describe briefly how you came up with that goal.
-  
+* First, we talked about our concerns on the Google Spreadsheet. Then we listed all the features that we want to get done and assigned difficulty and priority values to each of the features. Finally, we talked about assigning everyone to at least one feature.
+
 ## Discussion of previous Sprint Goal
   
 Briefly: was the sprint goal acheived?  Was it too ambitious?  Too modest? 
+* Discussed features we should stop planning to do. Using Calendar API and UCSB API would be too difficult and not worth it considering our limited time deadlines.
 
 # Status, Monday 04/27/2020
 
