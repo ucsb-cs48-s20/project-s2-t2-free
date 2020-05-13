@@ -27,7 +27,7 @@ function dayOfTheWeek(param) {
   if (param.isSaturday == true) {
     day += "Sat";
   }
-  return <td> {day} </td>;
+  return day;
 }
 
 function createTable(data) {
@@ -42,13 +42,7 @@ function createTable(data) {
           <td>{dayOfTheWeek(data[i])}</td>
           <td>{data[i].startTime}</td>
           <td>{data[i].endTime}</td>
-          <td
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+          <td>
             <Form onSubmit={deleteEvent} className="mb-3">
               <Form.Group>
                 <Button type="submit">Delete</Button>
