@@ -1,3 +1,21 @@
+# Sprint Planning, 05/12/2020
+  
+* Leader: Vincent Tieu
+* Present: All
+* Absent: None
+
+## Sprint Goal for 05/12-05/21
+  
+Which of the 10 powerful questions did you ask?
+  
+Describe your sprint goal here.
+  
+Describe briefly how you came up with that goal.
+  
+## Discussion of previous Sprint Goal
+  
+Briefly: was the sprint goal acheived?  Was it too ambitious?  Too modest? 
+
 # Status, Monday 04/27/2020
 
 ## Sprint Goal for Monday 04/27 through Monday 05/04
