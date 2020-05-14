@@ -1,6 +1,9 @@
 import useSWR from "swr";
+import { useCallback, useState } from "react";
 import { useToasts } from "../../components/Toasts";
 import Table from "react-bootstrap/Table";
+import { Form } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 function dayOfTheWeek(param) {
   let day = "";
@@ -25,20 +28,39 @@ function dayOfTheWeek(param) {
   if (param.isSaturday == true) {
     day += "Sat";
   }
-  return <td> {day} </td>;
+  return day;
 }
 
-function createTable(data) {
+export default function createTable() {
+  const [isDeleteMode, setIsDeleteMode] = useState(false);
+  const { showToast } = useToasts();
+  const { data, mutate } = useSWR("/api/event");
+
+  const deleteId = useCallback(async (eventId) => {
+    showToast(`Deleted event`);
+    await fetch(`/api/event/${eventId}`, { method: "DELETE" });
+    await mutate();
+  }, []);
+
   if (typeof data === "object") {
     const items = [];
 
     for (let i = 0; i < data.length; i++) {
       items.push(
         <tr>
-          <td> {data[i].name} </td>
-          {dayOfTheWeek(data[i])}
-          <td> {data[i].startTime} </td>
-          <td> {data[i].endTime} </td>
+          <td>{data[i].name}</td>
+          <td>{dayOfTheWeek(data[i])}</td>
+          <td>{data[i].startTime}</td>
+          <td>{data[i].endTime}</td>
+          <td>
+            {isDeleteMode && (
+              <Form.Group>
+                <Button variant="danger" onClick={() => deleteId(data[i]._id)}>
+                  Delete
+                </Button>
+              </Form.Group>
+            )}
+          </td>
         </tr>
       );
     }
@@ -51,17 +73,20 @@ function createTable(data) {
             <th>Day of the Week</th>
             <th>Start Time</th>
             <th>End Time</th>
+            <th>
+              <Form.Check
+                label="Delete"
+                type="switch"
+                id="isDeleteMode"
+                onChange={(e) => setIsDeleteMode(e.target.checked)}
+              />
+            </th>
           </tr>
         </thead>
         <tbody>{items}</tbody>
       </Table>
     );
+  } else {
+    return <div></div>;
   }
-}
-
-export default function ScheduleTable() {
-  const { showToast } = useToasts();
-  const { data } = useSWR("/api/event");
-
-  return <div>{createTable(data)}</div>;
 }
