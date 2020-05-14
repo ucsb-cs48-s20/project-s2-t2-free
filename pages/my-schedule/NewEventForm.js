@@ -181,6 +181,7 @@ function NewEventForm() {
                         label="Monday"
                         type="switch"
                         id="Monday"
+                        checked={isMonday}
                         onChange={(e) => setIsMonday(e.target.checked)}
                       />
                     </Col>
@@ -189,6 +190,7 @@ function NewEventForm() {
                         label="Tuesday"
                         type="switch"
                         id="Tuesday"
+                        checked={isTuesday}
                         onChange={(e) => setIsTuesday(e.target.checked)}
                       />
                     </Col>
@@ -197,6 +199,7 @@ function NewEventForm() {
                         label="Wednesday"
                         type="switch"
                         id="Wednesday"
+                        checked={isWednesday}
                         onChange={(e) => setIsWednesday(e.target.checked)}
                       />
                     </Col>
@@ -205,6 +208,7 @@ function NewEventForm() {
                         label="Thursday"
                         type="switch"
                         id="Thursday"
+                        checked={isThursday}
                         onChange={(e) => setIsThursday(e.target.checked)}
                       />
                     </Col>
@@ -213,6 +217,7 @@ function NewEventForm() {
                         label="Friday"
                         type="switch"
                         id="Friday"
+                        checked={isFriday}
                         onChange={(e) => setIsFriday(e.target.checked)}
                       />
                     </Col>
@@ -221,6 +226,7 @@ function NewEventForm() {
                         label="Saturday"
                         type="switch"
                         id="Saturday"
+                        checked={isSaturday}
                         onChange={(e) => setIsSaturday(e.target.checked)}
                       />
                     </Col>
@@ -229,6 +235,7 @@ function NewEventForm() {
                         label="Sunday"
                         type="switch"
                         id="Sunday"
+                        checked={isSunday}
                         onChange={(e) => setIsSunday(e.target.checked)}
                       />
                     </Col>
