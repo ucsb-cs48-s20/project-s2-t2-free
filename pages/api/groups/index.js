@@ -11,13 +11,44 @@ import { initDatabase } from "../../../utils/mongodb";
 //   return groups.find(query).toArray();
 // }
 
+export async function addUser(groupCode, userSub) {
+  const client = await initDatabase();
+  const groups = client.collection("groups");
+
+  let userArray = (await groups.find({ code: groupCode }).toArray())[0].array;
+  let user = false;
+  for (let i = 0; i < userArray.length; i++) {
+    if (userArray[i] === userSub) {
+      user = true;
+    }
+  }
+  if (user === false) {
+    userArray[userArray.length] = userSub;
+  }
+
+  console.log(userArray);
+  const query = { code: groupCode };
+  const mutation = {
+    $setOnInsert: {
+      array: userArray,
+    },
+  };
+
+  const result = await groups.findOneAndUpdate(query, mutation, {
+    upsert: true,
+    returnOriginal: false,
+  });
+
+  return result.value;
+}
+
 const eventConstraints = {
   name: {
     presence: true,
   },
 };
 
-export async function createGroup(req) {
+export async function createGroup(req, userSub) {
   let group;
 
   try {
@@ -37,8 +68,9 @@ export async function createGroup(req) {
 
   // generating code
   group.code = Math.random().toString(36).substring(2, 8);
-  let array = await groups.find({ code: "gjmlae" }).toArray();
-  if (array.length !== 0) {
+  let codeArray = [];
+  while (codeArray.length !== 0) {
+    codeArray = await groups.find({ code: group.code }).toArray();
     group.code = Math.random().toString(36).substring(2, 8);
     console.log("collision! generating new group code...");
   }
@@ -50,6 +82,7 @@ export async function createGroup(req) {
     $setOnInsert: {
       name: group.name,
       code: group.code,
+      array: [],
     },
   };
 
@@ -58,6 +91,7 @@ export async function createGroup(req) {
     returnOriginal: false,
   });
 
+  await addUser(group.code, userSub);
   return result.value;
 }
 
@@ -66,7 +100,7 @@ async function performAction(req, user) {
     case "GET":
       return getGroup(user);
     case "POST":
-      return createGroup(req);
+      return createGroup(req, user.sub);
   }
 
   throw { status: 405 };

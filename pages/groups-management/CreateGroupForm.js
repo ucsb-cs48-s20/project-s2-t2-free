@@ -8,7 +8,7 @@ import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "../../components/Toasts";
 
-function JoinGroupForm() {
+function CreateGroupForm() {
   const { showToast } = useToasts();
   // needed later to find groups that the user is in
   // const { mutate } = useSWR("/api/groups");
@@ -68,4 +68,4 @@ function JoinGroupForm() {
   );
 }
 
-export default JoinGroupForm;
+export default CreateGroupForm;
