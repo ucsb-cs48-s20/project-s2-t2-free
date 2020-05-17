@@ -7,7 +7,6 @@ import FormControl from "react-bootstrap/FormControl";
 import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "../../components/Toasts";
-import { Accordion, Card } from "react-bootstrap";
 import { requiredAuth } from "../../utils/ssr";
 
 export const getServerSideProps = requiredAuth;
