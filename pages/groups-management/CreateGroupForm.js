@@ -51,6 +51,7 @@ function JoinGroupForm() {
                 </InputGroup.Prepend>
                 <FormControl
                   placeholder="Enter New Group Name"
+                  required
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}

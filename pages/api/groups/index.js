@@ -32,15 +32,24 @@ export async function createGroup(req) {
     };
   }
 
-  console.log("inserting into events:", group);
-
   const client = await initDatabase();
   const groups = client.collection("groups");
 
-  const query = { groupid: 100 };
+  // generating code
+  group.code = Math.random().toString(36).substring(2, 8);
+  let array = await groups.find({ code: "gjmlae" }).toArray();
+  if (array.length !== 0) {
+    group.code = Math.random().toString(36).substring(2, 8);
+    console.log("collision! generating new group code...");
+  }
+
+  console.log("inserting into groups:", group);
+
+  const query = { code: 100 };
   const mutation = {
     $setOnInsert: {
-      groupname: group.name,
+      name: group.name,
+      code: group.code,
     },
   };
 
