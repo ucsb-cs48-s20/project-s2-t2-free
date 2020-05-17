@@ -10,11 +10,9 @@ function GroupPage(props) {
   const user = props.user;
   const router = useRouter();
   const { groupid } = router.query;
-  // const { data } = useSWR("/api/groups/[groupid].js");
   return (
     <Layout user={user}>
       <h1>Group Code: {groupid}</h1>
-      <ScheduleTable />
     </Layout>
   );
 }
