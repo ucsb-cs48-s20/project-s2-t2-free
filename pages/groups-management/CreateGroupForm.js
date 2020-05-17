@@ -56,41 +56,30 @@ function JoinGroupForm(props) {
   );
 
   return (
-    <Accordion defaultActiveKey="0" className="mb-3">
-      <Card>
-        <Accordion.Toggle as={Card.Header} eventKey="0">
-          Create a Group
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey="0">
-          <Card.Body>
-            <Form onSubmit={addGroup} className="mb-3">
-              <Form.Group>
-                <Container>
-                  <Row>
-                    <Col>
-                      <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                          <InputGroup.Text>Group Name</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl
-                          placeholder="Untitled"
-                          type="text"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                        />
-                      </InputGroup>
-                    </Col>
-                    <Col md="auto" className="mb-3">
-                      <Button type="submit">Create Group</Button>
-                    </Col>
-                  </Row>
-                </Container>
-              </Form.Group>
-            </Form>
-          </Card.Body>
-        </Accordion.Collapse>
-      </Card>
-    </Accordion>
+    <Form onSubmit={addGroup}>
+      <Form.Group>
+        <Container>
+          <Row>
+            <Col>
+              <InputGroup>
+                <InputGroup.Prepend>
+                  <InputGroup.Text>Create New Group</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl
+                  placeholder="Enter New Group Name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </InputGroup>
+            </Col>
+            <Col md="auto">
+              <Button type="submit">Create</Button>
+            </Col>
+          </Row>
+        </Container>
+      </Form.Group>
+    </Form>
   );
 }
 

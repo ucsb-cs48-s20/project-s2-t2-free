@@ -2,19 +2,20 @@ import Layout from "../../components/Layout";
 import { requiredAuth } from "../../utils/ssr";
 import GroupsTable from "./GroupsTable";
 import useSWR from "swr";
-import GroupForm from "./GroupForm";
+import GroupForm from "./CreateGroupForm";
 import FindGroupForm from "./FindGroupForm";
 
 export const getServerSideProps = requiredAuth;
 
 function GroupsPage(props) {
   const user = props.user;
-  const { data } = useSWR("/api/groups");
+  // const { data } = useSWR("/api/groups");
+
   return (
     <Layout user={user}>
-      <h1>Groups Page</h1>
-      <GroupForm />
+      <h1 className="mb-3">Groups Management</h1>
       <FindGroupForm />
+      <GroupForm />
       <GroupsTable />
     </Layout>
   );
