@@ -7,17 +7,12 @@ import FormControl from "react-bootstrap/FormControl";
 import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "../../components/Toasts";
-import { requiredAuth } from "../../utils/ssr";
 
-export const getServerSideProps = requiredAuth;
-
-function JoinGroupForm(props) {
+function JoinGroupForm() {
   const { showToast } = useToasts();
-  const { mutate } = useSWR("/api/groups");
+  // needed later to find groups that the user is in
+  // const { mutate } = useSWR("/api/groups");
   const [name, setName] = useState("");
-
-  const user = props.user;
-  const group = 1000;
 
   const addGroup = useCallback(
     async (e) => {
@@ -30,28 +25,18 @@ function JoinGroupForm(props) {
       } else {
         showToast("Added to Group: " + name);
       }
-      await mutate(
-        [
-          {
-            groupid: group,
-            groupname: name,
-          },
-        ],
-        false
-      );
-      await fetch("/api/group", {
+      await fetch("/api/groups", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          groupid: group,
-          groupname: name,
+          name: name,
         }),
       });
-      await mutate();
+      // await mutate();
     },
-    [group, name]
+    [name]
   );
 
   return (
