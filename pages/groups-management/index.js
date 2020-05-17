@@ -1,19 +1,23 @@
 import Layout from "../../components/Layout";
 import { requiredAuth } from "../../utils/ssr";
-import ScheduleTable from "./ScheduleTable";
+import GroupsTable from "./GroupsTable";
 import useSWR from "swr";
+import GroupForm from "./GroupForm";
+import FindGroupForm from "./FindGroupForm";
 
 export const getServerSideProps = requiredAuth;
 
-function SchedulePage(props) {
+function GroupsPage(props) {
   const user = props.user;
   const { data } = useSWR("/api/groups");
   return (
     <Layout user={user}>
-      <h1>Group Schedule</h1>
-      <ScheduleTable />
+      <h1>Groups Page</h1>
+      <GroupForm />
+      <FindGroupForm />
+      <GroupsTable />
     </Layout>
   );
 }
 
-export default SchedulePage;
+export default GroupsPage;
