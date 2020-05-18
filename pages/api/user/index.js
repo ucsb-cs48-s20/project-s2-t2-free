@@ -5,12 +5,11 @@ export async function createUser(user) {
   const client = await initDatabase();
   const events = client.collection("users");
 
-  const query = { userid: user.sub };
+  const query = { _id: user.sub };
   const mutation = {
     $setOnInsert: {
-      fname: user.given_name,
-      lname: user.family_name,
-      userid: user.sub,
+      _id: user.sub,
+      name: user.given_name + " " + user.family_name,
     },
   };
 
