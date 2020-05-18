@@ -1,5 +1,4 @@
 import useSWR from "swr";
-import { render } from "react-dom";
 
 // converts time hh:mm AM/PM to minute of the day
 function convertTime(str) {
@@ -40,13 +39,14 @@ function convertEvent(events) {
     var start_time = convertTime(events[i][0]);
     var end_time = convertTime(events[i][1]);
 
-    for (j = start_time; j <= end_time; j = j + 5) {
+    for (let j = start_time; j <= end_time; j = j + 5) {
       busy[j] = false;
     }
   }
   return busy;
 }
 
+// converts busy_times to free_times
 function makeFree(busy_times) {
   var free_times = [];
   for (let i = 0; i < 1436; i++) {
@@ -148,30 +148,24 @@ function findFreeTime(data) {
 
   if (typeof data === "object") {
     for (let i = 0; i < data.length; i++) {
-      switch (data[i].eventday) {
-        case "Sunday":
-          sun.push([data[i].eventstarttime, data[i].eventendtime]);
-          break;
-        case "Monday":
-          mon.push([data[i].eventstarttime, data[i].eventendtime]);
-          break;
-        case "Tuesday":
-          tues.push([data[i].eventstarttime, data[i].eventendtime]);
-          break;
-        case "Wednesday":
-          wed.push([data[i].eventstarttime, data[i].eventendtime]);
-          break;
-        case "Thursday":
-          thurs.push([data[i].eventstarttime, data[i].eventendtime]);
-          break;
-        case "Friday":
-          fri.push([data[i].eventstarttime, data[i].eventendtime]);
-          break;
-        case "Saturday":
-          sat.push([data[i].eventstarttime, data[i].eventendtime]);
+      if (data[i].isSunday) {
+        sun.push([data[i].startTime, data[i].endTime]);
+      } else if (data[i].isMonday) {
+        mon.push([data[i].startTime, data[i].endTime]);
+      } else if (data[i].isTuesday) {
+        tues.push([data[i].startTime, data[i].endTime]);
+      } else if (data[i].isWednesday) {
+        wed.push([data[i].startTime, data[i].endTime]);
+      } else if (data[i].isThursday) {
+        thurs.push([data[i].startTime, data[i].endTime]);
+      } else if (data[i].isFriday) {
+        fri.push([data[i].startTime, data[i].endTime]);
+      } else if (data[i].isSaturday) {
+        sat.push([data[i].startTime, data[i].endTime]);
       }
     }
   }
+
   // evaluate free times on each day and store in dict
   free_time_byDay["Sunday"] = freeTime(sun);
   free_time_byDay["Monday"] = freeTime(mon);
@@ -185,15 +179,14 @@ function findFreeTime(data) {
 }
 
 export default function FreeTime() {
-  const { data } = useSWR("/api/events");
+  const { data } = useSWR("/api/event");
   var free_time_byDay = findFreeTime(data);
   return (
     <div>
       {Object.keys(free_time_byDay).map((key, index) => (
         <p>
           {" "}
-          You are free on {key} from {free_time_byDay[key][0][0]} to{" "}
-          {free_time_byDay[key][0][1]}
+          You are free on {key} from {free_time_byDay[key]}{" "}
         </p>
       ))}
     </div>
