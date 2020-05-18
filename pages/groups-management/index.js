@@ -1,7 +1,6 @@
 import Layout from "../../components/Layout";
 import { requiredAuth } from "../../utils/ssr";
 import GroupsTable from "./GroupsTable";
-import useSWR from "swr";
 import CreateGroupForm from "./CreateGroupForm";
 import FindGroupForm from "./FindGroupForm";
 

@@ -5,7 +5,7 @@ export async function findGroups(userSub) {
   const client = await initDatabase();
   const groups = client.collection("groups");
   const query = {
-    array: { $all: [userSub] },
+    members: { $all: [userSub] },
   };
   return groups.find(query).toArray();
 }

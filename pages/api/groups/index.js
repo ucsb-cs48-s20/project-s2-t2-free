@@ -2,32 +2,6 @@ import validate from "validate.js";
 import { authenticatedAction } from "../../../utils/api";
 import { initDatabase } from "../../../utils/mongodb";
 
-export async function addUser(groupCode, userSub) {
-  const client = await initDatabase();
-  const groups = client.collection("groups");
-
-  let userArray = (await groups.find({ code: groupCode }).toArray())[0].array;
-
-  if (userArray.indexOf(userSub)) {
-    userArray[userArray.length] = userSub;
-  }
-
-  console.log(userArray);
-  const query = { code: groupCode };
-  const mutation = {
-    $set: {
-      array: userArray,
-    },
-  };
-
-  const result = await groups.findOneAndUpdate(query, mutation, {
-    upsert: true,
-    returnOriginal: false,
-  });
-
-  return result.value;
-}
-
 const eventConstraints = {
   name: {
     presence: true,
@@ -68,7 +42,7 @@ export async function createGroup(req, userSub) {
     $setOnInsert: {
       name: group.name,
       code: group.code,
-      array: [userSub],
+      members: [userSub],
     },
   };
 

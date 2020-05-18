@@ -13,7 +13,7 @@ function CreateGroupForm() {
   const [name, setName] = useState("");
   const { mutate } = useSWR("/api/groups/getUserGroups");
 
-  const addGroup = useCallback(
+  const createGroup = useCallback(
     async (e) => {
       // override default form submission behavior
       e.preventDefault();
@@ -39,7 +39,7 @@ function CreateGroupForm() {
   );
 
   return (
-    <Form onSubmit={addGroup}>
+    <Form onSubmit={createGroup}>
       <Form.Group>
         <Container>
           <Row>

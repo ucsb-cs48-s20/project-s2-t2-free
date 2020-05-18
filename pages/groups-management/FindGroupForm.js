@@ -31,6 +31,7 @@ function JoinGroupForm() {
                   placeholder="Enter Group Code"
                   type="text"
                   value={groupCode}
+                  required
                   onChange={(e) => setGroupCode(e.target.value)}
                 />
               </InputGroup>

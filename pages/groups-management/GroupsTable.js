@@ -17,7 +17,7 @@ function createTable(data) {
       items.push(
         <tr>
           <td> {data[i].name} </td>
-          <td> {data[i].users} </td>
+          <td> {data[i].members} </td>
           <td> {data[i].code} </td>
           <td>
             {" "}
@@ -40,7 +40,7 @@ function createTable(data) {
         <thead>
           <tr>
             <th>Group Name</th>
-            <th>Participants</th>
+            <th>Members</th>
             <th>Code</th>
             <th>Link</th>
           </tr>
