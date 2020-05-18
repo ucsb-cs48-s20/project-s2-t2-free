@@ -8,3 +8,4 @@
 | Thu 05/07 | Corey Su         | Will lead MVP demonstration                            |
 | Mon 05/11 | Corey Su         | Will lead second Retro                                 |
 | Tue 05/12 | Vincent Tieu     | Will lead Sprint Goal                                  |
+| Thr 05/21 | Ishana Narayanan | Will lead demo 2                                       |
