@@ -16,6 +16,7 @@ function GroupsPage(props) {
       <h1 className="mb-3">Groups Management</h1>
       <FindGroupForm />
       <CreateGroupForm />
+      <GroupsTable />
     </Layout>
   );
 }

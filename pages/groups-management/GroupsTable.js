@@ -7,6 +7,7 @@
 import useSWR from "swr";
 import { useToasts } from "../../components/Toasts";
 import Table from "react-bootstrap/Table";
+import Link from "next/link";
 
 function createTable(data) {
   if (typeof data === "object") {
@@ -17,9 +18,19 @@ function createTable(data) {
         <tr>
           <td> {data[i].name} </td>
           <td> {data[i].users} </td>
-          <td> {data[i].freetime} </td>
           <td> {data[i].code} </td>
-          <td> {data[i].link} </td>
+          <td>
+            {" "}
+            <Link
+              href="/my-group/[data[i].code]"
+              as={`/my-group/${data[i].code}`}
+            >
+              <a>
+                https://cs48-s20-s2-t2-prod.herokuapp.com/my-group/
+                {data[i].code}
+              </a>
+            </Link>{" "}
+          </td>
         </tr>
       );
     }
@@ -30,7 +41,6 @@ function createTable(data) {
           <tr>
             <th>Group Name</th>
             <th>Participants</th>
-            <th>Free Time</th>
             <th>Code</th>
             <th>Link</th>
           </tr>
@@ -42,8 +52,7 @@ function createTable(data) {
 }
 
 export default function ScheduleTable() {
-  const { showToast } = useToasts();
-  const { data } = useSWR("/api/groups");
-
+  // const { showToast } = useToasts();
+  const { data } = useSWR("/api/groups/findGroups");
   return <div>{createTable(data)}</div>;
 }

@@ -7,13 +7,8 @@ export async function addUser(groupCode, userSub) {
   const groups = client.collection("groups");
 
   let userArray = (await groups.find({ code: groupCode }).toArray())[0].array;
-  let user = false;
-  for (let i = 0; i < userArray.length; i++) {
-    if (userArray[i] === userSub) {
-      user = true;
-    }
-  }
-  if (user === false) {
+
+  if (userArray.indexOf(userSub)) {
     userArray[userArray.length] = userSub;
   }
 

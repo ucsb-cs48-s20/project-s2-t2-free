@@ -10,8 +10,6 @@ import { useToasts } from "../../components/Toasts";
 
 function CreateGroupForm() {
   const { showToast } = useToasts();
-  // needed later to find groups that the user is in
-  // const { mutate } = useSWR("/api/groups");
   const [name, setName] = useState("");
 
   const addGroup = useCallback(
@@ -34,7 +32,6 @@ function CreateGroupForm() {
           name: name,
         }),
       });
-      // await mutate();
     },
     [name]
   );
