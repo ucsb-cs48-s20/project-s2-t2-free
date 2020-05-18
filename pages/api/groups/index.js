@@ -82,8 +82,6 @@ export async function createGroup(req, userSub) {
 
 async function performAction(req, user) {
   switch (req.method) {
-    case "GET":
-      return getGroup(user);
     case "POST":
       return createGroup(req, user.sub);
   }

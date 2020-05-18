@@ -11,6 +11,7 @@ import { useToasts } from "../../components/Toasts";
 function CreateGroupForm() {
   const { showToast } = useToasts();
   const [name, setName] = useState("");
+  const { mutate } = useSWR("/api/groups/getUserGroups");
 
   const addGroup = useCallback(
     async (e) => {
@@ -32,6 +33,7 @@ function CreateGroupForm() {
           name: name,
         }),
       });
+      await mutate();
     },
     [name]
   );

@@ -52,7 +52,6 @@ function createTable(data) {
 }
 
 export default function ScheduleTable() {
-  // const { showToast } = useToasts();
-  const { data } = useSWR("/api/groups/findGroups");
+  const { data } = useSWR("/api/groups/getUserGroups");
   return <div>{createTable(data)}</div>;
 }
