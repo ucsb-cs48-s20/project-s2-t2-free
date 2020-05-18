@@ -44,7 +44,7 @@ const eventConstraints = {
   },
 };
 
-async function createEvent(req, user) {
+async function createEvent(req, userSub) {
   let event;
 
   try {
@@ -62,7 +62,6 @@ async function createEvent(req, user) {
   if (event.name === "") {
     event.name = "Untitled";
   }
-
   console.log("inserting into events:", event);
 
   const client = await initDatabase();
@@ -71,7 +70,7 @@ async function createEvent(req, user) {
   const query = { name: "always insert event" };
   const mutation = {
     $setOnInsert: {
-      userid: user.sub,
+      userid: userSub,
       name: event.name,
       isMonday: event.isMonday,
       isTuesday: event.isTuesday,
@@ -98,9 +97,8 @@ async function performAction(req, user) {
     case "GET":
       return getEvents(user.sub);
     case "POST":
-      return createEvent(req, user);
+      return createEvent(req, user.sub);
   }
-
   throw { status: 405 };
 }
 

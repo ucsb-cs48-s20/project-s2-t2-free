@@ -2,15 +2,6 @@ import validate from "validate.js";
 import { authenticatedAction } from "../../../utils/api";
 import { initDatabase } from "../../../utils/mongodb";
 
-// export async function getGroup(group) {
-//   const client = await initDatabase();
-//   const groups = client.collection("groups");
-//   const query = {
-//     groupid: group,
-//   };
-//   return groups.find(query).toArray();
-// }
-
 export async function addUser(groupCode, userSub) {
   const client = await initDatabase();
   const groups = client.collection("groups");
@@ -29,7 +20,7 @@ export async function addUser(groupCode, userSub) {
   console.log(userArray);
   const query = { code: groupCode };
   const mutation = {
-    $setOnInsert: {
+    $set: {
       array: userArray,
     },
   };
@@ -82,7 +73,7 @@ export async function createGroup(req, userSub) {
     $setOnInsert: {
       name: group.name,
       code: group.code,
-      array: [],
+      array: [userSub],
     },
   };
 
@@ -91,7 +82,6 @@ export async function createGroup(req, userSub) {
     returnOriginal: false,
   });
 
-  await addUser(group.code, userSub);
   return result.value;
 }
 

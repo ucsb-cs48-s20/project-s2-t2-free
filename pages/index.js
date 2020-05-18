@@ -8,15 +8,6 @@ export const getServerSideProps = async (req) => {
 
 function HomePage(props) {
   const user = props.user;
-  const addUser = useCallback(async (e) => {
-    await fetch("/api/user", {
-      method: "POST",
-    });
-  }, []);
-
-  if (user) {
-    addUser();
-  }
 
   return (
     <Layout user={user}>
