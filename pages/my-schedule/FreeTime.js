@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import Table from "react-bootstrap/Table";
 
 // converts time hh:mm AM/PM to minute of the day
 function convertTime(str) {
@@ -123,17 +124,6 @@ function freeTime(event_logs) {
   return free_times_str;
 }
 
-/* TEST DATA
-var event_1 = ["5:00 PM", "6:15 PM"];
-var event_2 = ["2:00 AM", "2:30 PM"];
-var event_3 = ["10:00 PM", "11:55 PM"];
-
-var event_log = [event_1, event_2, event_3];
-
-free_time_str = freeTime(event_log);
-
-console.log(free_time_str); */
-
 function findFreeTime(data) {
   // create dictionary with format 'day of week':'list of free time intervals'
   var free_time_byDay = {};
@@ -181,14 +171,37 @@ function findFreeTime(data) {
 export default function FreeTime() {
   const { data } = useSWR("/api/event");
   var free_time_byDay = findFreeTime(data);
+  const items = [];
+
+  for (var key in free_time_byDay) {
+    var str = "";
+    for (let k = 0; k < free_time_byDay[key].length; k++) {
+      str =
+        str +
+        free_time_byDay[key][k][0] +
+        "-" +
+        free_time_byDay[key][k][1] +
+        ", ";
+    }
+    if (str != "") {
+      str = str.slice(0, -2);
+    }
+    items.push(
+      <tr>
+        <td> {key} </td>
+        <td> {str} </td>
+      </tr>
+    );
+  }
   return (
-    <div>
-      {Object.keys(free_time_byDay).map((key, index) => (
-        <p>
-          {" "}
-          You are free on {key} from {free_time_byDay[key]}{" "}
-        </p>
-      ))}
-    </div>
+    <Table striped bordered className="mt-3">
+      <thead>
+        <tr>
+          <th>Day of the Week</th>
+          <th>Available Free Time</th>
+        </tr>
+      </thead>
+      <tbody>{items}</tbody>
+    </Table>
   );
 }
