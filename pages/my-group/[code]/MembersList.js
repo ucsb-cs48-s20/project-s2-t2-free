@@ -4,13 +4,11 @@ import { useRouter } from "next/router";
 export default function MembersTable() {
   const router = useRouter();
   const { code } = router.query;
-  const { data: members } = useSWR("/api/user");
+  const { data: membersJSON } = useSWR("/api/user");
   const { data } = useSWR(`/api/groups/${code}`);
   let items = [];
-  if (typeof data === "object" && typeof members === "object") {
-    for (let i = 0; i < data[0].members.length; i++) {
-      items.push(members[data[0].members[i]]);
-    }
+  if (typeof data === "object" && typeof membersJSON === "object") {
+    items = data[0].members.map((id) => membersJSON[id]).join(", ");
   }
-  return <div>Members: {items.join(", ")}</div>;
+  return <div>Members: {items}</div>;
 }
