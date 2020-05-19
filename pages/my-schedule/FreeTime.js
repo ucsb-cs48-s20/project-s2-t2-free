@@ -23,11 +23,37 @@ function convertTime(str) {
   return min;
 }
 
-// dictionary of busy times with format 'min_of_day':'true/false'
+// converts time from number to string
+function numToTime(num) {
+  let str = "";
+  if (Math.floor(num / 60) % 12 == 0) {
+    str += "12";
+  } else if (num > 720) {
+    str += Math.floor((num - 720) / 60) % 60;
+  } else {
+    str += Math.floor(num / 60) % 60;
+  }
+  str += ":";
+  if (num % 60 < 10) {
+    str = str + "0" + (num % 60).toString();
+  } else {
+    str += (num % 60).toString();
+  }
+
+  // decide AM or PM
+  if (num >= 720) {
+    str += " PM";
+  } else {
+    str += " AM";
+  }
+  return str;
+}
+
+// dictionary of busy times with format 'string day':'true/false'
 function makeBusy() {
   let busy = {};
   for (let i = 0; i < 1436; i = i + 5) {
-    busy[i] = true;
+    busy[numToTime(i)] = true;
   }
   return busy;
 }
@@ -41,52 +67,21 @@ function convertEvent(events) {
     var end_time = convertTime(events[i][1]);
 
     for (let j = start_time + 5; j <= end_time - 5; j = j + 5) {
-      busy[j] = false;
+      busy[numToTime(j)] = false;
     }
   }
   return busy;
 }
 
-// converts busy_times to free_times
+// converts busy_times to free_times as time strings
 function makeFree(busy_times) {
   var free_times = [];
-  for (let i = 0; i < 1436; i++) {
-    if (busy_times[i] == true) {
-      free_times.push(i);
+  for (var key in busy_times) {
+    if (busy_times[key] == true) {
+      free_times.push(key);
     }
   }
   return free_times;
-}
-
-// create dictionary with format 'min of day':'time as string'
-function numToTime(num) {
-  let str = "";
-  if (Math.floor(num / 12) % 12 === 0) {
-    str += "12";
-  } else {
-    str += Math.floor(num / 12) % 12;
-  }
-  str += ":";
-  if ((num % 12) * 5 <= 5) {
-    str += "0";
-  }
-  str += (num % 12) * 5;
-  if (num >= 144) {
-    str += " PM";
-  } else {
-    str += " AM";
-  }
-  return str;
-}
-
-function makeTimesDict() {
-  let times_str = {};
-  let iterate = 0;
-  for (let i = 0; i < 288; i++) {
-    times_str[iterate] = numToTime(i);
-    iterate = iterate + 5;
-  }
-  return times_str;
 }
 
 function freeIntervals(free_times) {
@@ -95,7 +90,10 @@ function freeIntervals(free_times) {
   free_intervals.push(start);
   var i = 1;
   while (i < free_times.length) {
-    while (i < free_times.length && free_times[i] == free_times[i - 1] + 5) {
+    while (
+      i < free_times.length &&
+      convertTime(free_times[i]) == convertTime(free_times[i - 1]) + 5
+    ) {
       i++;
     }
     free_intervals.push(free_times[i - 1]);
@@ -112,14 +110,11 @@ function freeTime(event_logs) {
   var busy = convertEvent(event_logs);
   var free_times = makeFree(busy);
   var free_intervals = freeIntervals(free_times);
-  var times_str = makeTimesDict();
 
+  // make a list of lists
   var free_times_str = [];
   for (let i = 0; i < free_intervals.length; i = i + 2) {
-    free_times_str.push([
-      times_str[free_intervals[i]],
-      times_str[free_intervals[i + 1]],
-    ]);
+    free_times_str.push([free_intervals[i], free_intervals[i + 1]]);
   }
   return free_times_str;
 }
