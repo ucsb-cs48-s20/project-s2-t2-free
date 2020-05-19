@@ -5,13 +5,10 @@ export async function getUsers() {
   const client = await initDatabase();
   const users = client.collection("users");
 
-  const query = {};
-
   const memberJson = {};
-  users.find(query).forEach((member) => {
+  await users.find({}).forEach((member) => {
     memberJson[member._id] = member.name;
   });
-  console.log(memberJson);
   return memberJson;
 }
 

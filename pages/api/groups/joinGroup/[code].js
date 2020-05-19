@@ -11,7 +11,6 @@ export async function joinGroup(code, userSub) {
     membersArray[membersArray.length] = userSub;
   }
 
-  console.log(membersArray);
   const query = { code: code };
   const mutation = {
     $set: {
