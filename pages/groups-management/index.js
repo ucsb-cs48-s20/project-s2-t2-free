@@ -8,7 +8,6 @@ export const getServerSideProps = requiredAuth;
 
 function GroupsPage(props) {
   const user = props.user;
-  // const { data } = useSWR("/api/groups");
 
   return (
     <Layout user={user}>

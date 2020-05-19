@@ -1,16 +1,23 @@
+// List of Groups
+// delete functionality that allows user to leave group
+// link to group page? or just output of free time?
+// copy link button
+// copy code button
+
 import useSWR from "swr";
+import { useToasts } from "../../components/Toasts";
 import Table from "react-bootstrap/Table";
 import Link from "next/link";
 
-function createTable(data) {
-  if (typeof data === "object") {
+function createTable(data, membersJSON) {
+  if (typeof data === "object" && typeof membersJSON === "object") {
     const items = [];
 
     for (let i = 0; i < data.length; i++) {
       items.push(
         <tr>
           <td> {data[i].name} </td>
-          <td> {data[i].members} </td>
+          <td> {data[i].members.map((id) => membersJSON[id]).join(", ")} </td>
           <td> {data[i].code} </td>
           <td>
             {" "}
@@ -46,5 +53,6 @@ function createTable(data) {
 
 export default function ScheduleTable() {
   const { data } = useSWR("/api/groups/getUserGroups");
-  return <div>{createTable(data)}</div>;
+  const { data: membersJSON } = useSWR("/api/user");
+  return <div>{createTable(data, membersJSON)}</div>;
 }
