@@ -18,7 +18,14 @@ export function GroupPage(props) {
     <Layout user={user}>
       {data && data[0] ? (
         <div>
-          <h1>Group Code: {code}</h1>
+          <h1>
+            Welcome to{" "}
+            <span>
+              <em>{data[0].name.toUpperCase()}</em>
+            </span>
+            !
+          </h1>
+          <h2>Group Code: {code}</h2>
           <div className="mb-3">
             <MembersList />
           </div>
