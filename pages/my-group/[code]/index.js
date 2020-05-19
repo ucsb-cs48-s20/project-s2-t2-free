@@ -25,7 +25,9 @@ export function GroupPage(props) {
           <pre>{JSON.stringify(data, null, "\t")}</pre>
         </div>
       ) : (
-        <h1>Group does not exists</h1>
+        <div>
+          <h1>Group Does not Exist :(</h1>
+        </div>
       )}
     </Layout>
   );
