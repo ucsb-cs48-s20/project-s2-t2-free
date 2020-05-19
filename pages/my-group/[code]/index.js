@@ -16,7 +16,7 @@ export function GroupPage(props) {
 
   return (
     <Layout user={user}>
-      {data && data[0] ? (
+      {data && data[0] && (
         <div>
           <h1>
             Welcome to{" "}
@@ -31,9 +31,9 @@ export function GroupPage(props) {
           </div>
           <JoinButton />
           <ScheduleTable />
-          <pre>{JSON.stringify(data, null, "\t")}</pre>
         </div>
-      ) : (
+      )}
+      {data && !data[0] && (
         <div>
           <h1>Group Does not Exist :(</h1>
         </div>
