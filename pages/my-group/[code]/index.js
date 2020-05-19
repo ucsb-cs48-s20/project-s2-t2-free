@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import JoinButton from "./JoinButton";
 import ScheduleTable from "./ScheduleTable";
+import MemberTable from "./MembersTable";
 import { useState } from "react";
 
 export const getServerSideProps = requiredAuth;
@@ -18,9 +19,10 @@ export function GroupPage(props) {
     return (
       <Layout user={user}>
         <div>
+          <h1>Welcome to {data[0].name}!</h1>
           <h1>Group Code: {code}</h1>
           <JoinButton />
-          <pre>{JSON.stringify(data, null, "\t")}</pre>
+          <MemberTable />
           <ScheduleTable />
         </div>
       </Layout>

@@ -1,9 +1,15 @@
 import { authenticatedAction } from "../../../utils/api";
 import { initDatabase } from "../../../utils/mongodb";
 
+export async function getUsers() {
+  const client = await initDatabase();
+  const users = client.collection("users");
+  return await users.find({}).toArray();
+}
+
 export async function createUser(user) {
   const client = await initDatabase();
-  const events = client.collection("users");
+  const users = client.collection("users");
 
   const query = { _id: user.sub };
   const mutation = {
@@ -13,7 +19,7 @@ export async function createUser(user) {
     },
   };
 
-  const result = await events.findOneAndUpdate(query, mutation, {
+  const result = await users.findOneAndUpdate(query, mutation, {
     upsert: true,
     returnOriginal: false,
   });
@@ -23,10 +29,11 @@ export async function createUser(user) {
 
 async function performAction(req, user) {
   switch (req.method) {
+    case "GET":
+      return getUsers();
     case "POST":
       return createUser(user);
   }
-
   throw { status: 405 };
 }
 
