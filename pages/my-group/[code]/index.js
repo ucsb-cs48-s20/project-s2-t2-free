@@ -12,29 +12,11 @@ export function GroupPage(props) {
   const user = props.user;
   const router = useRouter();
   const { code } = router.query;
-  const { data } = useSWR(`/api/groups/${code}`);
-  if (data === []) {
-    data = null;
-  }
+  let { data } = useSWR(`/api/groups/${code}`);
 
-  if (typeof data === "object" && data.length !== 0) {
-    return (
-      <Layout user={user}>
-        {data && (
-          <div>
-            <h1>Group Code: {code}</h1>
-            <JoinButton />
-            <MembersList />
-            <ScheduleTable />
-            <pre>{JSON.stringify(data, null, "\t")}</pre>
-          </div>
-        )}
-      </Layout>
-    );
-  }
   return (
     <Layout user={user}>
-      {data && (
+      {data && data[0] ? (
         <div>
           <h1>Group Code: {code}</h1>
           <JoinButton />
@@ -42,6 +24,8 @@ export function GroupPage(props) {
           <ScheduleTable />
           <pre>{JSON.stringify(data, null, "\t")}</pre>
         </div>
+      ) : (
+        <h1>Group does not exists</h1>
       )}
     </Layout>
   );
