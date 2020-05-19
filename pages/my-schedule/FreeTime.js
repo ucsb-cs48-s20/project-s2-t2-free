@@ -40,7 +40,7 @@ function convertEvent(events) {
     var start_time = convertTime(events[i][0]);
     var end_time = convertTime(events[i][1]);
 
-    for (let j = start_time; j <= end_time; j = j + 5) {
+    for (let j = start_time + 5; j <= end_time - 5; j = j + 5) {
       busy[j] = false;
     }
   }
@@ -176,6 +176,12 @@ export default function FreeTime() {
   for (var key in free_time_byDay) {
     var str = "";
     for (let k = 0; k < free_time_byDay[key].length; k++) {
+      if (free_time_byDay[key][k][0] == "11:55 PM") {
+        free_time_byDay[key][k][0] = "11:59 PM";
+      }
+      if (free_time_byDay[key][k][1] == "11:55 PM") {
+        free_time_byDay[key][k][1] = "11:59 PM";
+      }
       str =
         str +
         free_time_byDay[key][k][0] +
