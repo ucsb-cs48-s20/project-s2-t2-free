@@ -4,7 +4,15 @@ import { initDatabase } from "../../../utils/mongodb";
 export async function getUsers() {
   const client = await initDatabase();
   const users = client.collection("users");
-  return await users.find({}).toArray();
+
+  const query = {};
+
+  const memberJson = {};
+  users.find(query).forEach((member) => {
+    memberJson[member._id] = member.name;
+  });
+  console.log(memberJson);
+  return memberJson;
 }
 
 export async function createUser(user) {
