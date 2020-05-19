@@ -19,8 +19,10 @@ export function GroupPage(props) {
       {data && data[0] ? (
         <div>
           <h1>Group Code: {code}</h1>
+          <div className="mb-3">
+            <MembersList />
+          </div>
           <JoinButton />
-          <MembersList />
           <ScheduleTable />
           <pre>{JSON.stringify(data, null, "\t")}</pre>
         </div>
