@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import useSWR from "swr";
 import { useToasts } from "../../../components/Toasts";
 
-function JoinButton() {
+function LeaveButton() {
   const router = useRouter();
   const { code } = router.query;
   const { mutate: mutateGroupList } = useSWR(
@@ -33,4 +33,4 @@ function JoinButton() {
   );
 }
 
-export default JoinButton;
+export default LeaveButton;
