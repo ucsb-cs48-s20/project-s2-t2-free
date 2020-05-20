@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import Table from "react-bootstrap/Table";
-import { Accordion, Card } from "react-bootstrap";
+import { useRouter } from "next/router";
 
 // converts time hh:mm AM/PM to minute of the day
 function convertTime(str) {
@@ -171,7 +171,9 @@ function findFreeTime(data) {
 }
 
 export default function FreeTime() {
-  const { data } = useSWR("/api/event");
+  const router = useRouter();
+  const { code } = router.query;
+  const { data } = useSWR(`/api/groups/getGroupFreeTime/${code}`);
   var free_time_byDay = findFreeTime(data);
   const items = [];
 
@@ -202,25 +204,14 @@ export default function FreeTime() {
     );
   }
   return (
-    <Accordion className="mb-3">
-      <Card>
-        <Accordion.Toggle as={Card.Header} eventKey="0" className="acc-toggle">
-          Your Free Time
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey="0">
-          <Card.Body>
-            <Table striped bordered className="mb-3">
-              <thead>
-                <tr>
-                  <th>Day of the Week</th>
-                  <th>Available Free Time</th>
-                </tr>
-              </thead>
-              <tbody>{items}</tbody>
-            </Table>
-          </Card.Body>
-        </Accordion.Collapse>
-      </Card>
-    </Accordion>
+    <Table striped bordered>
+      <thead>
+        <tr>
+          <th>Day of the Week</th>
+          <th>Available Free Time</th>
+        </tr>
+      </thead>
+      <tbody>{items}</tbody>
+    </Table>
   );
 }

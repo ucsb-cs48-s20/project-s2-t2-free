@@ -10,7 +10,7 @@ function AppNavbar(props) {
   const user = props.user;
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="lg" className="nav">
       <Container>
         <Link href="/" passHref={true}>
           <Navbar.Brand>Free From Class</Navbar.Brand>

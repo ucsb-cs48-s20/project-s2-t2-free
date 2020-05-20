@@ -66,7 +66,7 @@ export default function createTable() {
     }
 
     return (
-      <Table striped bordered className="mt-3">
+      <Table striped bordered className="mb-3">
         <thead>
           <tr>
             <th>Event Name</th>

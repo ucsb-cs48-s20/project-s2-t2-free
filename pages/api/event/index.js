@@ -8,7 +8,7 @@ export async function getEvents(userSub) {
   const query = {
     userid: userSub,
   };
-  return events.find(query).toArray();
+  return await events.find(query).toArray();
 }
 
 const eventConstraints = {

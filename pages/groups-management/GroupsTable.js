@@ -1,11 +1,4 @@
-// List of Groups
-// delete functionality that allows user to leave group
-// link to group page? or just output of free time?
-// copy link button
-// copy code button
-
 import useSWR from "swr";
-import { useToasts } from "../../components/Toasts";
 import Table from "react-bootstrap/Table";
 import Link from "next/link";
 

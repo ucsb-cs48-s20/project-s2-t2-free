@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import useSWR from "swr";
 import { useToasts } from "../../../components/Toasts";
 
-function JoinButton() {
+function LeaveButton() {
   const router = useRouter();
   const { code } = router.query;
   const { mutate: mutateGroupList } = useSWR(
@@ -17,28 +17,20 @@ function JoinButton() {
     `/api/groups/getUsersAndEvents/${code}`
   );
   const { showToast } = useToasts();
-  const joinGroup = useCallback(async (e) => {
+  const leaveGroup = useCallback(async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    showToast("Joined Group!");
-    await fetch(`/api/groups/joinGroup/${code}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        code: code,
-      }),
-    });
+    showToast("Left Group!");
+    await fetch(`/api/groups/leaveGroup/${code}`, { method: "DELETE" });
     mutateGroupList();
     mutateGroupFreeTime();
     mutateMembersFreeTime();
   });
   return (
-    <div className="mb-3 mr-2">
-      <Button onClick={joinGroup}>Join</Button>
+    <div className="mb-3">
+      <Button onClick={leaveGroup}>Leave</Button>
     </div>
   );
 }
 
-export default JoinButton;
+export default LeaveButton;
