@@ -225,7 +225,11 @@ export default function MembersFreeTime() {
       items.push(
         <Accordion className="mb-3">
           <Card>
-            <Accordion.Toggle as={Card.Header} eventKey="0">
+            <Accordion.Toggle
+              as={Card.Header}
+              eventKey="0"
+              className="acc-toggle"
+            >
               {membersJSON[data[i].id]}'s Free Time
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
