@@ -7,7 +7,10 @@ import { useToasts } from "../../../components/Toasts";
 function JoinButton() {
   const router = useRouter();
   const { code } = router.query;
-  const { mutate } = useSWR(`/api/groups/${code}`);
+  const { mutate: mutateGroupList } = useSWR(`/api/groups/${code}`);
+  const { mutate: mutateGroupFreeTime } = useSWR(
+    `/api/groups/getGroupFreeTime/${code}`
+  );
   const { showToast } = useToasts();
   const joinGroup = useCallback(async (e) => {
     e.preventDefault();
@@ -22,7 +25,8 @@ function JoinButton() {
         code: code,
       }),
     });
-    mutate();
+    mutateGroupList();
+    mutateGroupFreeTime();
   });
   return (
     <div>
