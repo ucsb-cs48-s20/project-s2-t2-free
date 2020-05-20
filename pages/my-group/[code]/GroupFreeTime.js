@@ -198,7 +198,7 @@ export default function FreeTime() {
     );
   }
   return (
-    <Table striped bordered className="mt-3">
+    <Table striped bordered>
       <thead>
         <tr>
           <th>Day of the Week</th>
