@@ -1,5 +1,5 @@
-import { authenticatedAction } from "../../../utils/api";
-import { initDatabase } from "../../../utils/mongodb";
+import { authenticatedAction } from "../../../../utils/api";
+import { initDatabase } from "../../../../utils/mongodb";
 
 export async function getGroupInfo(code) {
   const client = await initDatabase();

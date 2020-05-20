@@ -1,6 +1,6 @@
 import { authenticatedAction } from "../../../../utils/api";
 import { initDatabase } from "../../../../utils/mongodb";
-import { getGroupInfo } from "../[code]";
+import { getGroupInfo } from "../getGroupInfo/[code]";
 
 export async function getEvents(code) {
   const client = await initDatabase();
