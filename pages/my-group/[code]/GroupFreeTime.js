@@ -136,17 +136,23 @@ function findFreeTime(data) {
     for (let i = 0; i < data.length; i++) {
       if (data[i].isSunday) {
         sun.push([data[i].startTime, data[i].endTime]);
-      } else if (data[i].isMonday) {
+      }
+      if (data[i].isMonday) {
         mon.push([data[i].startTime, data[i].endTime]);
-      } else if (data[i].isTuesday) {
+      }
+      if (data[i].isTuesday) {
         tues.push([data[i].startTime, data[i].endTime]);
-      } else if (data[i].isWednesday) {
+      }
+      if (data[i].isWednesday) {
         wed.push([data[i].startTime, data[i].endTime]);
-      } else if (data[i].isThursday) {
+      }
+      if (data[i].isThursday) {
         thurs.push([data[i].startTime, data[i].endTime]);
-      } else if (data[i].isFriday) {
+      }
+      if (data[i].isFriday) {
         fri.push([data[i].startTime, data[i].endTime]);
-      } else if (data[i].isSaturday) {
+      }
+      if (data[i].isSaturday) {
         sat.push([data[i].startTime, data[i].endTime]);
       }
     }
