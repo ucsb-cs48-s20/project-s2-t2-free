@@ -1,18 +1,20 @@
 import { authenticatedAction } from "../../../../utils/api";
-import { initDatabase } from "../../../../utils/mongodb";
 import { getGroupInfo } from "../getGroupInfo/[code]";
+import { getEvents } from "../../event/index";
 
-export async function getGroupFreeTime(code) {
-  const client = await initDatabase();
-  const events = client.collection("events");
-
+export async function getUsersAndEvents(code) {
   let groupData = await getGroupInfo(code);
 
-  const query = {
-    userid: { $in: groupData[0].members },
-  };
+  let usersAndEvents = Promise.all(
+    groupData[0].members.map(async (id) => {
+      let json = {};
+      json.id = id;
+      json.events = await getEvents(id);
+      return json;
+    })
+  );
 
-  return await events.find(query).toArray();
+  return usersAndEvents;
 }
 
 async function performAction(req, user) {
@@ -20,7 +22,7 @@ async function performAction(req, user) {
 
   switch (req.method) {
     case "GET":
-      return getGroupFreeTime(code);
+      return getUsersAndEvents(code);
   }
   throw { status: 405 };
 }

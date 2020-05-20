@@ -1,5 +1,7 @@
 import useSWR from "swr";
 import Table from "react-bootstrap/Table";
+import { useRouter } from "next/router";
+import { Accordion, Card } from "react-bootstrap";
 
 // converts time hh:mm AM/PM to minute of the day
 function convertTime(str) {
@@ -163,8 +165,7 @@ function findFreeTime(data) {
   return free_time_byDay;
 }
 
-export default function FreeTime() {
-  const { data } = useSWR("/api/event");
+function FreeTime(data) {
   var free_time_byDay = findFreeTime(data);
   const items = [];
 
@@ -195,7 +196,7 @@ export default function FreeTime() {
     );
   }
   return (
-    <Table striped bordered className="mb-3">
+    <Table striped bordered>
       <thead>
         <tr>
           <th>Day of the Week</th>
@@ -205,4 +206,29 @@ export default function FreeTime() {
       <tbody>{items}</tbody>
     </Table>
   );
+}
+
+export default function MembersFreeTime() {
+  const router = useRouter();
+  const { code } = router.query;
+  const { data: membersJSON } = useSWR("/api/user");
+  const { data } = useSWR(`/api/groups/getUsersAndEvents/${code}`);
+  let items = [];
+  if (typeof data === "object") {
+    for (let i = 0; i < data.length; i++) {
+      items.push(
+        <Accordion className="mb-3">
+          <Card>
+            <Accordion.Toggle as={Card.Header} eventKey="0">
+              {membersJSON[data[i].id]}'s Free Time
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="0">
+              <Card.Body>{FreeTime(data[i].events)}</Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
+      );
+    }
+  }
+  return <div>{items}</div>;
 }

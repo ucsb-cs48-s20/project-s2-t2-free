@@ -3,8 +3,10 @@ import { requiredAuth } from "../../../utils/ssr";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import JoinButton from "./JoinButton";
+import LeaveButton from "./LeaveButton";
 import MembersList from "./MembersList";
 import GroupFreeTime from "./GroupFreeTime";
+import MembersFreeTime from "./MembersFreeTime";
 
 export const getServerSideProps = requiredAuth;
 
@@ -26,12 +28,11 @@ export function GroupPage(props) {
             !
           </h1>
           <h2>Group Code: {code}</h2>
-          <div className="mb-3">
-            <MembersList />
-          </div>
+          <MembersList />
           <JoinButton />
+          <LeaveButton />
+          <MembersFreeTime />
           <GroupFreeTime />
-          <pre>{JSON.stringify(data, null, "\t")}</pre>
         </div>
       )}
       {data && !data[0] && (

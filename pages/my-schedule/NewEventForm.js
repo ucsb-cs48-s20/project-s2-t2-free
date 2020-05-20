@@ -120,7 +120,7 @@ function NewEventForm() {
   );
 
   return (
-    <Accordion defaultActiveKey="0">
+    <Accordion defaultActiveKey="0" className="mb-3">
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0">
           Create New Event

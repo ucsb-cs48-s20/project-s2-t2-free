@@ -17,26 +17,18 @@ function JoinButton() {
     `/api/groups/getUsersAndEvents/${code}`
   );
   const { showToast } = useToasts();
-  const joinGroup = useCallback(async (e) => {
+  const leaveGroup = useCallback(async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    showToast("Joined Group!");
-    await fetch(`/api/groups/joinGroup/${code}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        code: code,
-      }),
-    });
+    showToast("Left Group!");
+    await fetch(`/api/groups/leaveGroup/${code}`, { method: "DELETE" });
     mutateGroupList();
     mutateGroupFreeTime();
     mutateMembersFreeTime();
   });
   return (
     <div className="mb-3">
-      <Button onClick={joinGroup}>Join</Button>
+      <Button onClick={leaveGroup}>Leave</Button>
     </div>
   );
 }

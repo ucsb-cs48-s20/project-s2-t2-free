@@ -5,10 +5,10 @@ export default function MembersTable() {
   const router = useRouter();
   const { code } = router.query;
   const { data: membersJSON } = useSWR("/api/user");
-  const { data } = useSWR(`/api/groups/getGroupInfo/${code}`);
+  const { data: groupInfo } = useSWR(`/api/groups/getGroupInfo/${code}`);
   let items = [];
-  if (typeof data === "object" && typeof membersJSON === "object") {
-    items = data[0].members.map((id) => membersJSON[id]).join(", ");
+  if (typeof groupInfo === "object" && typeof membersJSON === "object") {
+    items = groupInfo[0].members.map((id) => membersJSON[id]).join(", ");
   }
-  return <div>Members: {items}</div>;
+  return <div className="mb-3">Members: {items}</div>;
 }
