@@ -10,7 +10,7 @@ function AppNavbar(props) {
   const user = props.user;
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar expand="lg" className="nav">
       <Container>
         <Link href="/" passHref={true}>
           <Navbar.Brand>Free From Class</Navbar.Brand>
@@ -24,7 +24,7 @@ function AppNavbar(props) {
               </Link>
             )}
             {user && (
-              <Link href="/my-groups" passHref={true}>
+              <Link href="/groups-management" passHref={true}>
                 <Nav.Link>My Groups</Nav.Link>
               </Link>
             )}
