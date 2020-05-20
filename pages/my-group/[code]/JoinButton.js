@@ -35,7 +35,7 @@ function JoinButton() {
     mutateMembersFreeTime();
   });
   return (
-    <div className="mb-3">
+    <div className="mb-3 mr-2">
       <Button onClick={joinGroup}>Join</Button>
     </div>
   );
