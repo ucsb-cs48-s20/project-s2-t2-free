@@ -7,6 +7,7 @@ import LeaveButton from "./LeaveButton";
 import MembersList from "./MembersList";
 import GroupFreeTime from "./GroupFreeTime";
 import MembersFreeTime from "./MembersFreeTime";
+import { Form, FromGroup, Row, Col } from "react-bootstrap";
 
 export const getServerSideProps = requiredAuth;
 
@@ -20,7 +21,7 @@ export function GroupPage(props) {
     <Layout user={user}>
       {data && data[0] && (
         <div>
-          <h1>
+          <h1 className="mb-3">
             Welcome to{" "}
             <span>
               <em>{data[0].name.toUpperCase()}</em>
@@ -28,9 +29,15 @@ export function GroupPage(props) {
             !
           </h1>
           <h2>Group Code: {code}</h2>
+          <Form inline className="mt-3">
+            <Form.Group>
+              <div className="mr-2">
+                <JoinButton />
+              </div>
+              <LeaveButton />
+            </Form.Group>
+          </Form>
           <MembersList />
-          <JoinButton />
-          <LeaveButton />
           <MembersFreeTime />
           <GroupFreeTime />
         </div>
