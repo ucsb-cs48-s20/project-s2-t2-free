@@ -12,7 +12,7 @@ export function GroupPage(props) {
   const user = props.user;
   const router = useRouter();
   const { code } = router.query;
-  let { data } = useSWR(`/api/groups/${code}`);
+  let { data } = useSWR(`/api/groups/getGroupInfo/${code}`);
 
   return (
     <Layout user={user}>
