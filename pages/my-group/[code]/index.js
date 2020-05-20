@@ -5,6 +5,8 @@ import useSWR from "swr";
 import JoinButton from "./JoinButton";
 import ScheduleTable from "./ScheduleTable";
 import MembersList from "./MembersList";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 export const getServerSideProps = requiredAuth;
 
@@ -35,7 +37,12 @@ export function GroupPage(props) {
       )}
       {data && !data[0] && (
         <div>
-          <h1>Group Does not Exist :(</h1>
+          <h1>Group does not exist :(</h1>
+          <Form action="/groups-management">
+            <Button type="btn btn-primary">
+              Return to Groups Management page
+            </Button>
+          </Form>
         </div>
       )}
     </Layout>

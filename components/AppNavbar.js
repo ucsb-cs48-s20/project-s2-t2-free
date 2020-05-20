@@ -25,7 +25,7 @@ function AppNavbar(props) {
             )}
             {user && (
               <Link href="/groups-management" passHref={true}>
-                <Nav.Link>My Groups</Nav.Link>
+                <Nav.Link>Groups Management</Nav.Link>
               </Link>
             )}
           </Nav>
