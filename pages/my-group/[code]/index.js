@@ -6,12 +6,9 @@ import JoinButton from "./JoinButton";
 import LeaveButton from "./LeaveButton";
 import MembersList from "./MembersList";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-
 import GroupFreeTime from "./GroupFreeTime";
 import MembersFreeTime from "./MembersFreeTime";
 import { Form, FromGroup, Row, Col } from "react-bootstrap";
-
 
 export const getServerSideProps = requiredAuth;
 
@@ -47,11 +44,11 @@ export function GroupPage(props) {
       {data && !data[0] && (
         <div>
           <h1>Group does not exist :(</h1>
-          <Form action="/groups-management">
+          <form action="/groups-management">
             <Button type="btn btn-primary">
               Return to Groups Management page
             </Button>
-          </Form>
+          </form>
         </div>
       )}
     </Layout>
