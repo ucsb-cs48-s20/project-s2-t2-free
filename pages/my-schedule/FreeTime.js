@@ -202,25 +202,14 @@ export default function FreeTime() {
     );
   }
   return (
-    <Accordion className="mb-3">
-      <Card>
-        <Accordion.Toggle as={Card.Header} eventKey="0" className="acc-toggle">
-          Your Free Time
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey="0">
-          <Card.Body>
-            <Table striped bordered className="mb-3">
-              <thead>
-                <tr>
-                  <th>Day of the Week</th>
-                  <th>Available Free Time</th>
-                </tr>
-              </thead>
-              <tbody>{items}</tbody>
-            </Table>
-          </Card.Body>
-        </Accordion.Collapse>
-      </Card>
-    </Accordion>
+    <Table striped bordered className="mb-3">
+      <thead>
+        <tr>
+          <th>Day of the Week</th>
+          <th>Available Free Time</th>
+        </tr>
+      </thead>
+      <tbody>{items}</tbody>
+    </Table>
   );
 }

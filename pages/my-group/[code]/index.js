@@ -7,7 +7,6 @@ import LeaveButton from "./LeaveButton";
 import MembersList from "./MembersList";
 import GroupFreeTime from "./GroupFreeTime";
 import MembersFreeTime from "./MembersFreeTime";
-import { Form, FromGroup, Row, Col } from "react-bootstrap";
 
 export const getServerSideProps = requiredAuth;
 
@@ -29,13 +28,9 @@ export function GroupPage(props) {
             !
           </h1>
           <h2>Group Code: {code}</h2>
-          <Form inline className="mt-3">
-            <Form.Group>
-              <JoinButton />
-              <LeaveButton />
-            </Form.Group>
-          </Form>
           <MembersList />
+          <JoinButton />
+          <LeaveButton />
           <MembersFreeTime />
           <GroupFreeTime />
         </div>
