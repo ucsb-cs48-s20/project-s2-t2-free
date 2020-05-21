@@ -39,19 +39,16 @@ export function GroupPage(props) {
           <MembersList />
           <MembersFreeTime />
           <GroupFreeTime />
-          <form action="/groups-management" className="mb-3">
-            <Button type="btn btn-primary">Return to Groups Management</Button>
-          </form>
         </div>
       )}
       {data && !data[0] && (
         <div>
           <h1>Group does not exist :(</h1>
-          <form action="/groups-management" className="mb-3">
-            <Button type="btn btn-primary">Return to Groups Management</Button>
-          </form>
         </div>
       )}
+      <form action="/groups-management" className="mb-3">
+        <Button type="btn btn-primary">Return to Groups Management</Button>
+      </form>
     </Layout>
   );
 }
