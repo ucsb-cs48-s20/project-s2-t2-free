@@ -170,8 +170,7 @@ function findFreeTime(data) {
   return free_time_byDay;
 }
 
-export default function FreeTime() {
-  const { data } = useSWR("/api/event");
+function FreeTime(data) {
   var free_time_byDay = findFreeTime(data);
   const items = [];
 
@@ -223,4 +222,12 @@ export default function FreeTime() {
       </Card>
     </Accordion>
   );
+}
+
+export default function returnTable() {
+  const { data } = useSWR("/api/event");
+  if (typeof data === "object") {
+    return <div>{FreeTime(data)}</div>;
+  }
+  return <div></div>;
 }
