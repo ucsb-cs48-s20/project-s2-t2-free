@@ -220,7 +220,7 @@ export default function MembersFreeTime() {
   const { data: membersJSON } = useSWR("/api/user");
   const { data } = useSWR(`/api/groups/getUsersAndEvents/${code}`);
   let items = [];
-  if (typeof data === "object") {
+  if (typeof data === "object" && typeof membersJSON === "object") {
     for (let i = 0; i < data.length; i++) {
       items.push(
         <Accordion className="mb-3">

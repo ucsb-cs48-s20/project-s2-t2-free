@@ -170,10 +170,7 @@ function findFreeTime(data) {
   return free_time_byDay;
 }
 
-export default function FreeTime() {
-  const router = useRouter();
-  const { code } = router.query;
-  const { data } = useSWR(`/api/groups/getGroupFreeTime/${code}`);
+function FreeTime(data) {
   var free_time_byDay = findFreeTime(data);
   const items = [];
 
@@ -214,4 +211,14 @@ export default function FreeTime() {
       <tbody>{items}</tbody>
     </Table>
   );
+}
+
+export default function returnTable() {
+  const router = useRouter();
+  const { code } = router.query;
+  const { data } = useSWR(`/api/groups/getGroupFreeTime/${code}`);
+  if (data === "object") {
+    return <div>{FreeTime(data)}</div>;
+  }
+  return <div></div>;
 }
