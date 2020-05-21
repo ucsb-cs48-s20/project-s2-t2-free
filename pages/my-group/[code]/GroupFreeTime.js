@@ -217,7 +217,7 @@ export default function returnTable() {
   const router = useRouter();
   const { code } = router.query;
   const { data } = useSWR(`/api/groups/getGroupFreeTime/${code}`);
-  if (data === "object") {
+  if (typeof data === "object") {
     return <div>{FreeTime(data)}</div>;
   }
   return <div></div>;
