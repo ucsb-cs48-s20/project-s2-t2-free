@@ -8,7 +8,8 @@ import MembersList from "./MembersList";
 import Button from "react-bootstrap/Button";
 import GroupFreeTime from "./GroupFreeTime";
 import MembersFreeTime from "./MembersFreeTime";
-import { Form, FromGroup, Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 
 export const getServerSideProps = requiredAuth;
 

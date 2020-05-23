@@ -2,6 +2,7 @@ import useSWR from "swr";
 import Table from "react-bootstrap/Table";
 import { useRouter } from "next/router";
 import { Accordion, Card } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 
 // converts time hh:mm AM/PM to minute of the day
 function convertTime(str) {
@@ -224,6 +225,7 @@ export default function MembersFreeTime() {
     for (let i = 0; i < data.length; i++) {
       items.push(
         <Accordion className="mb-3">
+          <Image src="/profiles/user-4.png/" width="5%" className="mr-2" />
           <Card>
             <Accordion.Toggle
               as={Card.Header}

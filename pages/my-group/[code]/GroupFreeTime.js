@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import Table from "react-bootstrap/Table";
 import { useRouter } from "next/router";
+import Image from "react-bootstrap/Image";
 
 // converts time hh:mm AM/PM to minute of the day
 function convertTime(str) {
@@ -218,7 +219,17 @@ export default function returnTable() {
   const { code } = router.query;
   const { data } = useSWR(`/api/groups/getGroupFreeTime/${code}`);
   if (typeof data === "object") {
-    return <div>{FreeTime(data)}</div>;
+    return (
+      <div>
+        <Image src="/profiles/user-4.png/" width="5%" className="mr-2" />
+        <Image src="/profiles/user-7.png/" width="5%" className="mr-2" />
+        <Image src="/profiles/user-8.png/" width="5%" className="mr-2" />
+        <Image src="/profiles/user-1.png/" width="5%" className="mr-2" />
+        <Image src="/profiles/user-2.png/" width="5%" className="mr-2" />
+        <Image src="/profiles/user-5.png/" width="5%" className="mr-2" />
+        {FreeTime(data)}
+      </div>
+    );
   }
   return <div></div>;
 }
