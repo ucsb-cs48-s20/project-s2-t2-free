@@ -49,3 +49,9 @@ then it may be because you need to set up secrets for GitHub Actions.
 
 That process is explained here:
 [docs/auth0-github-actions.md](./docs/github-actions.md).
+
+## Heroku Setup
+
+Create a new Heroku app, and link it to you forked copy, so that you are ready to deploy the master branch.
+Instructions on how to set up your app on Heroku can be found here:
+[docs/heroku.md](./docs/heroku.md)
