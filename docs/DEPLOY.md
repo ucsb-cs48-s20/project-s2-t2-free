@@ -10,12 +10,12 @@ Before this app will work, you need to:
   - note that `.env` is in the `.gitignore`
 - fill in correct values in the `.env` file according to the instructions below.
 
-# Auth0 Setup (configured in `.env`)
+# Auth0 Setup for Localhost (configured in `.env`)
 
-The Auth0 Setup for this application is the same as that for this app. Follow the instructions in the `README.md` and linked documents to obtain values
+The Auth0 Setup for this application to run on Localhost. Follow the instructions in the `auth0-localhost.md` to obtain values
 for the `.env` values that start with `AUTH0_`
 
-- <https://github.com/ucsb-cs48-s20/demo-nextjs-app>
+[auth0-localhost.md](./auth0-localhost.md).
 
 # MongoDB Setup (configured in `.env`)
 
