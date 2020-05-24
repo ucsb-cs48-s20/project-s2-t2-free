@@ -158,7 +158,5 @@ Once on the settings tab, you'll need to do two things:
 # All done!
 
 For developing on localhost, this is all you have to do; you should
-be able to return to the instructions in [README.md](../README.md)
+be able to return to the instructions in [DEPLOY.md](./DEPLOY.md)
 for starting up the application on localhost.
-
-Return to [DEPLOY.md](./DEPLOY.md)
