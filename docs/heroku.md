@@ -1,4 +1,4 @@
-# Deployment on Heroku (optional)
+# Deployment on Heroku
 
 1. If you do not already have one, create a Heroku account by
    logging in at <https://heroku.com>
@@ -8,7 +8,7 @@
    You’ll be asked for:
 
    - First Name, Last Name
-   - Email (we suggest using your `@ucsb.edu` email, but that's up to you)
+   - Email
    - Company (you may leave this blank).
    - Preferred Development Language: choose JavaScript or Java
 
@@ -16,7 +16,6 @@
      account with other languages later such as Ruby or Python
 
 2. If needed, install the Heroku CLI on your system
-   (it's already installed on CSIL).
 
    Instructions are here: <https://devcenter.heroku.com/articles/heroku-cli>
 
