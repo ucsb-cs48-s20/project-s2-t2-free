@@ -12,9 +12,9 @@ Before this app will work, you need to:
 
 # Auth0 Setup for Localhost (configured in `.env`)
 
-The Auth0 Setup for this application to run on Localhost. Follow the instructions in the `auth0-localhost.md` to obtain values
-for the `.env` values that start with `AUTH0_`
-
+The Auth0 Setup for this application to run on Localhost.
+Follow the instructions in the `auth0-localhost.md` to obtain values
+for the `.env` values that start with `AUTH0_`:
 [auth0-localhost.md](./auth0-localhost.md).
 
 # MongoDB Setup (configured in `.env`)
