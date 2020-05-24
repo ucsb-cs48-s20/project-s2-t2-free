@@ -2,7 +2,7 @@
 
 Fork the project repo to your own personal GitHub account by clicking on the "Fork" button at the upper right hand of the repo's page on GitHub.  This creates a personal copy of the repo under your own GitHub account.  This is necessary because you can't deploy an app to Heroku unless you have admin access to the repo.
 
-# Configuration of `.env`
+## Configuration of `.env`
 
 Before this app will work, you need to:
 
@@ -10,14 +10,14 @@ Before this app will work, you need to:
   - note that `.env` is in the `.gitignore`
 - fill in correct values in the `.env` file according to the instructions below.
 
-# Auth0 Setup for Localhost (configured in `.env`)
+## Auth0 Setup for Localhost (configured in `.env`)
 
 The Auth0 Setup for this application to run on Localhost.
 Follow the instructions in the `auth0-localhost.md` to obtain values
 for the `.env` values that start with `AUTH0_`:
 [auth0-localhost.md](./auth0-localhost.md).
 
-# MongoDB Setup (configured in `.env`)
+## MongoDB Setup (configured in `.env`)
 
 This application requires a connection to a MongoDB database.
 
@@ -48,6 +48,19 @@ then it may be because you need to set up secrets for GitHub Actions.
 
 That process is explained here:
 [auth0-github-actions.md](./auth0-github-actions.md).
+
+## Running on localhost
+
+To run on localhost, run:
+
+```
+npm run dev
+```
+
+The app will run on <http://localhost:3000>.
+
+While the app is running in development mode, any changes you make to
+the codebase will automatically be reflected in the browser.
 
 ## Heroku Setup
 
