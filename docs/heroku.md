@@ -72,4 +72,4 @@ Once you've defined these, redeploy your app, and it should work on
 Heroku. Be sure that you don't only test loading the home page, but
 also test whether you can authenticate (login/logout with Google).
 
-Return to [README.md](../README.md)
+Return to [DEPLOY.md](./DEPLOY.md)
