@@ -38,19 +38,18 @@ Retro leader fill this in.
 
 # Retro 05/26/20
 
-* Led by: name-goes-here
-* Present: name1, name2, ... , nameN
-* Absent: name1, name2, ...
+* Led by: Clare Boyle
+* Present: 
+* Absent: 
 
 ## Action item
 
 * a goal: identify something the team wants to get better at
 * a change: identify one thing that the team will change about how it works together
-* a measurement: identify at least one way to measure whether the change helped the team acheive the goal, or move closer to it.
+* a measurement: identify at least 1 way to measure whether the change helped the team acheive the goal, or move closer to it
 
 ## Retro Assessment
 
-* A brief description of what retro outline or process you used.
+* My team and I followed Darby/Larsen’s five stages of a successful retro since some feedback from our first Retro stated that we should "focus on making future retros more structured."
 * A brief assessment of how it went.
-* What advice would you give to the next person leading a retro
-  based on what you learned today?
+* What advice would you give to the next person leading a retro based on what you learned today?
