@@ -35,3 +35,22 @@ Retro leader fill this in.
 - My team and I followed the Start/Stop/Continue template for this retro.
 - I think this retro went relatively well as we were able to talk among each other about things that were useful to us (ex. continuing peer programming) and things that weren't and should be stopped (ex. tutorial spreadsheet). We were able to address these things and document them in our shared Google Drive.
 - I would recommend the next person leading the retro to keep the meeting focused on team dynamics and have other discussions saved for a future standup meeting or for a separate call.
+
+# Retro 05/26/20
+
+* Led by: name-goes-here
+* Present: name1, name2, ... , nameN
+* Absent: name1, name2, ...
+
+## Action item
+
+* a goal: identify something the team wants to get better at
+* a change: identify one thing that the team will change about how it works together
+* a measurement: identify at least one way to measure whether the change helped the team acheive the goal, or move closer to it.
+
+## Retro Assessment
+
+* A brief description of what retro outline or process you used.
+* A brief assessment of how it went.
+* What advice would you give to the next person leading a retro
+  based on what you learned today?
