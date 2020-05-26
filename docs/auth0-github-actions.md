@@ -41,6 +41,4 @@ However, for the tests to work properly, they need the same three
 secrets defined in `.env` via the steps to be exposed to the GitHub
 Actions. This is done via the `Secrets` item in the repository settings.
 
-# Next step
-
-Return to [README.md](../README.md) and proceed with configuring for production on now.sh
+Return to [DEPLOY.md](./DEPLOY.md)

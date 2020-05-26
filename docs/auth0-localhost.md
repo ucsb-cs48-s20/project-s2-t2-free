@@ -69,7 +69,7 @@ AUTH0_CLIENT_SECRET=
 
 ## Setting up Auth0 for `localhost`
 
-First, [sign up for an account with Auth0](https://auth0.com/signup). You should only have to do this once during the course.
+First, if you do not already have one, [sign up for an account with Auth0](https://auth0.com/signup).
 
 You will be asked to create a tenant. It doesn't matter what your tenant name is, and it's totally fine to take the default. However, we suggest that you name it: `cs48-s20-githubid` where `githubid` is your githubid, as shown here (using `pconrad` as an example):
 
@@ -158,5 +158,5 @@ Once on the settings tab, you'll need to do two things:
 # All done!
 
 For developing on localhost, this is all you have to do; you should
-be able to return to the instructions in [README.md](../README.md)
+be able to return to the instructions in [DEPLOY.md](./DEPLOY.md)
 for starting up the application on localhost.
