@@ -9,5 +9,5 @@
 | Mon 05/11 | Corey Su         | Will lead 2nd Retro                                    |
 | Tue 05/12 | Vincent Tieu     | Will lead Sprint Goal                                  |
 | Thu 05/21 | Ishana Narayanan | Will lead 2nd Demo                                     |
-| Tue 05/26 | xxx              | Will lead 3rd Retro                                    |
-| Tue 05/26 | Clare Boyle      | Will lead Sprint Planning                              |
+| Tue 05/26 | Clare Boyle      | Will lead 3rd Retro                                    |
+| Tue 05/26 | Ishana Narayanan | Will lead Sprint Planning                              |
