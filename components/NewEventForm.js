@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
-import { useToasts } from "../../components/Toasts";
+import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
 
 function numToTime(num) {

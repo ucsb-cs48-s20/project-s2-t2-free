@@ -1,9 +1,9 @@
 import Layout from "../../components/Layout";
 import { requiredAuth } from "../../utils/ssr";
-import NewEventForm from "./NewEventForm";
-import ScheduleTable from "./ScheduleTable";
+import NewEventForm from "../../components/NewEventForm";
+import ScheduleTable from "../../components/ScheduleTable";
 import useSWR from "swr";
-import FreeTime from "./FreeTime";
+import FreeTime from "../../components/FreeTime";
 
 export const getServerSideProps = requiredAuth;
 

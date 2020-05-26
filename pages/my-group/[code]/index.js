@@ -6,8 +6,8 @@ import JoinButton from "./JoinButton";
 import LeaveButton from "./LeaveButton";
 import MembersList from "./MembersList";
 import Button from "react-bootstrap/Button";
-import GroupFreeTime from "./GroupFreeTime";
-import MembersFreeTime from "./MembersFreeTime";
+import GroupFreeTime from "../../../components/GroupFreeTime";
+import MembersFreeTime from "../../../components/MembersFreeTime";
 import { Form, FromGroup, Row, Col } from "react-bootstrap";
 
 export const getServerSideProps = requiredAuth;

@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { useCallback, useState } from "react";
-import { useToasts } from "../../components/Toasts";
+import { useToasts } from "./Toasts";
 import Table from "react-bootstrap/Table";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
