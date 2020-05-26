@@ -1,8 +1,8 @@
 import Layout from "../../components/Layout";
 import { requiredAuth } from "../../utils/ssr";
-import GroupsTable from "./GroupsTable";
-import CreateGroupForm from "./CreateGroupForm";
-import FindGroupForm from "./FindGroupForm";
+import GroupsTable from "../../components/GroupsTable";
+import CreateGroupForm from "../../components/CreateGroupForm";
+import FindGroupForm from "../../components/FindGroupForm";
 
 export const getServerSideProps = requiredAuth;
 

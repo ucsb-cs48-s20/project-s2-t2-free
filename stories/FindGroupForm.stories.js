@@ -1,5 +1,4 @@
 import React from "react";
-import { select, text } from "@storybook/addon-knobs";
 import FindGroupForm from "../components/FindGroupForm";
 
 export default {
@@ -7,6 +6,6 @@ export default {
   component: FindGroupForm,
 };
 
-export const findgroupform = () => {
+export const form = () => {
   return <FindGroupForm />;
 };

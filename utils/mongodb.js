@@ -5,12 +5,10 @@ const client = new MongoClient(config.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-let connected = false;
 
 export async function initDatabase() {
-  if (!connected) {
+  if (!client.isConnected()) {
     await client.connect();
-    connected = true;
   }
   return client.db("database");
 }

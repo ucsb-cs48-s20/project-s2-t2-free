@@ -1,5 +1,4 @@
 import React from "react";
-import { select, text } from "@storybook/addon-knobs";
 import NewEventForm from "../components/NewEventForm";
 
 export default {
@@ -7,6 +6,6 @@ export default {
   component: NewEventForm,
 };
 
-export const neweventform = () => {
+export const form = () => {
   return <NewEventForm />;
 };
