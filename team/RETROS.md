@@ -39,8 +39,8 @@ Retro leader fill this in.
 # Retro 05/26/20
 
 * Led by: Clare Boyle
-* Present: 
-* Absent: 
+* Present: Corey Su, Ishana Narayanan, Vincent Tieu, 
+* Absent: --
 
 ## Action item
 
@@ -50,6 +50,6 @@ Retro leader fill this in.
 
 ## Retro Assessment
 
-* My team and I followed Darby/Larsen’s five stages of a successful retro since some feedback from our first Retro stated that we should "focus on making future retros more structured."
+* My team and I followed Darby/Larsen’s five stages of a successful retro since some feedback from our first Retro was to "focus on making future retros more structured."
 * A brief assessment of how it went.
 * What advice would you give to the next person leading a retro based on what you learned today?
