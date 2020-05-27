@@ -6,6 +6,6 @@ Other Teams:
   
 | Team                     | Who is reviewing | Issue Number |
 |--------------------------|------------------|--------------|
-| s2-t1-care               |                  |              |
-| s2-t3-slack-bot          |                  |              |
-| s2-t4-mafia              |                  |              |
+| s2-t1-care               | Ishana, Vincent  |              |
+| s2-t3-slack-bot          |      Clare       |              |
+| s2-t4-mafia              |      Corey       |              |
