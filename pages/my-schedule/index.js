@@ -4,7 +4,6 @@ import NewEventForm from "../../components/NewEventForm";
 import ScheduleTable from "../../components/ScheduleTable";
 import useSWR from "swr";
 import FreeTime from "../../components/FreeTime";
-import ClearSchedule from "../../components/ClearSchedule";
 
 export const getServerSideProps = requiredAuth;
 
@@ -18,7 +17,6 @@ function SchedulePage(props) {
       <NewEventForm />
       <ScheduleTable />
       <FreeTime />
-      <ClearSchedule />
     </Layout>
   );
 }
