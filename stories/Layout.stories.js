@@ -14,7 +14,7 @@ export const loggedOutEmpty = () => {
 
 export const loggedInWithContentInContainer = () => {
   const content = text("Sample Content", "This is sample content");
-  const name = text("Name", "Phill Conrad");
+  const name = text("Name", "Jane Doe");
   const user = { name };
   return (
     <Layout user={user}>
