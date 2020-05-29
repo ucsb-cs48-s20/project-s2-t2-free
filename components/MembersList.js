@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import { useRouter } from "next/router";
 
+//Returns list of members for front-end
 export default function MembersTable() {
   const router = useRouter();
   const { code } = router.query;
