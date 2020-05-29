@@ -88,7 +88,7 @@ export default function createTable() {
             {
               <Form.Group>
                 <Button variant="danger" onClick={() => resetSchedule()}>
-                  Reset All
+                  Reset
                 </Button>
               </Form.Group>
             }
