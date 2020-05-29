@@ -1,6 +1,6 @@
 # Deployment Instructions for FreeFromClass App
 
-Fork the project repo to your own personal GitHub account by clicking on the "Fork" button at the upper right hand of the repo's page on GitHub.  This creates a personal copy of the repo under your own GitHub account.  This is necessary because you can't deploy an app to Heroku unless you have admin access to the repo.
+Fork the project repo to your own personal GitHub account by clicking on the "Fork" button at the upper right hand of the repo's page on GitHub. This creates a personal copy of the repo under your own GitHub account. This is necessary because you can't deploy an app to Heroku unless you have admin access to the repo.
 
 ## Configuration of `.env`
 
