@@ -79,7 +79,7 @@ export default function createTable() {
 
     if (isDeleteMode) {
       items.push(
-        <tr>
+        <tr className="text-black" style={{ backgroundColor: "#ffbfc2" }}>
           <th></th>
           <th></th>
           <th></th>
@@ -88,7 +88,7 @@ export default function createTable() {
             {
               <Form.Group>
                 <Button variant="danger" onClick={() => resetSchedule()}>
-                  Reset
+                  Reset All
                 </Button>
               </Form.Group>
             }
