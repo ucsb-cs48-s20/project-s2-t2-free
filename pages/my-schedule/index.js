@@ -18,7 +18,6 @@ function SchedulePage(props) {
       <NewEventForm />
       <ScheduleTable />
       <FreeTime />
-      <ClearSchedule />
     </Layout>
   );
 }
