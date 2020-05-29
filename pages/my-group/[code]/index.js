@@ -30,9 +30,7 @@ export function GroupPage(props) {
           </h1>
           <h2>Group Code: {code}</h2>
           <Form inline>
-            <Form.Group>
-              <JoinLeaveButton />
-            </Form.Group>
+            <Form.Group></Form.Group>
           </Form>
           <MembersList />
           <MembersFreeTime />
