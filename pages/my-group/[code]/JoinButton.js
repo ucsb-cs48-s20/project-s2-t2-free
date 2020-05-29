@@ -2,14 +2,11 @@ import Button from "react-bootstrap/Button";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import useSWR from "swr";
-import { useToasts } from "./Toasts";
+import { useToasts } from "../../../components/Toasts";
 
-function JoinLeaveButton(props) {
-  const user = props.user;
+function JoinButton() {
   const router = useRouter();
   const { code } = router.query;
-
-  const { data, mutate } = useSWR(`/api/groups/getUserGroups`);
   const { mutate: mutateGroupList } = useSWR(
     `/api/groups/getGroupInfo/${code}`
   );
@@ -20,16 +17,6 @@ function JoinLeaveButton(props) {
     `/api/groups/getUsersAndEvents/${code}`
   );
   const { showToast } = useToasts();
-  const leaveGroup = useCallback(async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    showToast("Left Group!");
-    await fetch(`/api/groups/leaveGroup/${code}`, { method: "DELETE" });
-    mutateGroupList();
-    mutateGroupFreeTime();
-    mutateMembersFreeTime();
-    mutate();
-  });
   const joinGroup = useCallback(async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -46,29 +33,12 @@ function JoinLeaveButton(props) {
     mutateGroupList();
     mutateGroupFreeTime();
     mutateMembersFreeTime();
-    mutate();
   });
-
-  console.log(data);
-
-  if (typeof data === "object") {
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].code === code) {
-        return (
-          <div className="mb-3">
-            <Button onClick={leaveGroup}>Leave</Button>
-          </div>
-        );
-      }
-    }
-    return (
-      <div className="mb-3 mr-2">
-        <Button onClick={joinGroup}>Join</Button>
-      </div>
-    );
-  } else {
-    return <div></div>;
-  }
+  return (
+    <div className="mb-3 mr-2">
+      <Button onClick={joinGroup}>Join</Button>
+    </div>
+  );
 }
 
-export default JoinLeaveButton;
+export default JoinButton;
