@@ -1,10 +1,9 @@
 import Layout from "../../../components/Layout";
+import JoinLeaveButton from "../../../components/JoinLeaveButton";
 import { requiredAuth } from "../../../utils/ssr";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import JoinButton from "./JoinButton";
-import LeaveButton from "./LeaveButton";
-import MembersList from "./MembersList";
+import MembersList from "../../../components/MembersList";
 import Button from "react-bootstrap/Button";
 import GroupFreeTime from "../../../components/GroupFreeTime";
 import MembersFreeTime from "../../../components/MembersFreeTime";
@@ -32,8 +31,7 @@ export function GroupPage(props) {
           <h2>Group Code: {code}</h2>
           <Form inline>
             <Form.Group>
-              <JoinButton />
-              <LeaveButton />
+              <JoinLeaveButton />
             </Form.Group>
           </Form>
           <MembersList />
