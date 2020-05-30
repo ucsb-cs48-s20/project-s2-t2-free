@@ -62,6 +62,8 @@ function validateForm(
   endTime,
   addEvent
 ) {
+  e.preventDefault();
+  e.stopPropagation();
   if (convertTime(startTime) >= convertTime(endTime)) {
     window.alert("Start time must be before end time.");
     return false;
