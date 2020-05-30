@@ -13,7 +13,6 @@ function JoinGroupForm() {
   const [groupCode, setGroupCode] = useState("");
 
   const handleClick = (e) => {
-    e.preventDefault();
     router.push("/my-group/" + groupCode);
   };
 
