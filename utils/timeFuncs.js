@@ -63,6 +63,14 @@ export function convertEvent(events) {
     var start_time = convertTime(events[i][0]);
     var end_time = convertTime(events[i][1]);
 
+    if (start_time === 0) {
+      busy["12:00 AM"] = false;
+    }
+
+    if (end_time === 1435) {
+      busy["11:55 PM"] = false;
+    }
+
     for (let j = start_time + 5; j <= end_time - 5; j = j + 5) {
       busy[numToTime(j)] = false;
     }
@@ -99,7 +107,14 @@ export function freeIntervals(free_times) {
     }
     i++;
   }
-  return free_intervals;
+  var intervals = [];
+  for (var i = 0; i < free_intervals.length - 1; i = i + 2) {
+    if (free_intervals[i] != free_intervals[i + 1]) {
+      intervals.push(free_intervals[i]);
+      intervals.push(free_intervals[i + 1]);
+    }
+  }
+  return intervals;
 }
 
 // converts free_times from min to string time format
