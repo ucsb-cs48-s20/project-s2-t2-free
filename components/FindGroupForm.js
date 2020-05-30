@@ -30,7 +30,9 @@ function JoinGroupForm() {
             required
             onChange={(e) => setGroupCode(e.target.value)}
           />
-          <Button type="submit">Find</Button>
+          <Button type="submit" className="ml-1">
+            Find
+          </Button>
         </InputGroup>
       </Form.Group>
     </Form>

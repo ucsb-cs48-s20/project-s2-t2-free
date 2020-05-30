@@ -52,7 +52,9 @@ function CreateGroupForm() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <Button type="submit">Create</Button>
+          <Button type="submit" className="ml-1">
+            Create
+          </Button>
         </InputGroup>
       </Form.Group>
     </Form>
