@@ -80,10 +80,10 @@ export default function createTable() {
     if (isDeleteMode) {
       items.push(
         <tr>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
           <td>
             {
               <Form.Group>
