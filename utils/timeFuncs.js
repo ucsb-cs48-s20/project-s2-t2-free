@@ -89,6 +89,7 @@ export function makeFree(busy_times) {
   return free_times;
 }
 
+// converts free times as free intervals
 export function freeIntervals(free_times) {
   var free_intervals = [];
   var start = free_times[0];
