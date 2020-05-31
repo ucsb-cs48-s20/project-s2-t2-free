@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+import studentUser from "../fixtures/studentUser.json";
+
+Cypress.Commands.add("loginAsStudent", () =>
+  cy.setCookie("AUTH", JSON.stringify(studentUser))
+);
+
+Cypress.Commands.add("prepareDatabase", () => {
+  cy.visit("http://localhost:3000/testhooks");
+  cy.get("button").contains("Prepare Database").click();
+  cy.get("span").contains("Database has been reset; ready to run tests.");
+});
