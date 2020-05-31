@@ -135,5 +135,11 @@ describe("utils/timeFuncs", () => {
     it("converts free times as free intervals", () => {
       expect(freeIntervals2).toContain("12:05 PM");
     });
+    it("converts free times as free intervals", () => {
+      expect(freeIntervals2).not.toContain("12:15 PM");
+    });
+    it("converts free times as free intervals", () => {
+      expect(freeIntervals2).not.toContain("12:25 PM");
+    });
   });
 });
