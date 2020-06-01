@@ -10,10 +10,6 @@ export async function performPrepareDatabase() {
   result.removeUsers = await users.deleteMany({}); // removes all users
   result.removeEvents = await events.deleteMany({}); // removes all events
 
-  result.insertStudent = await users.insertOne({
-    _id: "google-oauth2|1164650955814999931223",
-    name: "student user",
-  });
   console.log("Database has been reset for cypress tests");
   return result;
 }

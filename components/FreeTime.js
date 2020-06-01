@@ -91,7 +91,7 @@ function FreeTime(data) {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
-            <Table striped bordered className="mb-3">
+            <Table striped bordered className="mb-3" id="freetime">
               <thead>
                 <tr>
                   <th>Day of the Week</th>

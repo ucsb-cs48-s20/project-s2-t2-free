@@ -38,18 +38,18 @@ Retro leader fill this in.
 
 # Retro 05/26/20
 
-* Led by: Clare Boyle
-* Present: Corey Su, Ishana Narayanan, Vincent Tieu, 
-* Absent: --
+- Led by: Clare Boyle
+- Present: Corey Su, Ishana Narayanan, Vincent Tieu,
+- Absent: --
 
 ## Action item
 
-* a goal: Create better User Interface for our app 
-* a change: A major issue we have is that we want to work on UI, but we don't have a list of attributes we need to work on to improve it. In this case, we created a Google Doc so we have somewhere we can quickly and easily add the many little things we want to change for UI that can be transferred to our Kanban board as we work on each issue.
-* a measurement: Since improvement on UI is pretty subjective, we've chosen to measure this change through the number of changes we make and complete on the Kanban board. Since we've been using the Kanban board since the beginning of the quarter, we can compare how much we implement in the next two weeks to previous weeks.
+- a goal: Create better User Interface for our app
+- a change: A major issue we have is that we want to work on UI, but we don't have a list of attributes we need to work on to improve it. In this case, we created a Google Doc so we have somewhere we can quickly and easily add the many little things we want to change for UI that can be transferred to our Kanban board as we work on each issue.
+- a measurement: Since improvement on UI is pretty subjective, we've chosen to measure this change through the number of changes we make and complete on the Kanban board. Since we've been using the Kanban board since the beginning of the quarter, we can compare how much we implement in the next two weeks to previous weeks.
 
 ## Retro Assessment
 
-* My team and I followed Darby/Larsen’s five stages of a successful retro since some feedback from our first Retro was to "focus on making future retros more structured."
-* I think everyone is pretty happy with the progress we've made so far and our communication level; however, this made it difficult to decide on what we want to change or improve upon which is the point of the Retro.
-* I recommend a Retro with less guidelines, but that provides better direction in terms of Retro goals. I really liked facilitating the Start/Stop/Continue Retro from before, but I think this Retro left something to be desired. I think it was harder because it dictated a lot of little things that made the meeting feel more artificial and wasn't condusive to making organic discussion.
+- My team and I followed Darby/Larsen’s five stages of a successful retro since some feedback from our first Retro was to "focus on making future retros more structured."
+- I think everyone is pretty happy with the progress we've made so far and our communication level; however, this made it difficult to decide on what we want to change or improve upon which is the point of the Retro.
+- I recommend a Retro with less guidelines, but that provides better direction in terms of Retro goals. I really liked facilitating the Start/Stop/Continue Retro from before, but I think this Retro left something to be desired. I think it was harder because it dictated a lot of little things that made the meeting feel more artificial and wasn't condusive to making organic discussion.
