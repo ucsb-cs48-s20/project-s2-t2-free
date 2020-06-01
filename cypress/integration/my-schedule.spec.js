@@ -10,15 +10,15 @@ describe("Group Management Page", () => {
     });
 
     it("check greeting", () => {
-      cy.get("h1").contains("Student Gaucho's Schedule");
+      cy.get('h1[id="greetings"]').contains("Student Gaucho's Schedule");
     });
 
     it("check create event exists", () => {
-      cy.get("form");
+      cy.get('form[id="createnewevent"]');
     });
 
     it("create event for CS48 Lecture", () => {
-      cy.get("form");
+      cy.get('form[id="createnewevent"]');
       cy.get('input[id="eventname"]')
         .type("CS48 Lecture")
         .should("have.value", "CS48 Lecture");
@@ -36,7 +36,7 @@ describe("Group Management Page", () => {
     });
 
     it("create event for CS48 Section", () => {
-      cy.get("form");
+      cy.get('form[id="createnewevent"]');
       cy.get('input[id="eventname"]')
         .type("CS48 Section")
         .should("have.value", "CS48 Section");
@@ -51,7 +51,7 @@ describe("Group Management Page", () => {
     });
 
     it("create Untitled Event", () => {
-      cy.get("form");
+      cy.get('form[id="createnewevent"]');
       cy.get('select[id="starttime"]')
         .select("5:00 PM")
         .should("have.value", "5:00 PM");

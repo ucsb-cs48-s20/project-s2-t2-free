@@ -10,7 +10,7 @@ function SchedulePage(props) {
   const user = props.user;
   return (
     <Layout user={user}>
-      <h1 className="mb-3">
+      <h1 id="greetings" className="mb-3">
         {user.given_name} {user.family_name}'s Schedule
       </h1>
       <NewEventForm />

@@ -27,11 +27,11 @@ describe("Group Management Page", () => {
     });
 
     it("check group data", () => {
-      cy.get('td[id="code-0"]');
+      cy.get('td[id="group-code-0"]');
     });
 
     it("check group data", () => {
-      cy.get('a[id="link-0"]').click();
+      cy.get('a[id="group-link-0"]').click();
       cy.get('button[id="joingroup"]');
       cy.get('button[id="leavegroup"]');
     });

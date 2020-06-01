@@ -21,7 +21,7 @@ describe("Groups", () => {
     it("enter wrong group code", () => {
       cy.get('input[id="entergroupcode"]').type("notacode");
       cy.get('button[id="findgroup"]').click();
-      cy.get("h1").contains("Group Does Not Exist :(");
+      cy.get('h1[id="groupdoesnotexist"]').contains("Group Does Not Exist :(");
     });
 
     it("create group", () => {
@@ -42,11 +42,11 @@ describe("Groups", () => {
     });
 
     it("check group data", () => {
-      cy.get('td[id="code-0"]');
+      cy.get('td[id="group-code-0"]');
     });
 
     it("check group data", () => {
-      cy.get('a[id="link-0"]').click();
+      cy.get('a[id="group-link-0"]').click();
     });
   });
 });

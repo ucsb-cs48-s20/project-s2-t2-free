@@ -22,16 +22,19 @@ function createTable(data, membersJSON) {
     for (let i = 0; i < data.length; i++) {
       items.push(
         <tr>
-          <td> {data[i].name} </td>
-          <td> {data[i].members.map((id) => membersJSON[id]).join(", ")} </td>
-          <td id={`code-${i}`}> {data[i].code} </td>
+          <td id={`group-name-${i}`}> {data[i].name} </td>
+          <td id={`group-members-${i}`}>
+            {" "}
+            {data[i].members.map((id) => membersJSON[id]).join(", ")}{" "}
+          </td>
+          <td id={`group-code-${i}`}> {data[i].code} </td>
           <td>
             {" "}
             <Link
               href="/my-group/[data[i].code]"
               as={`/my-group/${data[i].code}`}
             >
-              <a id={`link-${i}`}>
+              <a id={`group-link-${i}`}>
                 https://cs48-s20-s2-t2-prod.herokuapp.com/my-group/
                 {data[i].code}
               </a>

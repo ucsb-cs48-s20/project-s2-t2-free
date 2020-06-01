@@ -184,6 +184,7 @@ function NewEventForm() {
         <Accordion.Collapse eventKey="0">
           <Card.Body>
             <Form
+              id="createnewevent"
               onSubmit={(e) =>
                 validateForm(
                   e,
