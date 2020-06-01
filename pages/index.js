@@ -18,7 +18,7 @@ function HomePage(props) {
         (3) Enjoy our free schedule comparator and find when everyone is free!
       </p>
       <div>
-        {/* {user && (
+        {/* {user && (   
           <pre>
             You're logged in! Here's what the server knows about you:{" "}
             {JSON.stringify(user, null, "\t")}
