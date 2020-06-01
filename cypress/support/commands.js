@@ -24,10 +24,10 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-import studentUser from "../fixtures/studentUser.json";
+import user from "../fixtures/user.json";
 
-Cypress.Commands.add("loginAsStudent", () =>
-  cy.setCookie("AUTH", JSON.stringify(studentUser))
+Cypress.Commands.add("loginAsUser", () =>
+  cy.setCookie("AUTH", JSON.stringify(user))
 );
 
 Cypress.Commands.add("prepareDatabase", () => {

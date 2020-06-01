@@ -10,18 +10,9 @@ export async function performPrepareDatabase() {
   result.removeUsers = await users.deleteMany({}); // removes all users
   result.removeIdeas = await ideas.deleteMany({}); // removes all ideas
 
-  result.insertAdmin = await users.insertOne({
-    email: "admin@example.com",
-    role: "admin",
-  });
-
   result.insertStudent = await users.insertOne({
-    email: "student@example.com",
-    role: "student",
-    perm: "1111111",
-    section: "0201",
-    fname: "Example",
-    lname: "Student",
+    _id: "google-oauth2|1164650955814999931223",
+    name: "student user",
   });
   console.log("Database has been reset for cypress tests");
   return result;

@@ -1,11 +1,11 @@
 describe("Authentication", () => {
-  // before(() => {
-  //   cy.prepareDatabase();
-  // });
+  before(() => {
+    cy.prepareDatabase();
+  });
   context("When I am logged in as an student", () => {
     beforeEach(() => {
+      cy.loginAsUser();
       cy.visit("http://localhost:3000");
-      cy.loginAsStudent();
     });
 
     it("shows me student navbar options", () => {
