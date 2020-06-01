@@ -34,7 +34,9 @@ function JoinButton() {
   });
   return (
     <div className="mb-3 mr-2">
-      <Button onClick={joinGroup}>Join</Button>
+      <Button id="joingroup" onClick={joinGroup}>
+        Join
+      </Button>
     </div>
   );
 }

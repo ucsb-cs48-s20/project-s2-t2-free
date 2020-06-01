@@ -26,7 +26,9 @@ function LeaveButton() {
   });
   return (
     <div className="mb-3">
-      <Button onClick={leaveGroup}>Leave</Button>
+      <Button id="leavegroup" onClick={leaveGroup}>
+        Leave
+      </Button>
     </div>
   );
 }

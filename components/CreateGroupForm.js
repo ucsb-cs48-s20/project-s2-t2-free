@@ -50,9 +50,10 @@ function CreateGroupForm() {
             required
             type="text"
             value={name}
+            id="enternewgroupname"
             onChange={(e) => setName(e.target.value)}
           />
-          <Button type="submit" className="ml-1">
+          <Button type="submit" id="creategroup" className="ml-1">
             Create
           </Button>
         </InputGroup>
