@@ -46,6 +46,8 @@ If your tests cases are passing locally (when you run `npm test`) but
 are failing when run as Continuous Integration (CI) tests on GitHub Actions
 then it may be because you need to set up secrets for GitHub Actions.
 
+- Note: If `npm test` does not work, run `npm install` first
+
 That process is explained here:
 [auth0-github-actions.md](./auth0-github-actions.md).
 

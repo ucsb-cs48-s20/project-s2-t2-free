@@ -34,7 +34,7 @@ We note that eventually these secrets must also be stored in two other places.
 1. On GitHub in the Settings panel of the repo under `Secrets` so that
    GitHub action can successfully run the test cases for your app.
 
-2. On `now.sh` as secrets for your deployed application. This is
+2. On `Auth0` as secrets for your deployed application. This is
    described in [docs/auth0-production.md](auth0-production.md)
 
 These additional steps are described in [docs/auth0-github-actions.md](./auth0-github-actions.md), and [docs/auth0-production.md](./auth0-production.md), each of which is linked to from the [README.md](../README.md) at the appropriate step. You don't need to worry about that for now.
@@ -43,35 +43,27 @@ These additional steps are described in [docs/auth0-github-actions.md](./auth0-g
 
 The `.env` file should be created by running `cp .env.SAMPLE .env`
 
-This file is only stored in the local repo, not in the file system of the GitHub repo
+This file is only stored in the local repo, not in the file system of the GitHub repo.
 
-The reason that we do not store the secrets in the file system
-of the GitHub repo is that if the code is ever made open source
-in the future, having these secrets in the code leaks them to the public.
-
-Even if you have no plans to make your code open source, maintaining
-these secrets in your source code is a poor practice. One
-of the learning goals of CMPSC&nbsp;48 is to train you for real world
-software development practices, so we will review your code, and make
-deductions if we find secrets hard coded in files committed to GitHub.
-
-For now, the .env file looks like this, with placeholders for the three
+For now, the .env file looks like this, with placeholders for the four
 secrets. We'll put in the values at a later stage:
 
 ```
-# Fill in the below values by following the instructions in docs/auth0.md
+# Fill in the below values by following the instructions in docs/DEPLOY.md
+
 AUTH0_DOMAIN=
 AUTH0_CLIENT_ID=
 AUTH0_CLIENT_SECRET=
+MONGODB_URI=
 ```
 
 **A note to Windows Subsystem for Linux (WSL) users**: Make sure your `.env` file uses the UNIX line ending (`\n`) instead of the Windows (DOS) line ending (`\r\n`). One possible solution is here: <https://www.scivision.dev/git-line-endings-windows-cygwin-wsl/>
 
-## Setting up Auth0 for `localhost`
+## Setting up Auth0 for `localhost` (Creating an Account)
 
 First, if you do not already have one, [sign up for an account with Auth0](https://auth0.com/signup).
 
-You will be asked to create a tenant. It doesn't matter what your tenant name is, and it's totally fine to take the default. However, we suggest that you name it: `cs48-s20-githubid` where `githubid` is your githubid, as shown here (using `pconrad` as an example):
+You will be asked to create a tenant. It doesn't matter what your tenant name is, and it's totally fine to take the default.
 
 ![create tenant](images/create-tenant_40pct.png)
 
@@ -86,10 +78,7 @@ For "Account Type", click "Personal", then "Create Account":
 Next, register a new application. You do this by navigating to the "Applications" page in the sidebar and clicking the
 "Create Application" button.
 
-Give it a name:
-
-- We suggest the name of your repo, prefixed by `cs48-s20`
-- Example: `cs48-s20-cgaucho-lab00`
+Give it a name.
 
 Click to select "Single Page Application" as shown below:
 
