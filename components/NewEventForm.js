@@ -213,6 +213,7 @@ function NewEventForm() {
                           placeholder="Untitled"
                           type="text"
                           value={name}
+                          id="eventname"
                           onChange={(e) => setName(e.target.value)}
                         />
                       </InputGroup>
@@ -228,6 +229,7 @@ function NewEventForm() {
                           as="select"
                           value={startTime}
                           onChange={(e) => setStartTime(e.target.value)}
+                          id="starttime"
                         >
                           {timeOptions}
                         </Form.Control>
@@ -241,6 +243,7 @@ function NewEventForm() {
                         <Form.Control
                           as="select"
                           value={endTime}
+                          id="endtime"
                           onChange={(e) => setEndTime(e.target.value)}
                         >
                           {timeOptions}
@@ -313,7 +316,9 @@ function NewEventForm() {
                       />
                     </Col>
                     <Col md="auto" className="mb-3">
-                      <Button type="submit">Add Event</Button>
+                      <Button id="addevent" type="submit">
+                        Add Event
+                      </Button>
                     </Col>
                   </Row>
                 </Container>

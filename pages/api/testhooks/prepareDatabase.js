@@ -4,11 +4,11 @@ export async function performPrepareDatabase() {
   const client = await initDatabase();
 
   const users = client.collection("users");
-  const ideas = client.collection("ideas");
+  const events = client.collection("events");
 
   const result = {};
   result.removeUsers = await users.deleteMany({}); // removes all users
-  result.removeIdeas = await ideas.deleteMany({}); // removes all ideas
+  result.removeEvents = await events.deleteMany({}); // removes all events
 
   result.insertStudent = await users.insertOne({
     _id: "google-oauth2|1164650955814999931223",
