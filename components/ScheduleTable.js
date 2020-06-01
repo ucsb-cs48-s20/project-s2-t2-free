@@ -79,11 +79,11 @@ export default function createTable() {
 
     if (isDeleteMode) {
       items.push(
-        <tr className="text-black" style={{ backgroundColor: "#ffbfc2" }}>
-          <th></th>
-          <th></th>
-          <th></th>
-          <th></th>
+        <tr style={{ backgroundColor: "#ffbfc2" }}>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
           <td>
             {
               <Form.Group>
