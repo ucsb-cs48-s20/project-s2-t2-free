@@ -1,27 +1,12 @@
-describe("Groups", () => {
+describe("Group Management Page", () => {
   before(() => {
     cy.prepareDatabase();
   });
+
   context("When I am logged in as a user", () => {
     beforeEach(() => {
       cy.loginAsUser();
       cy.visit("http://localhost:3000/groups-management");
-    });
-
-    it("check buttons", () => {
-      cy.get('button[id="findgroup"]');
-      cy.get('button[id="creategroup"]');
-    });
-
-    it("enter any group code", () => {
-      cy.get('input[id="entergroupcode"]').type("notacode");
-      cy.get('button[id="findgroup"]').click();
-    });
-
-    it("enter wrong group code", () => {
-      cy.get('input[id="entergroupcode"]').type("notacode");
-      cy.get('button[id="findgroup"]').click();
-      cy.get("h1").contains("Group Does Not Exist :(");
     });
 
     it("create group", () => {
@@ -47,6 +32,8 @@ describe("Groups", () => {
 
     it("check group data", () => {
       cy.get('a[id="link-0"]').click();
+      cy.get('button[id="joingroup"]');
+      cy.get('button[id="leavegroup"]');
     });
   });
 });

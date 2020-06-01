@@ -1,4 +1,4 @@
-describe("Create Event", () => {
+describe("Group Management Page", () => {
   before(() => {
     cy.prepareDatabase();
   });
@@ -9,8 +9,8 @@ describe("Create Event", () => {
       cy.visit("http://localhost:3000/my-schedule");
     });
 
-    it("check name", () => {
-      cy.get("h1").contains("Schedule");
+    it("check greeting", () => {
+      cy.get("h1").contains("Student Gaucho's Schedule");
     });
 
     it("check create event exists", () => {

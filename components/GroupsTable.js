@@ -24,14 +24,14 @@ function createTable(data, membersJSON) {
         <tr>
           <td> {data[i].name} </td>
           <td> {data[i].members.map((id) => membersJSON[id]).join(", ")} </td>
-          <td> {data[i].code} </td>
+          <td id={`code-${i}`}> {data[i].code} </td>
           <td>
             {" "}
             <Link
               href="/my-group/[data[i].code]"
               as={`/my-group/${data[i].code}`}
             >
-              <a>
+              <a id={`link-${i}`}>
                 https://cs48-s20-s2-t2-prod.herokuapp.com/my-group/
                 {data[i].code}
               </a>

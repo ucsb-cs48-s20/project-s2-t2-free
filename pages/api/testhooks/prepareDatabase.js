@@ -5,11 +5,17 @@ export async function performPrepareDatabase() {
 
   const users = client.collection("users");
   const events = client.collection("events");
+  const groups = client.collection("groups");
 
   const result = {};
   result.removeUsers = await users.deleteMany({}); // removes all users
   result.removeEvents = await events.deleteMany({}); // removes all events
+  result.removeGroups = await groups.deleteMany({}); // removes all groups
 
+  result.insertStudent = await users.insertOne({
+    _id: "google-oauth2|1164650955814999931223",
+    name: "Student Gaucho",
+  });
   console.log("Database has been reset for cypress tests");
   return result;
 }
