@@ -3,6 +3,7 @@ import { requiredAuth } from "../../utils/ssr";
 import NewEventForm from "../../components/NewEventForm";
 import ScheduleTable from "../../components/ScheduleTable";
 import FreeTime from "../../components/FreeTime";
+import eventsCalendar from "../../components/Calendar";
 
 export const getServerSideProps = requiredAuth;
 
@@ -16,6 +17,7 @@ function SchedulePage(props) {
       <NewEventForm />
       <ScheduleTable />
       <FreeTime />
+      <eventsCalendar />
     </Layout>
   );
 }

@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^0.11.0",
+    "@fullcalendar/core": "^4.4.2",
+    "@fullcalendar/daygrid": "^4.4.2",
     "bootstrap": "^4.4.1",
     "dotenv": "^8.2.0",
     "isomorphic-unfetch": "^3.0.0",
@@ -33,10 +35,10 @@
     "react": "16.13.1",
     "react-bootstrap": "^1.0.0",
     "react-dom": "16.13.1",
-    "swr": "^0.1.18",
-    "validate.js": "^0.13.1",
     "start-server-and-test": "^1.10.11",
-    "terser-webpack-plugin": "^2.3.5"
+    "swr": "^0.1.18",
+    "terser-webpack-plugin": "^2.3.5",
+    "validate.js": "^0.13.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
