@@ -23,35 +23,21 @@
    Heroku command line. For purposes of the instructions, let us
    suppose this is called `cs48-s20-cgaucho-lab00`
 
-4) Add a value for `SESSION_COOKIE_SECRET` to to your `.env` file.
+4) Be sure you are logged into the Heroku command line via `heroku login -i`
 
-   The value can be any arbitrary string of upper and lower case
-   letters and digits. It is just a value used to encrypt your
-   session cookies so that it's more difficult for hackers to hijack
-   your session. There is more detail in the file
-   [docs/session-cookie-secret.md](./docs/session-cookie-secret.md)
+5) Run `npm install`
 
-   Example:
-
-   ```
-   SESSION_COOKIE_SECRET=7xd6fvweSFHSS238778sf87sdfS8F8sf9ds8fDZ7sd8fdDV8ASC12
-   ```
-
-5) Be sure you are logged into the Heroku command line via `heroku login -i`
-
-6) Run `npm install`
-
-7) Run this command to copy the `.env` values into Heroku Config Vars.
+6) Run this command to copy the `.env` values into Heroku Config Vars.
    Substitute your app name in place of `cs48-s20-cgaucho-lab00`
 
    ```
    npx heroku-dotenv push --app cs48-s20-cgaucho-lab00
    ```
 
-8) Go to the Deploy screen of the Heroku Dashboard, connect your GitHub repo
+7) Go to the Deploy screen of the Heroku Dashboard, connect your GitHub repo
    to the Heroku App, and then click to deploy the master branch.
 
-9) You should be up and running on Heroku.
+8) You should be up and running on Heroku.
 
    However, you still still need to modify your
    Auth0 setup to include the new production urls.
@@ -60,12 +46,12 @@
 
    [/docs/auth0-production.md](./auth0-production.md)
 
-10. Go to the Setting page in the Heroku Dashboard and add two config vars:
+9. Go to the Setting page in the Heroku Dashboard and add two config vars:
 
-    | Key                        | Value                                             | Example                                                     |
-    | -------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
-    | `REDIRECT_URI`             | Your production URL with `/api/callback` appended | `https://cs48-s20-cgaucho-lab00.herokuapp.com/api/callback` |
-    | `POST_LOGOUT_REDIRECT_URI` | Your production URL                               | `https://cs48-s20-cgaucho-lab00.herokuapp.com`              |
+   | Key                        | Value                                             | Example                                                     |
+   | -------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
+   | `REDIRECT_URI`             | Your production URL with `/api/callback` appended | `https://cs48-s20-cgaucho-lab00.herokuapp.com/api/callback` |
+   | `POST_LOGOUT_REDIRECT_URI` | Your production URL                               | `https://cs48-s20-cgaucho-lab00.herokuapp.com`              |
 
 Once you've defined these, redeploy your app, and it should work on
 Heroku. Be sure that you don't only test loading the home page, but
