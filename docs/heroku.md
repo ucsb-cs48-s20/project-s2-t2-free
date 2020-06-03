@@ -22,22 +22,36 @@
 3) Create a new app on Heroku, either via the Heroku Dashboard, or the
    Heroku command line. For purposes of the instructions, let us
    suppose this is called `cs48-s20-cgaucho-lab00`
+   
+4) Add a value for `SESSION_COOKIE_SECRET` to to your `.env` file.
 
-4) Be sure you are logged into the Heroku command line via `heroku login -i`
+   The value can be any arbitrary string of upper and lower case
+   letters and digits. It is just a value used to encrypt your
+   session cookies so that it's more difficult for hackers to hijack
+   your session. There is more detail in the file
+   [session-cookie-secret.md](./session-cookie-secret.md)
 
-5) Run `npm install`
+   Example:
 
-6) Run this command to copy the `.env` values into Heroku Config Vars.
+   ```
+   SESSION_COOKIE_SECRET=7xd6fvweSFHSS238778sf87sdfS8F8sf9ds8fDZ7sd8fdDV8ASC12
+   ```
+
+5) Be sure you are logged into the Heroku command line via `heroku login -i`
+
+6) Run `npm install`
+
+7) Run this command to copy the `.env` values into Heroku Config Vars.
    Substitute your app name in place of `cs48-s20-cgaucho-lab00`
 
    ```
    npx heroku-dotenv push --app cs48-s20-cgaucho-lab00
    ```
 
-7) Go to the Deploy screen of the Heroku Dashboard, connect your GitHub repo
+8) Go to the Deploy screen of the Heroku Dashboard, connect your GitHub repo
    to the Heroku App, and then click to deploy the master branch.
 
-8) You should be up and running on Heroku.
+9) You should be up and running on Heroku.
 
    However, you still still need to modify your
    Auth0 setup to include the new production urls.
@@ -46,7 +60,7 @@
 
    [/docs/auth0-production.md](./auth0-production.md)
 
-9. Go to the Setting page in the Heroku Dashboard and add two config vars:
+10. Go to the Setting page in the Heroku Dashboard and add two config vars:
 
    | Key                        | Value                                             | Example                                                     |
    | -------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
