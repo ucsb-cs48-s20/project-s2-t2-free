@@ -2,11 +2,14 @@ import auth0 from "./auth0";
 import { attachUserMetadata } from "./user";
 import config from "./config";
 import { getUserSession } from "./ssr";
+import { createUser } from "../pages/api/user";
 
 export function authenticatedAction(actionFn) {
   async function apiHandler(req, res) {
     try {
       const user = await getUserSession(req);
+
+      await createUser(user);
 
       const actionResult = await actionFn(req, user);
 
