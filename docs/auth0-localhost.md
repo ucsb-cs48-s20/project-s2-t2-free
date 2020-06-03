@@ -45,7 +45,7 @@ The `.env` file should be created by running `cp .env.SAMPLE .env`
 
 This file is only stored in the local repo, not in the file system of the GitHub repo.
 
-For now, the .env file looks like this, with placeholders for the four
+For now, the .env file looks like this, with placeholders for the five
 secrets. We'll put in the values at a later stage:
 
 ```
@@ -55,6 +55,7 @@ AUTH0_DOMAIN=
 AUTH0_CLIENT_ID=
 AUTH0_CLIENT_SECRET=
 MONGODB_URI=
+MONGODB_URI_TEST=
 ```
 
 **A note to Windows Subsystem for Linux (WSL) users**: Make sure your `.env` file uses the UNIX line ending (`\n`) instead of the Windows (DOS) line ending (`\r\n`). One possible solution is here: <https://www.scivision.dev/git-line-endings-windows-cygwin-wsl/>
