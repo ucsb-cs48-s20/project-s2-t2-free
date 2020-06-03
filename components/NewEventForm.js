@@ -6,27 +6,8 @@ import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
-import convertTime from "../utils/convertTime";
-
-function numToTime(num) {
-  let str = "";
-  if (Math.floor(num / 12) % 12 === 0) {
-    str += "12";
-  } else {
-    str += Math.floor(num / 12) % 12;
-  }
-  str += ":";
-  if ((num % 12) * 5 <= 5) {
-    str += "0";
-  }
-  str += (num % 12) * 5;
-  if (num >= 144) {
-    str += " PM";
-  } else {
-    str += " AM";
-  }
-  return str;
-}
+import { convertTime } from "../utils/timeFuncs";
+import numToTime from "../utils/numToTime";
 
 function validateForm(
   e,

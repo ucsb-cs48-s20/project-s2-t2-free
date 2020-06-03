@@ -1,8 +1,6 @@
 import { authenticatedAction } from "../../../../utils/api";
 import { initDatabase } from "../../../../utils/mongodb";
-import validate from "validate.js";
-import convertTime from "../../../../utils/convertTime";
-import numToTime from "../../../../utils/numToTime";
+import { numToTime } from "../../../../utils/timeFuncs";
 
 async function editSleepEvents(event, userSub) {
   const client = await initDatabase();
