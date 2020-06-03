@@ -32,7 +32,7 @@ function dayOfTheWeek(param) {
 }
 
 export default function createTable() {
-  const [isDeleteMode, setIsDeleteMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
   const { showToast } = useToasts();
   const { data, mutate } = useSWR("/api/event");
 
@@ -65,7 +65,14 @@ export default function createTable() {
           <td>{data[i].startTime}</td>
           <td>{data[i].endTime}</td>
           <td>
-            {isDeleteMode && (
+            {isEditMode && (
+              <Form.Group>
+                <Button variant="danger" onClick={() => deleteId(data[i]._id)}>
+                  Edit
+                </Button>
+              </Form.Group>
+            )}
+            {isEditMode && (
               <Form.Group>
                 <Button variant="danger" onClick={() => deleteId(data[i]._id)}>
                   Delete
@@ -77,7 +84,7 @@ export default function createTable() {
       );
     }
 
-    if (isDeleteMode) {
+    if (isEditMode) {
       items.push(
         <tr style={{ backgroundColor: "#ffbfc2" }}>
           <td></td>
@@ -107,10 +114,10 @@ export default function createTable() {
             <th>End Time</th>
             <th>
               <Form.Check
-                label="Delete"
+                label="Edit"
                 type="switch"
-                id="isDeleteMode"
-                onChange={(e) => setIsDeleteMode(e.target.checked)}
+                id="isEditMode"
+                onChange={(e) => setIsEditMode(e.target.checked)}
               />
             </th>
           </tr>
