@@ -6,6 +6,7 @@ import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
+import convertTime from "../utils/convertTime";
 
 function numToTime(num) {
   let str = "";
@@ -25,28 +26,6 @@ function numToTime(num) {
     str += " AM";
   }
   return str;
-}
-
-// converts time hh:mm AM/PM to minute of the day
-function convertTime(str) {
-  var min = 0;
-  var morn = 0; // 0 if morning, 1 if afternoon
-  if (str.charAt(str.length - 2) == "P") {
-    morn = 1;
-  }
-  str = str.slice(0, -3);
-  var str_split = str.split(":");
-
-  if (str_split[0] == 12) {
-    str_split[0] = 0;
-  }
-
-  min = +str_split[0] * 60 + +str_split[1];
-
-  if (morn == 1) {
-    min = min + 720;
-  }
-  return min;
 }
 
 function validateForm(
