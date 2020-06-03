@@ -4,6 +4,8 @@ import { useToasts } from "./Toasts";
 import Table from "react-bootstrap/Table";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import NewEventForm from "./NewEventForm";
+import Modal from "react-bootstrap/Button";
 
 function dayOfTheWeek(param) {
   let day = "";
@@ -42,6 +44,15 @@ export default function createTable() {
     await mutate();
   }, []);
 
+  const editId = useCallback(async (eventId) => {
+    await fetch(`/api/event/${eventId}`, { method: "EDIT" });
+    await mutate();
+  }, []);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   function resetSchedule() {
     var reset = confirm("Are you sure you want to reset your schedule?");
     if (reset == true) {
@@ -67,11 +78,18 @@ export default function createTable() {
           <td>
             {isEditMode && (
               <Form.Group>
-                <Button variant="danger" onClick={() => deleteId(data[i]._id)}>
+                <Button variant="primary" onClick={handleShow}>
                   Edit
                 </Button>
+
+                <Modal show={show} onHide={handleClose} backdrop="static">
+                  <Modal.Header closeButton>
+                    <Modal.Title>Edit Event</Modal.Title>
+                  </Modal.Header>
+                </Modal>
               </Form.Group>
             )}
+
             {isEditMode && (
               <Form.Group>
                 <Button variant="danger" onClick={() => deleteId(data[i]._id)}>
