@@ -16,7 +16,7 @@ function SchedulePage(props) {
       </h1>
       <form action="/editBeginEndTime" className="mb-3">
         <Button type="btn btn-primary">
-          Edit Beginning and End Times of your Schedule
+          Set Begin and End Times for Your Schedule
         </Button>
       </form>
       <NewEventForm />

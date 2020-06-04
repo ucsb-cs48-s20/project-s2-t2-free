@@ -85,7 +85,7 @@ function EditBeginEndTimeForm() {
     <Accordion defaultActiveKey="0" className="mb-3">
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0" className="acc-toggle">
-          Set a Do Not Disturb Time!
+          Set a start time and end time to your day!
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
@@ -96,7 +96,7 @@ function EditBeginEndTimeForm() {
               <Form.Group>
                 <Container>
                   <Row>
-                    <Col xs={12} md={6}>
+                    <Col>
                       <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                           <InputGroup.Text>Start Time</InputGroup.Text>
@@ -110,7 +110,7 @@ function EditBeginEndTimeForm() {
                         </Form.Control>
                       </InputGroup>
                     </Col>
-                    <Col xs={12} md={6}>
+                    <Col>
                       <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                           <InputGroup.Text>End Time</InputGroup.Text>
@@ -124,12 +124,8 @@ function EditBeginEndTimeForm() {
                         </Form.Control>
                       </InputGroup>
                     </Col>
-                  </Row>
-                  <Row className="justify-content-center">
                     <Col md="auto" className="mb-3">
-                      <Button type="submit">
-                        Remove hours from my list of free times
-                      </Button>
+                      <Button type="submit">Confirm</Button>
                     </Col>
                   </Row>
                 </Container>

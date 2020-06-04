@@ -16,9 +16,6 @@ async function editSleepEvents(event, userSub) {
 
   // Create Sleep Event
   const query1 = { name: "always insert event" };
-  console.log(numToTime(event.startTime));
-  console.log(numToTime(event.endTime));
-  // Sleep Event crosses over into the next day (must be entered as 2 events)
   const mutation = {
     $setOnInsert: {
       userid: userSub,
@@ -63,10 +60,22 @@ async function editSleepEvents(event, userSub) {
   return result0.value && result1.value; // what are these functions returning?
 }
 
+export async function getSleepEvents(userSub) {
+  const client = await initDatabase();
+  const events = client.collection("events");
+  const query = {
+    userid: userSub,
+    name: "",
+  };
+  return await events.find(query).toArray();
+}
+
 async function performAction(req, user) {
   switch (req.method) {
     case "POST":
       return editSleepEvents(req.body, user.sub);
+    case "GET":
+      return getSleepEvents(user.sub);
   }
   throw { status: 405 };
 }

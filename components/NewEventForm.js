@@ -6,8 +6,8 @@ import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
-import { convertTime } from "../utils/timeFuncs";
-import numToTime from "../utils/numToTime";
+import { convertTime, numToTime } from "../utils/timeFuncs";
+// import numToTime from "../utils/numToTime";
 
 function validateForm(
   e,
@@ -45,7 +45,7 @@ function validateForm(
 
 function NewEventForm() {
   const { showToast } = useToasts();
-  const { mutate } = useSWR("/api/event");
+  const { data, mutate } = useSWR("/api/event/editSleepEvents");
   const [name, setName] = useState("");
 
   const [isMonday, setIsMonday] = useState(false);
@@ -60,8 +60,18 @@ function NewEventForm() {
   const [endTime, setEndTime] = useState("12:00 PM");
 
   const timeOptions = [];
-  for (let i = 0; i < 288; i++) {
-    timeOptions.push(<option>{numToTime(i)}</option>);
+  if (typeof data === "object" && data.length > 0) {
+    for (
+      let i = convertTime(data[0].endTime);
+      i <= convertTime(data[1].startTime);
+      i = i + 5
+    ) {
+      timeOptions.push(<option>{numToTime(i)}</option>);
+    }
+  } else {
+    for (let i = 0; i < 1339; i = i + 5) {
+      timeOptions.push(<option>{numToTime(i)}</option>);
+    }
   }
 
   const addEvent = useCallback(
