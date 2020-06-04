@@ -6,48 +6,7 @@ import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
-
-function numToTime(num) {
-  let str = "";
-  if (Math.floor(num / 12) % 12 === 0) {
-    str += "12";
-  } else {
-    str += Math.floor(num / 12) % 12;
-  }
-  str += ":";
-  if ((num % 12) * 5 <= 5) {
-    str += "0";
-  }
-  str += (num % 12) * 5;
-  if (num >= 144) {
-    str += " PM";
-  } else {
-    str += " AM";
-  }
-  return str;
-}
-
-// converts time hh:mm AM/PM to minute of the day
-function convertTime(str) {
-  var min = 0;
-  var morn = 0; // 0 if morning, 1 if afternoon
-  if (str.charAt(str.length - 2) == "P") {
-    morn = 1;
-  }
-  str = str.slice(0, -3);
-  var str_split = str.split(":");
-
-  if (str_split[0] == 12) {
-    str_split[0] = 0;
-  }
-
-  min = +str_split[0] * 60 + +str_split[1];
-
-  if (morn == 1) {
-    min = min + 720;
-  }
-  return min;
-}
+import { convertTime, numToTime } from "../utils/timeFuncs";
 
 function validateForm(
   e,
@@ -86,6 +45,7 @@ function validateForm(
 function NewEventForm() {
   const { showToast } = useToasts();
   const { mutate } = useSWR("/api/event");
+  const { data } = useSWR("api/event/editSleepEvents");
   const [name, setName] = useState("");
 
   const [isMonday, setIsMonday] = useState(false);
@@ -100,8 +60,21 @@ function NewEventForm() {
   const [endTime, setEndTime] = useState("12:00 PM");
 
   const timeOptions = [];
-  for (let i = 0; i < 288; i++) {
-    timeOptions.push(<option>{numToTime(i)}</option>);
+  if (typeof data === "object" && data.length == 2) {
+    console.log(data[0].endTime);
+    console.log(data[1].startTime);
+
+    for (
+      let i = convertTime(data[0].endTime);
+      i <= convertTime(data[1].startTime);
+      i = i + 5
+    ) {
+      timeOptions.push(<option>{numToTime(i)}</option>);
+    }
+  } else {
+    for (let i = 0; i < 1339; i = i + 5) {
+      timeOptions.push(<option>{numToTime(i)}</option>);
+    }
   }
 
   const addEvent = useCallback(
