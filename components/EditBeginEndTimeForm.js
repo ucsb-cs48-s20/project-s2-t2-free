@@ -5,8 +5,7 @@ import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
 import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
-import numToTime from "../utils/numToTime";
-import { convertTime } from "../utils/timeFuncs";
+import { convertTime, numToTime } from "../utils/timeFuncs";
 
 function validateForm(e, startTime, endTime, addEvent) {
   e.preventDefault();
@@ -26,7 +25,7 @@ function EditBeginEndTimeForm() {
   const [endTime, setEndTime] = useState("5:00 PM");
 
   const timeOptions = [];
-  for (let i = 0; i < 288; i++) {
+  for (let i = 0; i < 1339; i = i + 5) {
     timeOptions.push(<option>{numToTime(i)}</option>);
   }
 
