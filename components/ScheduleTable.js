@@ -44,11 +44,6 @@ export default function createTable() {
     await mutate();
   }, []);
 
-  const editId = useCallback(async (eventId) => {
-    await fetch(`/api/event/${eventId}`, { method: "EDIT" });
-    await mutate();
-  }, []);
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
