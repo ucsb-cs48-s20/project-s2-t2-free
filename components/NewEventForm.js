@@ -44,7 +44,8 @@ function validateForm(
 
 function NewEventForm() {
   const { showToast } = useToasts();
-  const { data, mutate } = useSWR("/api/event");
+  const { mutate } = useSWR("/api/event");
+  const { data } = useSWR("api/event/editSleepEvents");
   const [name, setName] = useState("");
 
   const [isMonday, setIsMonday] = useState(false);
@@ -60,6 +61,9 @@ function NewEventForm() {
 
   const timeOptions = [];
   if (typeof data === "object" && data.length == 2) {
+    console.log(data[0].endTime);
+    console.log(data[1].startTime);
+
     for (
       let i = convertTime(data[0].endTime);
       i <= convertTime(data[1].startTime);
