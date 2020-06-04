@@ -6,13 +6,24 @@ import useSWR from "swr";
 import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
 import numToTime from "../utils/numToTime";
+import { convertTime } from "../utils/timeFuncs";
+
+function validateForm(e, startTime, endTime, addEvent) {
+  e.preventDefault();
+  e.stopPropagation();
+  if (convertTime(startTime) >= convertTime(endTime)) {
+    window.alert("Start time must be before end time.");
+    return false;
+  }
+  return addEvent(e);
+}
 
 function EditBeginEndTimeForm() {
   const { showToast } = useToasts();
   const { mutate } = useSWR("/api/event");
 
-  const [startTime, setStartTime] = useState("5:00 PM");
-  const [endTime, setEndTime] = useState("9:00 AM");
+  const [startTime, setStartTime] = useState("9:00 AM");
+  const [endTime, setEndTime] = useState("5:00 PM");
 
   const timeOptions = [];
   for (let i = 0; i < 288; i++) {
@@ -25,9 +36,9 @@ function EditBeginEndTimeForm() {
       e.preventDefault();
       e.stopPropagation();
 
-      setStartTime("5:00 PM");
-      setEndTime("9:00 AM");
-      showToast("Removed times from your Free Time!");
+      setStartTime("9:00 AM");
+      setEndTime("5:00 PM");
+      showToast("Set your day start and end time!");
 
       await mutate(
         [
@@ -78,7 +89,10 @@ function EditBeginEndTimeForm() {
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
-            <Form onSubmit={addEvent} className="mb-3">
+            <Form
+              onSubmit={(e) => validateForm(e, startTime, endTime, addEvent)}
+              className="mb-3"
+            >
               <Form.Group>
                 <Container>
                   <Row>
