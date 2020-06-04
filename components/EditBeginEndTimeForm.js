@@ -19,7 +19,7 @@ function validateForm(e, startTime, endTime, addEvent) {
 
 function EditBeginEndTimeForm() {
   const { showToast } = useToasts();
-  const { mutate } = useSWR("/api/event");
+  const { mutate } = useSWR("/api/event/editSleepEvents");
 
   const [startTime, setStartTime] = useState("9:00 AM");
   const [endTime, setEndTime] = useState("5:00 PM");
