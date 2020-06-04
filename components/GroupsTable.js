@@ -16,6 +16,18 @@ function createTable(data, membersJSON) {
     mutate();
   });
 
+  function resetGroups() {
+    var reset = confirm("Are you sure you want to leave all groups?");
+    if (reset == true) {
+      if (typeof data === "object" && typeof membersJSON === "object") {
+        for (let i = 0; i < data.length; i++) {
+          leaveGroup(data[i].code, data[i].name);
+        }
+      }
+      showToast("Left all groups!");
+    }
+  }
+
   if (typeof data === "object" && typeof membersJSON === "object") {
     const items = [];
 
@@ -49,6 +61,26 @@ function createTable(data, membersJSON) {
                 Leave
               </Button>
             )}
+          </td>
+        </tr>
+      );
+    }
+
+    if (isLeaveMode) {
+      items.push(
+        <tr style={{ backgroundColor: "#ffbfc2" }}>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            {
+              <Form.Group>
+                <Button variant="danger" onClick={() => resetGroups()}>
+                  Leave All
+                </Button>
+              </Form.Group>
+            }
           </td>
         </tr>
       );

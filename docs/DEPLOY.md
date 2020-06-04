@@ -42,12 +42,22 @@ MongoDB Connection String.
 
 ## Configuring secrets for GitHub Actions
 
-If your tests cases are passing locally (when you run `npm test`) but
-are failing when run as Continuous Integration (CI) tests on GitHub Actions
-then it may be because you need to set up secrets for GitHub Actions.
+You will need to set up secrets for GitHub Actions.
 
 That process is explained here:
 [auth0-github-actions.md](./auth0-github-actions.md).
+
+## Running Test Cases (optional)
+
+In order to run `npm test` to see if the provided test cases are passing
+locally, you will need to create another MongoDB database. The same process
+can be followed for the initial MongoDB Setup above, with the only change
+being naming the new value in `.env` as `MONGODB_URI_TEST`.
+
+- Note: If `npm test` does not work, run `npm install` first
+- Note: Running `npm test` without `MONGODB_URI_TEST` being properly set up
+  in `.env` will result in your application's MongoDB data to be overwritten by
+  the test cases.
 
 ## Running on localhost
 

@@ -22,14 +22,14 @@
 3) Create a new app on Heroku, either via the Heroku Dashboard, or the
    Heroku command line. For purposes of the instructions, let us
    suppose this is called `cs48-s20-cgaucho-lab00`
-
+   
 4) Add a value for `SESSION_COOKIE_SECRET` to to your `.env` file.
 
    The value can be any arbitrary string of upper and lower case
    letters and digits. It is just a value used to encrypt your
    session cookies so that it's more difficult for hackers to hijack
    your session. There is more detail in the file
-   [docs/session-cookie-secret.md](./docs/session-cookie-secret.md)
+   [session-cookie-secret.md](./session-cookie-secret.md)
 
    Example:
 
@@ -62,10 +62,10 @@
 
 10. Go to the Setting page in the Heroku Dashboard and add two config vars:
 
-    | Key                        | Value                                             | Example                                                     |
-    | -------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
-    | `REDIRECT_URI`             | Your production URL with `/api/callback` appended | `https://cs48-s20-cgaucho-lab00.herokuapp.com/api/callback` |
-    | `POST_LOGOUT_REDIRECT_URI` | Your production URL                               | `https://cs48-s20-cgaucho-lab00.herokuapp.com`              |
+   | Key                        | Value                                             | Example                                                     |
+   | -------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
+   | `REDIRECT_URI`             | Your production URL with `/api/callback` appended | `https://cs48-s20-cgaucho-lab00.herokuapp.com/api/callback` |
+   | `POST_LOGOUT_REDIRECT_URI` | Your production URL                               | `https://cs48-s20-cgaucho-lab00.herokuapp.com`              |
 
 Once you've defined these, redeploy your app, and it should work on
 Heroku. Be sure that you don't only test loading the home page, but
