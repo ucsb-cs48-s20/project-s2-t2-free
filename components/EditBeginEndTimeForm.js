@@ -19,7 +19,10 @@ function validateForm(e, startTime, endTime, addEvent) {
 
 function EditBeginEndTimeForm() {
   const { showToast } = useToasts();
-  const { mutate } = useSWR("/api/event/editSleepEvents");
+  const { mutate: mutateEditSleepEvents, data } = useSWR(
+    "/api/event/editSleepEvents"
+  );
+  const { mutate: mutateEvents } = useSWR("/api/event");
 
   const [startTime, setStartTime] = useState("9:00 AM");
   const [endTime, setEndTime] = useState("5:00 PM");
@@ -35,27 +38,9 @@ function EditBeginEndTimeForm() {
       e.preventDefault();
       e.stopPropagation();
 
-      setStartTime("9:00 AM");
-      setEndTime("5:00 PM");
+      setStartTime(startTime);
+      setEndTime(endTime);
       showToast("Set your day start and end time!");
-
-      await mutate(
-        [
-          {
-            name: "",
-            isMonday: true,
-            isTuesday: true,
-            isWednesday: true,
-            isThursday: true,
-            isFriday: true,
-            isSaturday: true,
-            isSunday: true,
-            startTime: startTime,
-            endTime: endTime,
-          },
-        ],
-        false
-      );
 
       await fetch("/api/event/editSleepEvents", {
         method: "POST",
@@ -75,16 +60,15 @@ function EditBeginEndTimeForm() {
           endTime: endTime,
         }),
       });
-      await mutate();
+      await mutateEvents();
     },
     ["", true, true, true, true, true, true, true, startTime, endTime]
   );
-
   return (
-    <Accordion defaultActiveKey="0" className="mb-3">
+    <Accordion defaultActiveKey="1" className="mb-3">
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0" className="acc-toggle">
-          Set a start time and end time to your day!
+          Set Default Times
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
