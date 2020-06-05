@@ -4,7 +4,6 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import { InputGroup, Container, Row, Col } from "react-bootstrap";
 import useSWR from "swr";
-import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
 import { convertTime, numToTime } from "../utils/timeFuncs";
 import Router from "next/router";
@@ -45,7 +44,7 @@ function validateForm(
 
 function EditEventForm(props) {
   const { mutate } = useSWR("/api/event");
-  const { showToast } = useToasts();
+  const { data } = useSWR("api/event/editSleepEvents");
   const event = props.event[0];
 
   const [name, setName] = useState(event.name);
@@ -62,8 +61,18 @@ function EditEventForm(props) {
   const [endTime, setEndTime] = useState(event.endTime);
 
   const timeOptions = [];
-  for (let i = 0; i < 1339; i = i + 5) {
-    timeOptions.push(<option>{numToTime(i)}</option>);
+  if (typeof data === "object" && data.length == 2) {
+    for (
+      let i = convertTime(data[0].endTime);
+      i <= convertTime(data[1].startTime);
+      i = i + 5
+    ) {
+      timeOptions.push(<option>{numToTime(i)}</option>);
+    }
+  } else {
+    for (let i = 0; i < 1339; i = i + 5) {
+      timeOptions.push(<option>{numToTime(i)}</option>);
+    }
   }
 
   const addEvent = useCallback(
