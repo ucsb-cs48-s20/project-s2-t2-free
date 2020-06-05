@@ -3,8 +3,7 @@ import { requiredAuth } from "../../utils/ssr";
 import NewEventForm from "../../components/NewEventForm";
 import ScheduleTable from "../../components/ScheduleTable";
 import FreeTime from "../../components/FreeTime";
-import EditBeginEndTimeForm from "../../components/EditBeginEndTimeForm";
-import Button from "react-bootstrap/Button";
+import DailyTimesForm from "../../components/DailyTimesForm";
 
 export const getServerSideProps = requiredAuth;
 
@@ -15,7 +14,7 @@ function SchedulePage(props) {
       <h1 id="greetings" className="mb-3">
         {user.given_name} {user.family_name}'s Schedule
       </h1>
-      <EditBeginEndTimeForm />
+      <DailyTimesForm />
       <NewEventForm />
       <ScheduleTable />
       <FreeTime />
