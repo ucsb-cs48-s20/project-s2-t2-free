@@ -66,7 +66,7 @@ function EditBeginEndTimeForm() {
     [startTime, endTime]
   );
 
-  if (typeof data === "object") {
+  if (typeof data === "object" && data.length === 2) {
     return (
       <Accordion defaultActiveKey="1" className="mb-3">
         <Card>

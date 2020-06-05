@@ -45,7 +45,6 @@ function validateForm(
 function NewEventForm() {
   const { showToast } = useToasts();
   const { mutate } = useSWR("/api/event");
-  const { data } = useSWR("api/event/editSleepEvents");
   const [name, setName] = useState("");
 
   const [isMonday, setIsMonday] = useState(false);
