@@ -5,6 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
+import UserGroups from "./UserGroups";
 
 function AppNavbar(props) {
   const user = props.user;
@@ -27,6 +28,11 @@ function AppNavbar(props) {
               <Link href="/groups-management" passHref={true}>
                 <Nav.Link>Groups Management</Nav.Link>
               </Link>
+            )}
+            {user && (
+              <NavDropdown title={<> My Groups</>}>
+                <UserGroups />
+              </NavDropdown>
             )}
           </Nav>
           <Nav>
