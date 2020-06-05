@@ -60,36 +60,41 @@ export default function createTable() {
     const items = [];
 
     for (let i = 0; i < data.length; i++) {
-      items.push(
-        <tr>
-          <td>{data[i].name}</td>
-          <td>{dayOfTheWeek(data[i])}</td>
-          <td>{data[i].startTime}</td>
-          <td>{data[i].endTime}</td>
-          <td>
-            {isEditMode && (
-              <Form.Group>
-                <Link
-                  href="/modifyEvent/[data[i]._id]"
-                  as={`/modifyEvent/${data[i]._id}`}
-                >
-                  <Button type="btn btn-primary" className="mb-3">
-                    Edit
-                  </Button>
-                </Link>
-              </Form.Group>
-            )}
+      if (data[i].name != "") {
+        items.push(
+          <tr>
+            <td>{data[i].name}</td>
+            <td>{dayOfTheWeek(data[i])}</td>
+            <td>{data[i].startTime}</td>
+            <td>{data[i].endTime}</td>
+            <td>
+              {isEditMode && (
+                <Form.Group>
+                  <Link
+                    href="/modifyEvent/[data[i]._id]"
+                    as={`/modifyEvent/${data[i]._id}`}
+                  >
+                    <Button type="btn btn-primary" className="mb-3">
+                      Edit
+                    </Button>
+                  </Link>
+                </Form.Group>
+              )}
 
-            {isEditMode && (
-              <Form.Group>
-                <Button variant="danger" onClick={() => deleteId(data[i]._id)}>
-                  Delete
-                </Button>
-              </Form.Group>
-            )}
-          </td>
-        </tr>
-      );
+              {isEditMode && (
+                <Form.Group>
+                  <Button
+                    variant="danger"
+                    onClick={() => deleteId(data[i]._id)}
+                  >
+                    Delete
+                  </Button>
+                </Form.Group>
+              )}
+            </td>
+          </tr>
+        );
+      }
     }
 
     if (isEditMode) {
