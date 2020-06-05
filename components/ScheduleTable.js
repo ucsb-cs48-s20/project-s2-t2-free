@@ -77,11 +77,11 @@ export default function createTable() {
                   Edit
                 </Button>
 
-                <Modal show={show} onHide={handleClose} backdrop="static">
+                {/* <Modal show={show} onHide={handleClose} backdrop="static">
                   <Modal.Header closeButton>
                     <Modal.Title>Edit Event</Modal.Title>
                   </Modal.Header>
-                </Modal>
+                </Modal> */}
               </Form.Group>
             )}
 
