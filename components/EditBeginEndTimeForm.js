@@ -17,18 +17,19 @@ function validateForm(e, startTime, endTime, addEvent) {
   return addEvent(e);
 }
 
-function EditBeginEndTimeForm() {
+function EditBeginEndTimeForm(props) {
+  const user = props.user;
   const { showToast } = useToasts();
-  const { mutate: mutateEditSleepEvents, data } = useSWR(
+  const { mutate: mutateEvents } = useSWR("/api/event");
+  const { mutate: mutateEditSleepEvents } = useSWR(
     "/api/event/editSleepEvents"
   );
-  const { mutate: mutateEvents } = useSWR("/api/event");
 
   const [startTime, setStartTime] = useState("9:00 AM");
   const [endTime, setEndTime] = useState("5:00 PM");
 
   const timeOptions = [];
-  for (let i = 0; i < 1339; i = i + 5) {
+  for (let i = 0; i < 1439; i = i + 5) {
     timeOptions.push(<option>{numToTime(i)}</option>);
   }
 
@@ -61,11 +62,14 @@ function EditBeginEndTimeForm() {
         }),
       });
       await mutateEvents();
+      await mutateEditSleepEvents();
     },
-    ["", true, true, true, true, true, true, true, startTime, endTime]
+    [startTime, endTime]
   );
+
   return (
     <Accordion defaultActiveKey="1" className="mb-3">
+      {JSON.stringify(user, null, "\t")}
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0" className="acc-toggle">
           Set Default Times
