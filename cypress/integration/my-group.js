@@ -32,7 +32,6 @@ describe("Group Management Page", () => {
 
     it("check group data", () => {
       cy.get('a[id="group-link-0"]').click();
-      cy.get('button[id="joingroup"]');
       cy.get('button[id="leavegroup"]');
     });
   });
