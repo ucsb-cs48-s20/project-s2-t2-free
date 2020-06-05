@@ -56,14 +56,18 @@ function JoinLeaveButton(props) {
       if (data[i].code === code) {
         return (
           <div className="mb-3">
-            <Button onClick={leaveGroup}>Leave</Button>
+            <Button id="leavegroup" onClick={leaveGroup}>
+              Leave
+            </Button>
           </div>
         );
       }
     }
     return (
       <div className="mb-3 mr-2">
-        <Button onClick={joinGroup}>Join</Button>
+        <Button id="joingroup" onClick={joinGroup}>
+          Join
+        </Button>
       </div>
     );
   } else {
