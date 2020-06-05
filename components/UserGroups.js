@@ -14,6 +14,6 @@ export default function UserGroups() {
         </NavDropdown.Item>
       );
     }
-    return items;
   }
+  return items;
 }
