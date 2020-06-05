@@ -41,7 +41,7 @@ export function GroupPage(props) {
       )}
       {data && !data[0] && (
         <div>
-          <h1>Group does not exist :(</h1>
+          <h1 id="groupdoesnotexist">Group Does Not Exist :(</h1>
         </div>
       )}
       <form action="/groups-management" className="mb-3">

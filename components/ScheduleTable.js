@@ -42,31 +42,68 @@ export default function createTable() {
     await mutate();
   }, []);
 
+  function resetSchedule() {
+    var reset = confirm("Are you sure you want to reset your schedule?");
+    if (reset == true) {
+      if (typeof data === "object") {
+        for (let i = 0; i < data.length; i++) {
+          deleteId(data[i]._id);
+        }
+      }
+      showToast("Cleared schedule!");
+    }
+  }
+
   if (typeof data === "object") {
     const items = [];
 
     for (let i = 0; i < data.length; i++) {
+      if (data[i].name != "") {
+        items.push(
+          <tr>
+            <td>{data[i].name}</td>
+            <td>{dayOfTheWeek(data[i])}</td>
+            <td>{data[i].startTime}</td>
+            <td>{data[i].endTime}</td>
+            <td>
+              {isDeleteMode && (
+                <Form.Group>
+                  <Button
+                    variant="danger"
+                    onClick={() => deleteId(data[i]._id)}
+                  >
+                    Delete
+                  </Button>
+                </Form.Group>
+              )}
+            </td>
+          </tr>
+        );
+      }
+    }
+
+    if (isDeleteMode) {
       items.push(
-        <tr>
-          <td>{data[i].name}</td>
-          <td>{dayOfTheWeek(data[i])}</td>
-          <td>{data[i].startTime}</td>
-          <td>{data[i].endTime}</td>
+        <tr style={{ backgroundColor: "#ffbfc2" }}>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
           <td>
-            {isDeleteMode && (
+            {
               <Form.Group>
-                <Button variant="danger" onClick={() => deleteId(data[i]._id)}>
-                  Delete
+                <Button variant="danger" onClick={() => resetSchedule()}>
+                  Reset All
                 </Button>
               </Form.Group>
-            )}
+            }
           </td>
         </tr>
       );
     }
 
     return (
-      <Table striped bordered className="mb-3">
+      <Table striped bordered className="mb-3" id="schedule">
         <thead>
           <tr>
             <th>Event Name</th>

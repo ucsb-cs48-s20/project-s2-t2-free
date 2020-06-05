@@ -28,6 +28,7 @@ export async function createGroup(req, userSub) {
 
   // generating code
   group.code = Math.random().toString(36).substring(2, 8);
+
   let codeArray = [];
   while (codeArray.length !== 0) {
     codeArray = await groups.find({ code: group.code }).toArray();

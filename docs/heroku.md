@@ -29,7 +29,7 @@
    letters and digits. It is just a value used to encrypt your
    session cookies so that it's more difficult for hackers to hijack
    your session. There is more detail in the file
-   [docs/session-cookie-secret.md](./docs/session-cookie-secret.md)
+   [session-cookie-secret.md](./session-cookie-secret.md)
 
    Example:
 
@@ -62,10 +62,10 @@
 
 10. Go to the Setting page in the Heroku Dashboard and add two config vars:
 
-    | Key                        | Value                                             | Example                                                     |
-    | -------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
-    | `REDIRECT_URI`             | Your production URL with `/api/callback` appended | `https://cs48-s20-cgaucho-lab00.herokuapp.com/api/callback` |
-    | `POST_LOGOUT_REDIRECT_URI` | Your production URL                               | `https://cs48-s20-cgaucho-lab00.herokuapp.com`              |
+| Key                        | Value                                             | Example                                                     |
+| -------------------------- | ------------------------------------------------- | ----------------------------------------------------------- |
+| `REDIRECT_URI`             | Your production URL with `/api/callback` appended | `https://cs48-s20-cgaucho-lab00.herokuapp.com/api/callback` |
+| `POST_LOGOUT_REDIRECT_URI` | Your production URL                               | `https://cs48-s20-cgaucho-lab00.herokuapp.com`              |
 
 Once you've defined these, redeploy your app, and it should work on
 Heroku. Be sure that you don't only test loading the home page, but

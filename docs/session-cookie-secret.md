@@ -15,11 +15,4 @@ When running in production, it is important to define a good
 unguessable value, and not use a default value that can be found
 in source code.
 
-For deploying to now.sh, the script `setup_now.js` does
-this with the line of code:
-
-```
- const cookieSecret = crypto.randomBytes(32).toString("hex");
-```
-
-Return to [README.md](../README.md)
+Return to [DEPLOY.md](./DEPLOY.md)
