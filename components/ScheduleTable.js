@@ -69,7 +69,10 @@ export default function createTable() {
           <td>
             {isEditMode && (
               <Form.Group>
-                <Link href={"/modifyEvent/data[i]._id"}>
+                <Link
+                  href="/modifyEvent/[data[i]._id]"
+                  as={`/modifyEvent/${data[i]._id}`}
+                >
                   <Button type="btn btn-primary" className="mb-3">
                     Edit
                   </Button>

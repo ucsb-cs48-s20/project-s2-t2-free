@@ -7,6 +7,7 @@ import useSWR from "swr";
 import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
 import { convertTime, numToTime } from "../utils/timeFuncs";
+import Router from "next/router";
 
 function validateForm(
   e,
@@ -43,23 +44,22 @@ function validateForm(
 }
 
 function EditEventForm(props) {
+  const { mutate } = useSWR("/api/event");
   const { showToast } = useToasts();
-  const event = props.event;
+  const event = props.event[0];
 
-  if (typeof event === "object") {
-    const [name, setName] = useState(event.name);
+  const [name, setName] = useState(event.name);
 
-    const [isMonday, setIsMonday] = useState(event.isMonday);
-    const [isTuesday, setIsTuesday] = useState(event.isTuesday);
-    const [isWednesday, setIsWednesday] = useState(event.isWednesday);
-    const [isThursday, setIsThursday] = useState(event.isThursday);
-    const [isFriday, setIsFriday] = useState(event.isFriday);
-    const [isSaturday, setIsSaturday] = useState(event.isSaturday);
-    const [isSunday, setIsSunday] = useState(event.isSunday);
+  const [isMonday, setIsMonday] = useState(event.isMonday);
+  const [isTuesday, setIsTuesday] = useState(event.isTuesday);
+  const [isWednesday, setIsWednesday] = useState(event.isWednesday);
+  const [isThursday, setIsThursday] = useState(event.isThursday);
+  const [isFriday, setIsFriday] = useState(event.isFriday);
+  const [isSaturday, setIsSaturday] = useState(event.isSaturday);
+  const [isSunday, setIsSunday] = useState(event.isSunday);
 
-    const [startTime, setStartTime] = useState(event.startTime);
-    const [endTime, setEndTime] = useState(event.endTime);
-  }
+  const [startTime, setStartTime] = useState(event.startTime);
+  const [endTime, setEndTime] = useState(event.endTime);
 
   const timeOptions = [];
   for (let i = 0; i < 1339; i = i + 5) {
@@ -69,23 +69,10 @@ function EditEventForm(props) {
   const addEvent = useCallback(
     async (e) => {
       // override default form submission behavior
+      console.log(e);
       e.preventDefault();
       e.stopPropagation();
-      setName("");
-      setIsMonday(false);
-      setIsTuesday(false);
-      setIsWednesday(false);
-      setIsThursday(false);
-      setIsFriday(false);
-      setIsSaturday(false);
-      setIsSunday(false);
-      setStartTime("12:00 PM");
-      setEndTime("12:00 PM");
-      if (name === "") {
-        showToast("Added Event!");
-      } else {
-        showToast("Added Event: " + name);
-      }
+
       await mutate(
         [
           {
@@ -103,7 +90,7 @@ function EditEventForm(props) {
         ],
         false
       );
-      await fetch("/api/event", {
+      await fetch(`/api/event/${event._id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,6 +109,7 @@ function EditEventForm(props) {
         }),
       });
       await mutate();
+      Router.push("/my-schedule");
     },
     [
       name,
@@ -279,8 +267,8 @@ function EditEventForm(props) {
                       />
                     </Col>
                     <Col md="auto" className="mb-3">
-                      <Button id="addevent" type="submit">
-                        Add Event
+                      <Button id="updateEvent" type="submit">
+                        Update Event
                       </Button>
                     </Col>
                   </Row>

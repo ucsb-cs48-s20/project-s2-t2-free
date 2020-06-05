@@ -61,9 +61,6 @@ function NewEventForm() {
 
   const timeOptions = [];
   if (typeof data === "object" && data.length == 2) {
-    console.log(data[0].endTime);
-    console.log(data[1].startTime);
-
     for (
       let i = convertTime(data[0].endTime);
       i <= convertTime(data[1].startTime);
