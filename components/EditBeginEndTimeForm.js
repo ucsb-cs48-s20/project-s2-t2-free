@@ -22,8 +22,14 @@ function EditBeginEndTimeForm() {
   const { showToast } = useToasts();
   const { mutate } = useSWR("/api/event/editSleepEvents");
 
-  const [startTime, setStartTime] = useState("9:00 AM");
-  const [endTime, setEndTime] = useState("5:00 PM");
+  console.log(data);
+  if (typeof data === "object" && data.length == 2) {
+    const [startTime, setStartTime] = useState(data[0].endTime);
+    const [endTime, setEndTime] = useState(data[1].startTime);
+  } else {
+    const [startTime, setStartTime] = useState("9:00 AM");
+    const [endTime, setEndTime] = useState("5:00 PM");
+  }
 
   const timeOptions = [];
   for (let i = 0; i < 1339; i = i + 5) {
@@ -36,8 +42,6 @@ function EditBeginEndTimeForm() {
       e.preventDefault();
       e.stopPropagation();
 
-      setStartTime("9:00 AM");
-      setEndTime("5:00 PM");
       showToast("Set your day start and end time!");
 
       await mutate(
