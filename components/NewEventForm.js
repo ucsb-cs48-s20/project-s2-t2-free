@@ -8,24 +8,6 @@ import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
 import { convertTime, numToTime } from "../utils/timeFuncs";
 
-function getTimeOptions(data) {
-  let timeOptions = [];
-  if (typeof data === "object" && data.length == 2) {
-    for (
-      let i = convertTime(data[0].endTime);
-      i <= convertTime(data[1].startTime);
-      i = i + 5
-    ) {
-      timeOptions.push(<option>{numToTime(i)}</option>);
-    }
-  } else {
-    for (let i = 0; i < 1339; i = i + 5) {
-      timeOptions.push(<option>{numToTime(i)}</option>);
-    }
-  }
-  return timeOptions;
-}
-
 function validateForm(
   e,
   isSunday,
@@ -77,7 +59,10 @@ function NewEventForm() {
   const [startTime, setStartTime] = useState("12:00 PM");
   const [endTime, setEndTime] = useState("12:00 PM");
 
-  const timeOptions = getTimeOptions(data);
+  const timeOptions = [];
+  for (let i = 0; i < 1439; i = i + 5) {
+    timeOptions.push(<option>{numToTime(i)}</option>);
+  }
 
   const addEvent = useCallback(
     async (e) => {
