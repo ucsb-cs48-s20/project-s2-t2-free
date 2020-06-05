@@ -4,6 +4,8 @@ import { useToasts } from "./Toasts";
 import Table from "react-bootstrap/Table";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import NewEventForm from "./NewEventForm";
+import Link from "next/link";
 
 function dayOfTheWeek(param) {
   let day = "";
@@ -32,7 +34,7 @@ function dayOfTheWeek(param) {
 }
 
 export default function createTable() {
-  const [isDeleteMode, setIsDeleteMode] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
   const { showToast } = useToasts();
   const { data, mutate } = useSWR("/api/event");
 
@@ -58,31 +60,39 @@ export default function createTable() {
     const items = [];
 
     for (let i = 0; i < data.length; i++) {
-      if (data[i].name != "") {
-        items.push(
-          <tr>
-            <td>{data[i].name}</td>
-            <td>{dayOfTheWeek(data[i])}</td>
-            <td>{data[i].startTime}</td>
-            <td>{data[i].endTime}</td>
-            <td>
-              {isDeleteMode && (
-                <Form.Group>
-                  <Button
-                    variant="danger"
-                    onClick={() => deleteId(data[i]._id)}
-                  >
-                    Delete
+      items.push(
+        <tr>
+          <td>{data[i].name}</td>
+          <td>{dayOfTheWeek(data[i])}</td>
+          <td>{data[i].startTime}</td>
+          <td>{data[i].endTime}</td>
+          <td>
+            {isEditMode && (
+              <Form.Group>
+                <Link
+                  href="/modifyEvent/[data[i]._id]"
+                  as={`/modifyEvent/${data[i]._id}`}
+                >
+                  <Button type="btn btn-primary" className="mb-3">
+                    Edit
                   </Button>
-                </Form.Group>
-              )}
-            </td>
-          </tr>
-        );
-      }
+                </Link>
+              </Form.Group>
+            )}
+
+            {isEditMode && (
+              <Form.Group>
+                <Button variant="danger" onClick={() => deleteId(data[i]._id)}>
+                  Delete
+                </Button>
+              </Form.Group>
+            )}
+          </td>
+        </tr>
+      );
     }
 
-    if (isDeleteMode) {
+    if (isEditMode) {
       items.push(
         <tr style={{ backgroundColor: "#ffbfc2" }}>
           <td></td>
@@ -112,10 +122,10 @@ export default function createTable() {
             <th>End Time</th>
             <th>
               <Form.Check
-                label="Delete"
+                label="Edit"
                 type="switch"
-                id="isDeleteMode"
-                onChange={(e) => setIsDeleteMode(e.target.checked)}
+                id="isEditMode"
+                onChange={(e) => setIsEditMode(e.target.checked)}
               />
             </th>
           </tr>

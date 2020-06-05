@@ -7,6 +7,7 @@ import useSWR from "swr";
 import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
 import { convertTime, numToTime } from "../utils/timeFuncs";
+import Router from "next/router";
 
 function validateForm(
   e,
@@ -42,58 +43,36 @@ function validateForm(
   return addEvent(e);
 }
 
-function NewEventForm() {
-  const { showToast } = useToasts();
+function EditEventForm(props) {
   const { mutate } = useSWR("/api/event");
-  const { data } = useSWR("api/event/editSleepEvents");
-  const [name, setName] = useState("");
+  const { showToast } = useToasts();
+  const event = props.event[0];
 
-  const [isMonday, setIsMonday] = useState(false);
-  const [isTuesday, setIsTuesday] = useState(false);
-  const [isWednesday, setIsWednesday] = useState(false);
-  const [isThursday, setIsThursday] = useState(false);
-  const [isFriday, setIsFriday] = useState(false);
-  const [isSaturday, setIsSaturday] = useState(false);
-  const [isSunday, setIsSunday] = useState(false);
+  const [name, setName] = useState(event.name);
 
-  const [startTime, setStartTime] = useState("12:00 PM");
-  const [endTime, setEndTime] = useState("12:00 PM");
+  const [isMonday, setIsMonday] = useState(event.isMonday);
+  const [isTuesday, setIsTuesday] = useState(event.isTuesday);
+  const [isWednesday, setIsWednesday] = useState(event.isWednesday);
+  const [isThursday, setIsThursday] = useState(event.isThursday);
+  const [isFriday, setIsFriday] = useState(event.isFriday);
+  const [isSaturday, setIsSaturday] = useState(event.isSaturday);
+  const [isSunday, setIsSunday] = useState(event.isSunday);
+
+  const [startTime, setStartTime] = useState(event.startTime);
+  const [endTime, setEndTime] = useState(event.endTime);
 
   const timeOptions = [];
-  if (typeof data === "object" && data.length == 2) {
-    for (
-      let i = convertTime(data[0].endTime);
-      i <= convertTime(data[1].startTime);
-      i = i + 5
-    ) {
-      timeOptions.push(<option>{numToTime(i)}</option>);
-    }
-  } else {
-    for (let i = 0; i < 1339; i = i + 5) {
-      timeOptions.push(<option>{numToTime(i)}</option>);
-    }
+  for (let i = 0; i < 1339; i = i + 5) {
+    timeOptions.push(<option>{numToTime(i)}</option>);
   }
 
   const addEvent = useCallback(
     async (e) => {
       // override default form submission behavior
+      console.log(e);
       e.preventDefault();
       e.stopPropagation();
-      setName("");
-      setIsMonday(false);
-      setIsTuesday(false);
-      setIsWednesday(false);
-      setIsThursday(false);
-      setIsFriday(false);
-      setIsSaturday(false);
-      setIsSunday(false);
-      setStartTime("12:00 PM");
-      setEndTime("12:00 PM");
-      if (name === "") {
-        showToast("Added Event!");
-      } else {
-        showToast("Added Event: " + name);
-      }
+
       await mutate(
         [
           {
@@ -111,7 +90,7 @@ function NewEventForm() {
         ],
         false
       );
-      await fetch("/api/event", {
+      await fetch(`/api/event/${event._id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -130,6 +109,7 @@ function NewEventForm() {
         }),
       });
       await mutate();
+      Router.push("/my-schedule");
     },
     [
       name,
@@ -287,8 +267,8 @@ function NewEventForm() {
                       />
                     </Col>
                     <Col md="auto" className="mb-3">
-                      <Button id="addevent" type="submit">
-                        Add Event
+                      <Button id="updateEvent" type="submit">
+                        Update Event
                       </Button>
                     </Col>
                   </Row>
@@ -302,4 +282,4 @@ function NewEventForm() {
   );
 }
 
-export default NewEventForm;
+export default EditEventForm;

@@ -62,7 +62,7 @@ async function createEvent(req, userSub) {
   if (event.name === "") {
     event.name = "Untitled";
   }
-  console.log("inserting into events:", event);
+  // console.log("inserting into events:", event);
 
   const client = await initDatabase();
   const events = client.collection("events");
