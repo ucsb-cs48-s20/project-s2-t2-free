@@ -6,6 +6,7 @@ import useSWR from "swr";
 import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
 import { convertTime, numToTime } from "../utils/timeFuncs";
+import Router from "next/router";
 
 function validateForm(e, startTime, endTime, addEvent) {
   e.preventDefault();
@@ -76,6 +77,7 @@ function EditBeginEndTimeForm() {
         }),
       });
       await mutate();
+      Router.push("/my-schedule");
     },
     ["", true, true, true, true, true, true, true, startTime, endTime]
   );
