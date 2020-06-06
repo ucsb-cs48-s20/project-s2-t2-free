@@ -17,15 +17,28 @@ function validateForm(e, startTime, endTime, addEvent) {
   return addEvent(e);
 }
 
-function EditBeginEndTimeForm() {
+function startTimeExists(value) {
+  if (value && value.endTime) {
+    return value.endTime;
+  }
+  return "9:00 AM";
+}
+
+function endTimeExists(value) {
+  if (value && value.startTime) {
+    return value.startTime;
+  }
+  return "5:00 PM";
+}
+
+function EditBeginEndTimeForm(props) {
+  const data = props.data;
   const { showToast } = useToasts();
   const { mutate: mutateEvents } = useSWR("/api/event");
-  const { mutate: mutateGetDailyTimes, data } = useSWR(
-    "/api/event/getDailyTimes"
-  );
+  const { mutate: mutateGetDailyTimes } = useSWR("/api/event/getDailyTimes");
 
-  const [startTime, setStartTime] = useState("9:00 AM");
-  const [endTime, setEndTime] = useState("5:00 PM");
+  const [startTime, setStartTime] = useState(startTimeExists(data[0]));
+  const [endTime, setEndTime] = useState(endTimeExists(data[1]));
 
   const timeOptions = [];
   for (let i = 0; i < 1439; i = i + 5) {
@@ -66,72 +79,64 @@ function EditBeginEndTimeForm() {
     [startTime, endTime]
   );
 
-  if (typeof data === "object" && data.length === 2) {
-    return (
-      <Accordion defaultActiveKey="1" className="mb-3">
-        <Card>
-          <Accordion.Toggle
-            as={Card.Header}
-            eventKey="0"
-            className="acc-toggle"
-          >
-            Daily Start/End Times
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
-              <Form
-                onSubmit={(e) => validateForm(e, startTime, endTime, addEvent)}
-                className="mb-3"
-              >
-                <Form.Group>
-                  <Container>
-                    <Row>
-                      <Col>
-                        <InputGroup className="mb-3">
-                          <InputGroup.Prepend>
-                            <InputGroup.Text>Daily Start Time</InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <Form.Control
-                            as="select"
-                            value={startTime}
-                            onChange={(e) => setStartTime(e.target.value)}
-                          >
-                            {timeOptions}
-                          </Form.Control>
-                        </InputGroup>
-                      </Col>
-                      <Col>
-                        <InputGroup className="mb-3">
-                          <InputGroup.Prepend>
-                            <InputGroup.Text>Daily End Time</InputGroup.Text>
-                          </InputGroup.Prepend>
-                          <Form.Control
-                            as="select"
-                            value={endTime}
-                            onChange={(e) => setEndTime(e.target.value)}
-                          >
-                            {timeOptions}
-                          </Form.Control>
-                        </InputGroup>
-                      </Col>
-                      <Col md="auto" className="mb-3">
-                        <Button type="submit">Confirm</Button>
-                      </Col>
-                    </Row>
-                    <Row className="justify-content-center">
-                      Day currently starts are {data[0].endTime} and ends at{" "}
-                      {data[1].startTime}
-                    </Row>
-                  </Container>
-                </Form.Group>
-              </Form>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-    );
-  }
-  return <div></div>;
+  return (
+    <Accordion defaultActiveKey="1" className="mb-3">
+      <Card>
+        <Accordion.Toggle as={Card.Header} eventKey="0" className="acc-toggle">
+          Daily Start/End Times
+        </Accordion.Toggle>
+        <Accordion.Collapse eventKey="0">
+          <Card.Body>
+            <Form
+              onSubmit={(e) => validateForm(e, startTime, endTime, addEvent)}
+              className="mb-3"
+            >
+              <Form.Group>
+                <Container>
+                  <Row>
+                    <Col>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                          <InputGroup.Text>Daily Start Time</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control
+                          as="select"
+                          value={startTime}
+                          onChange={(e) => setStartTime(e.target.value)}
+                        >
+                          {timeOptions}
+                        </Form.Control>
+                      </InputGroup>
+                    </Col>
+                    <Col>
+                      <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                          <InputGroup.Text>Daily End Time</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control
+                          as="select"
+                          value={endTime}
+                          onChange={(e) => setEndTime(e.target.value)}
+                        >
+                          {timeOptions}
+                        </Form.Control>
+                      </InputGroup>
+                    </Col>
+                    <Col md="auto" className="mb-3">
+                      <Button type="submit">Confirm</Button>
+                    </Col>
+                  </Row>
+                </Container>
+              </Form.Group>
+            </Form>
+          </Card.Body>
+        </Accordion.Collapse>
+      </Card>
+    </Accordion>
+  );
 }
 
-export default EditBeginEndTimeForm;
+export default function init() {
+  const { data } = useSWR("/api/event/getDailyTimes");
+  return <div>{data && <EditBeginEndTimeForm data={data} />}</div>;
+}

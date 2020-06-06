@@ -57,7 +57,7 @@ describe("utils/timeFuncs", () => {
     let event2 = [["12:00 AM", "11:00 AM"]];
     let busy2 = convertEvent(event2);
     it("populates busy with events", () => {
-      expect(busy2["12:00 AM"]).toBe(false);
+      expect(busy2["12:00 AM"]).toBe(true);
     });
     it("populates busy with events", () => {
       expect(busy2["11:00 AM"]).toBe(true);
