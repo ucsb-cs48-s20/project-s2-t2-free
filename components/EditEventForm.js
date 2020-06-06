@@ -61,7 +61,7 @@ function EditEventForm(props) {
   const [endTime, setEndTime] = useState(event.endTime);
 
   const timeOptions = [];
-  for (let i = 0; i < 1339; i = i + 5) {
+  for (let i = 0; i < 1439; i = i + 5) {
     timeOptions.push(<option>{numToTime(i)}</option>);
   }
 
