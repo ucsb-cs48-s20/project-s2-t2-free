@@ -4,8 +4,8 @@ import { useToasts } from "./Toasts";
 import Table from "react-bootstrap/Table";
 import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import NewEventForm from "./NewEventForm";
-import Link from "next/link";
+import EditEventForm from "../components/EditEventForm";
+import Modal from "react-bootstrap/Modal";
 
 function dayOfTheWeek(param) {
   let day = "";
@@ -34,9 +34,12 @@ function dayOfTheWeek(param) {
 }
 
 export default function createTable() {
-  const [isEditMode, setIsEditMode] = useState(false);
   const { showToast } = useToasts();
   const { data, mutate } = useSWR("/api/event");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const deleteId = useCallback(async (eventId) => {
     showToast(`Deleted event`);
@@ -57,86 +60,65 @@ export default function createTable() {
   }
 
   if (typeof data === "object") {
-    const items = [];
+    const eventRow = [];
+    const editForm = [];
 
     for (let i = 0; i < data.length; i++) {
       if (data[i].name != "") {
-        items.push(
+        editForm.push(<EditEventForm event={data[i]} />);
+        eventRow.push(
           <tr>
             <td>{data[i].name}</td>
             <td>{dayOfTheWeek(data[i])}</td>
             <td>{data[i].startTime}</td>
             <td>{data[i].endTime}</td>
-            <td>
-              {isEditMode && (
-                <Form.Group>
-                  <Link
-                    href="/modifyEvent/[data[i]._id]"
-                    as={`/modifyEvent/${data[i]._id}`}
-                  >
-                    <Button type="btn btn-primary" className="mb-3">
-                      Edit
-                    </Button>
-                  </Link>
-                </Form.Group>
-              )}
-
-              {isEditMode && (
-                <Form.Group>
-                  <Button
-                    variant="danger"
-                    onClick={() => deleteId(data[i]._id)}
-                  >
-                    Delete
-                  </Button>
-                </Form.Group>
-              )}
-            </td>
+            <td></td>
           </tr>
         );
       }
     }
 
-    if (isEditMode) {
-      items.push(
-        <tr style={{ backgroundColor: "#ffbfc2" }}>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            {
-              <Form.Group>
-                <Button variant="danger" onClick={() => resetSchedule()}>
-                  Reset All
-                </Button>
-              </Form.Group>
-            }
-          </td>
-        </tr>
-      );
-    }
-
     return (
-      <Table striped bordered className="mb-3" id="schedule">
-        <thead>
-          <tr>
-            <th>Event Name</th>
-            <th>Day of the Week</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>
-              <Form.Check
-                label="Edit"
-                type="switch"
-                id="isEditMode"
-                onChange={(e) => setIsEditMode(e.target.checked)}
-              />
-            </th>
-          </tr>
-        </thead>
-        <tbody>{items}</tbody>
-      </Table>
+      <>
+        <Table striped bordered className="mb-3" id="schedule">
+          <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>Day of the Week</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>
+                <Form.Group>
+                  <Button
+                    variant="primary"
+                    onClick={handleShow}
+                    className="m-0"
+                  >
+                    Edit
+                  </Button>
+                </Form.Group>
+              </th>
+            </tr>
+          </thead>
+          <tbody>{eventRow}</tbody>
+        </Table>
+        <Modal show={show} onHide={handleClose} size="lg">
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Events</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{editForm}</Modal.Body>
+          <Modal.Footer>
+            <Form.Group>
+              <Button variant="danger" onClick={() => resetSchedule()}>
+                Reset All
+              </Button>
+            </Form.Group>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
     );
   } else {
     return <div></div>;

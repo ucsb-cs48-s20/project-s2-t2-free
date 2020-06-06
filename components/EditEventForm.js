@@ -46,7 +46,7 @@ function validateForm(
 function EditEventForm(props) {
   const { mutate } = useSWR("/api/event");
   const { showToast } = useToasts();
-  const event = props.event[0];
+  const event = props.event;
 
   const [name, setName] = useState(event.name);
 
@@ -65,6 +65,12 @@ function EditEventForm(props) {
   for (let i = 0; i < 1339; i = i + 5) {
     timeOptions.push(<option>{numToTime(i)}</option>);
   }
+
+  const deleteId = useCallback(async (eventId) => {
+    showToast(`Deleted event`);
+    await fetch(`/api/event/${eventId}`, { method: "DELETE" });
+    await mutate();
+  }, []);
 
   const addEvent = useCallback(
     async (e) => {
@@ -126,10 +132,17 @@ function EditEventForm(props) {
   );
 
   return (
-    <Accordion defaultActiveKey="0" className="mb-3">
+    <Accordion defaultActiveKey="1" className="mb-3">
       <Card>
         <Accordion.Toggle as={Card.Header} eventKey="0" className="acc-toggle">
-          Create New Event
+          <Row className="justify-content-between">
+            <Col xs="auto">{event.name}</Col>
+            <Col xs="auto">
+              <Button variant="danger" onClick={() => deleteId(event._id)}>
+                Delete
+              </Button>
+            </Col>
+          </Row>
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <Card.Body>
@@ -164,7 +177,7 @@ function EditEventForm(props) {
                           placeholder="Untitled"
                           type="text"
                           value={name}
-                          id="eventname"
+                          id={`${event._id}-eventname`}
                           onChange={(e) => setName(e.target.value)}
                         />
                       </InputGroup>
@@ -180,7 +193,7 @@ function EditEventForm(props) {
                           as="select"
                           value={startTime}
                           onChange={(e) => setStartTime(e.target.value)}
-                          id="starttime"
+                          id={`${event._id}-starttime`}
                         >
                           {timeOptions}
                         </Form.Control>
@@ -194,7 +207,7 @@ function EditEventForm(props) {
                         <Form.Control
                           as="select"
                           value={endTime}
-                          id="endtime"
+                          id={`${event._id}-endtime`}
                           onChange={(e) => setEndTime(e.target.value)}
                         >
                           {timeOptions}
@@ -205,69 +218,71 @@ function EditEventForm(props) {
                   <Row className="justify-content-center">
                     <Col md="auto" className="mb-3">
                       <Form.Check
-                        label="Monday"
+                        label="Mon"
                         type="switch"
-                        id="Monday"
+                        id={`${event._id}-Monday`}
                         checked={isMonday}
                         onChange={(e) => setIsMonday(e.target.checked)}
                       />
                     </Col>
                     <Col md="auto" className="mb-3">
                       <Form.Check
-                        label="Tuesday"
+                        label="Tues"
                         type="switch"
-                        id="Tuesday"
+                        id={`${event._id}-Tuesday`}
                         checked={isTuesday}
                         onChange={(e) => setIsTuesday(e.target.checked)}
                       />
                     </Col>
                     <Col md="auto" className="mb-3">
                       <Form.Check
-                        label="Wednesday"
+                        label="Wed"
                         type="switch"
-                        id="Wednesday"
+                        id={`${event._id}-Wednesday`}
                         checked={isWednesday}
                         onChange={(e) => setIsWednesday(e.target.checked)}
                       />
                     </Col>
                     <Col md="auto" className="mb-3">
                       <Form.Check
-                        label="Thursday"
+                        label="Thur"
                         type="switch"
-                        id="Thursday"
+                        id={`${event._id}-Thursday`}
                         checked={isThursday}
                         onChange={(e) => setIsThursday(e.target.checked)}
                       />
                     </Col>
                     <Col md="auto" className="mb-3">
                       <Form.Check
-                        label="Friday"
+                        label="Fri"
                         type="switch"
-                        id="Friday"
+                        id={`${event._id}-Friday`}
                         checked={isFriday}
                         onChange={(e) => setIsFriday(e.target.checked)}
                       />
                     </Col>
                     <Col md="auto" className="mb-3">
                       <Form.Check
-                        label="Saturday"
+                        label="Sat"
                         type="switch"
-                        id="Saturday"
+                        id={`${event._id}-Saturday`}
                         checked={isSaturday}
                         onChange={(e) => setIsSaturday(e.target.checked)}
                       />
                     </Col>
                     <Col md="auto" className="mb-3">
                       <Form.Check
-                        label="Sunday"
+                        label="Sun"
                         type="switch"
-                        id="Sunday"
+                        id={`${event._id}-Sunday`}
                         checked={isSunday}
                         onChange={(e) => setIsSunday(e.target.checked)}
                       />
                     </Col>
+                  </Row>
+                  <Row className="justify-content-end">
                     <Col md="auto" className="mb-3">
-                      <Button id="updateEvent" type="submit">
+                      <Button id={`${event._id}-updateevent`} type="submit">
                         Update Event
                       </Button>
                     </Col>
