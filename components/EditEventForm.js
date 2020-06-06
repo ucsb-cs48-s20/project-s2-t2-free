@@ -7,7 +7,6 @@ import useSWR from "swr";
 import { useToasts } from "./Toasts";
 import { Accordion, Card } from "react-bootstrap";
 import { convertTime, numToTime } from "../utils/timeFuncs";
-import Router from "next/router";
 
 function validateForm(
   e,
@@ -79,23 +78,7 @@ function EditEventForm(props) {
       e.preventDefault();
       e.stopPropagation();
 
-      await mutate(
-        [
-          {
-            name: name,
-            isMonday: isMonday,
-            isTuesday: isTuesday,
-            isWednesday: isWednesday,
-            isThursday: isThursday,
-            isFriday: isFriday,
-            isSaturday: isSaturday,
-            isSunday: isSunday,
-            startTime: startTime,
-            endTime: endTime,
-          },
-        ],
-        false
-      );
+      await mutate([], false);
       await fetch(`/api/event/${event._id}`, {
         method: "POST",
         headers: {
@@ -115,7 +98,6 @@ function EditEventForm(props) {
         }),
       });
       await mutate();
-      Router.push("/my-schedule");
     },
     [
       name,
@@ -138,7 +120,11 @@ function EditEventForm(props) {
           <Row className="justify-content-between">
             <Col xs="auto">{event.name}</Col>
             <Col xs="auto">
-              <Button variant="danger" onClick={() => deleteId(event._id)}>
+              <Button
+                id={`${event._id}-deleteevent`}
+                variant="danger"
+                onClick={() => deleteId(event._id)}
+              >
                 Delete
               </Button>
             </Col>
