@@ -60,7 +60,7 @@ export default function createTable() {
     const items = [];
 
     for (let i = 0; i < data.length; i++) {
-      if (data[i].name != "jfkdl;a") {
+      if (data[i].name != "") {
         items.push(
           <tr>
             <td>{data[i].name}</td>
