@@ -63,14 +63,6 @@ export function convertEvent(events) {
     var start_time = convertTime(events[i][0]);
     var end_time = convertTime(events[i][1]);
 
-    if (start_time === 0) {
-      busy["12:00 AM"] = false;
-    }
-
-    if (end_time === 1435) {
-      busy["11:55 PM"] = false;
-    }
-
     for (let j = start_time + 5; j <= end_time - 5; j = j + 5) {
       busy[numToTime(j)] = false;
     }

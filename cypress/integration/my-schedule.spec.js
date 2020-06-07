@@ -83,15 +83,11 @@ describe("Group Management Page", () => {
     });
 
     it("check freetime table data", () => {
-      cy.get('table[id="freetime"]').contains(
-        "12:00 AM-5:00 PM, 6:15 PM-11:59 PM"
-      );
+      cy.get('table[id="freetime"]').contains("12:00 AM-5:00 PM");
     });
 
     it("check freetime table data", () => {
-      cy.get('table[id="freetime"]').contains(
-        "12:00 AM-2:00 PM, 2:50 PM-11:59 PM"
-      );
+      cy.get('table[id="freetime"]').contains("12:00 AM-2:00 PM");
     });
   });
 });
