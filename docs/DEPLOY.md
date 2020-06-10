@@ -77,3 +77,5 @@ the codebase will automatically be reflected in the browser.
 Create a new Heroku app, and link it to your forked copy of this app, so that you are ready to deploy the master branch.
 Instructions on how to set up your app on Heroku can be found here:
 [heroku.md](./heroku.md)
+
+# [Deployment Instructions Video](https://www.youtube.com/watch?v=0RYbwrxzuvQ)
