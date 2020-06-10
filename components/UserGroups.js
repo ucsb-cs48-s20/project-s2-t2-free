@@ -19,5 +19,5 @@ export default function UserGroups() {
   if (items.length !== 0) {
     return items;
   }
-  return <NavDropdown.Item>Not in a Groups :(</NavDropdown.Item>;
+  return <NavDropdown.Item>Not in any Groups :(</NavDropdown.Item>;
 }
