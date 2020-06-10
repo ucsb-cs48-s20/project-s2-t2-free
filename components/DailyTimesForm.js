@@ -21,14 +21,14 @@ function startTimeExists(value) {
   if (value && value.endTime) {
     return value.endTime;
   }
-  return "9:00 AM";
+  return "12:00 AM";
 }
 
 function endTimeExists(value) {
   if (value && value.startTime) {
     return value.startTime;
   }
-  return "5:00 PM";
+  return "11:55 PM";
 }
 
 function EditBeginEndTimeForm(props) {
