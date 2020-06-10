@@ -64,7 +64,7 @@ function JoinLeaveButton(props) {
       }
     }
     return (
-      <div className="mb-3 mr-2">
+      <div className="mb-3">
         <Button id="joingroup" onClick={joinGroup}>
           Join
         </Button>
