@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { NavItem } from "react-bootstrap";
 
 export default function UserGroups() {
   const { data } = useSWR("/api/groups/getUserGroups");
@@ -15,5 +16,8 @@ export default function UserGroups() {
       );
     }
   }
-  return items;
+  if (items.length !== 0) {
+    return items;
+  }
+  return <NavDropdown.Item>Not in any Groups :(</NavDropdown.Item>;
 }

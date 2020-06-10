@@ -11,5 +11,8 @@ export default function MembersTable() {
   if (typeof groupInfo === "object" && typeof membersJSON === "object") {
     items = groupInfo[0].members.map((id) => membersJSON[id]).join(", ");
   }
-  return <div className="mb-3">Members: {items}</div>;
+  if (items.length !== 0) {
+    return <div className="mb-3">Members: {items}</div>;
+  }
+  return <div className="mb-3">No Members :(</div>;
 }

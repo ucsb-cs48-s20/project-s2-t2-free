@@ -61,12 +61,6 @@ function FreeTime(data) {
   for (var key in free_time_byDay) {
     var str = "";
     for (let k = 0; k < free_time_byDay[key].length; k++) {
-      if (free_time_byDay[key][k][0] == "11:55 PM") {
-        free_time_byDay[key][k][0] = "11:59 PM";
-      }
-      if (free_time_byDay[key][k][1] == "11:55 PM") {
-        free_time_byDay[key][k][1] = "11:59 PM";
-      }
       str =
         str +
         free_time_byDay[key][k][0] +
@@ -106,7 +100,7 @@ export default function MembersFreeTime() {
   if (typeof data === "object" && typeof membersJSON === "object") {
     for (let i = 0; i < data.length; i++) {
       items.push(
-        <Accordion className="mb-3">
+        <Accordion defaultActiveKey="1" className="mb-3">
           <Card>
             <Accordion.Toggle
               as={Card.Header}

@@ -2,6 +2,7 @@ import useSWR from "swr";
 import Table from "react-bootstrap/Table";
 import { useRouter } from "next/router";
 import { freeTime } from "../utils/timeFuncs";
+import { Accordion, Card } from "react-bootstrap";
 
 function findFreeTime(data) {
   // create dictionary with format 'day of week':'list of free time intervals'
@@ -60,12 +61,6 @@ function FreeTime(data) {
   for (var key in free_time_byDay) {
     var str = "";
     for (let k = 0; k < free_time_byDay[key].length; k++) {
-      if (free_time_byDay[key][k][0] == "11:55 PM") {
-        free_time_byDay[key][k][0] = "11:59 PM";
-      }
-      if (free_time_byDay[key][k][1] == "11:55 PM") {
-        free_time_byDay[key][k][1] = "11:59 PM";
-      }
       str =
         str +
         free_time_byDay[key][k][0] +
@@ -101,7 +96,22 @@ export default function returnTable() {
   const { code } = router.query;
   const { data } = useSWR(`/api/groups/getGroupFreeTime/${code}`);
   if (typeof data === "object") {
-    return <div>{FreeTime(data)}</div>;
+    return (
+      <Accordion defaultActiveKey="0" className="mb-3">
+        <Card>
+          <Accordion.Toggle
+            as={Card.Header}
+            eventKey="0"
+            className="acc-toggle"
+          >
+            Everyone's Free Time
+          </Accordion.Toggle>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>{FreeTime(data)}</Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
+    );
   }
   return <div></div>;
 }

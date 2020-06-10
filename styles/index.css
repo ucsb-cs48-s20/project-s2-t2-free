@@ -8,6 +8,12 @@
   margin-bottom: 6px;
 }
 
+.nav a:hover,
+.menu-active,
+.parent-active > .sf-with-ul {
+  color: rgb(165, 165, 165) !important;
+}
+
 body {
   font-family: "Source Sans Pro", sans-serif;
 }
