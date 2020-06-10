@@ -100,7 +100,7 @@ export default function MembersFreeTime() {
   if (typeof data === "object" && typeof membersJSON === "object") {
     for (let i = 0; i < data.length; i++) {
       items.push(
-        <Accordion className="mb-3">
+        <Accordion defaultActiveKey="1" className="mb-3">
           <Card>
             <Accordion.Toggle
               as={Card.Header}
